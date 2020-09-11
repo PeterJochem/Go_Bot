@@ -18,7 +18,10 @@ This package runs nodes to facilitate the ReactorX200 robot arm manipulating Go 
 I had some trouble getting all the packages at the correct versions to compile so I made a Docker container. Here are the instructions on how to connect to the Docker container and also, if need be, create a new container 
 Put it all in a bash script?
 
-## Connect to the Container  
+## Connect to the Running Container  
+1) ```sudo docker ps``` to see if the container is running
+
+2) ```docker exec -it robot_env bash``` <br /> 
 
 ## Setting up the Docker Container 
 
@@ -58,4 +61,6 @@ Without this, rosdep won’t find any packages with the given names to install i
 
 17) ```vim usr/share/ignition/fuel_tools/config.yaml``` 
 Change the url in the config.yaml file to ```https://api.ignitionrobotics.org```
-	
+
+## Restarting the Container on Reboot
+1) ```sudo docker start robot_env```	
