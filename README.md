@@ -17,11 +17,12 @@ This package runs nodes to facilitate the ReactorX200 robot arm manipulating Go 
 # Docker Instructions
 I had some trouble getting all the packages at the correct versions to compile so I made a Docker container. Here are the instructions on how to connect to the Docker container and also, if need be, create a new container 
 Put it all in a bash script?
+A really good description on how to use Docker with ROS can be found [here](https://docs.freedomrobotics.ai/docs/ros-development-in-docker-on-mac-and-windows) <br />
 
 ## Connect to the Running Container  
 1) ```sudo docker ps``` to see if the container is running
 
-2) ```docker exec -it robot_env bash``` <br /> 
+2) ```sudo docker exec -it robot_env bash``` <br /> 
 
 ## Setting up the Docker Container 
 
