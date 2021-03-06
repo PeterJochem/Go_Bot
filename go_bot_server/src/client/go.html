@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial_scale=1">
+  <link rel="stylesheet" href="/home/peterjochem/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Define your own css file to modify the Bootstrap default css styles -->  
+  <!-- Load the bootstrap plugins -->
+  <script src="/usr/share/twitter-bootstrap/files/js/bootstrap.min.js"> </script>
+  <link rel="stylesheet" href="go.css">
+    
+</head>
+
+    
+    
+<body>    
+  <link rel="stylesheet" href="/home/peterjochem/node_modules/bootstrap/dist/css/bootstrap.min.css">
+ <!-- Define your own css file to modify the Bootstrap default css styles -->  
+  <!-- Load the bootstrap plugins -->
+  <script src="/usr/share/twitter-bootstrap/files/js/bootstrap.min.js"> </script>
+
+    
+    <h1>Go Bot </h1>
+    <div class="container">
+        <div class="row">
+            <!-- canvas id="canvas" class="col-lg-12 col-md-12 col-sm-12 col-md-xs-12"> </canvas -->
+             <video id="myVidPlayer" controls muted autoplay></video>
+        </div>
+    </div>
+    
+    <script>
+        
+        
+    <!-- https://www.youtube.com/watch?v=KCqkkIVh-sY -->
+        
+  /* 
+  var ctx = document.getElementById('canvas').getContext('2d');
+  var white_piece = new Image();
+  var black_piece = new Image();
+        
+  white_piece.onload = function() {
+      width = 10;
+      height = 10;
+      for (var i = 0; i < 30; i++) {
+          for (var j = 0; j < 19; j++){
+              if ((i + j) % 3 === 0) {
+                ctx.drawImage(white_piece, i * width, j * height, width, height);
+              }
+          }
+      }
+  };
+  black_piece.onload = fun<video id="myVidPlayer" controls muted autoplay></video>ction() {
+      width = 10;
+      height = 10;
+      for (var i = 0; i < 30; i++) {
+          for (var j = 0; j < 19; j++){
+            if ((i + j) % 3 !== 0) {
+                ctx.drawImage(black_piece, i * width, j * height, width, height);
+            }
+          }
+      }
+  };      
+  white_piece.src = "images/white.png";
+  black_piece.src = "images/black.png";
+  /* empty.src = */
+   
+        /*
+   var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = 2.5;
+
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'black';
+      context.fill();
+      context.lineWidth = 0.1;
+      context.strokeStyle = 'black';
+      context.stroke();
+      */
+        
+        
+    </script>
+    
+    
+    <script type="text/javascript">
+    //Selector for your <video> element
+    const video = document.querySelector('#myVidPlayer');
+
+    //Core
+    window.navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            video.srcObject = stream;
+            video.onloadedmetadata = (e) => {
+                video.play();
+            };
+        })
+        .catch( () => {
+            alert('You have give browser the permission to run Webcam and mic ;( ');
+        });
+
+</script>
+    
+    <button onclick="snapshot()" >Snapshot</button>
+
+<div class="mycanvas">
+    <h6>Captured snapshot</h6>
+    <canvas></canvas>
+</div>
+
+  
+  <!-- script src="three.min.js"></script -->
+  <!-- script src="main.js"></script -->  
+</body>
+</html>

@@ -1,0 +1,8 @@
+<launch>
+
+
+  <node name="node" pkg="go_motion_planning" type="node" ns="/rx200" output="screen" />
+  <!-- /node -->
+
+
+</launch>
