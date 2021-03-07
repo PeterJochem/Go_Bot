@@ -1,8 +1,13 @@
 <launch>
 
-
-  <node name="node" pkg="go_motion_planning" type="node" ns="/rx200" output="screen" />
+  <node name="node" pkg="go_motion_planning" type="node" ns="/rx200" output="screen"/>
   <!-- /node -->
+ 
+  <!-- This controls the arm in real life -->
+  <!-- node name="arm_node" pkg="interbotix_sdk" type="arm_node"/ -->
+	
+  <node pkg="tf2_ros" type="static_transform_publisher" name="world" args="0.2 0 0.0 0 0 0 1 world go_board" />
+  
 
 
 </launch>

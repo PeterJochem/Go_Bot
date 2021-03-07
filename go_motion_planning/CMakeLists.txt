@@ -2,12 +2,13 @@ cmake_minimum_required(VERSION 3.0.2)
 project(go_motion_planning)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  interbotix_sdk
   roscpp
   rospy
   std_msgs
@@ -75,7 +76,7 @@ find_package(Eigen3 REQUIRED)
 add_service_files(
    FILES
    home_position.srv
-#   Service2.srv
+   pickup_piece.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -123,7 +124,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES go_motion_planning 
-   CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+   CATKIN_DEPENDS interbotix_sdk roscpp rospy std_msgs message_runtime
 #  DEPENDS system_lib
    DEPENDS
    EIGEN3

@@ -3,7 +3,10 @@ I used a ReactorX200 arm to play go. This project has a few components. I first 
 
 # Running in Robot in Gazebo 
 To run the robot in Gazebo with MoveIt, run <br />
-```roslaunch interbotix_moveit interbotix_moveit.launch robot_name:=rx200 use_gazebo:=true```
+```roslaunch interbotix_moveit interbotix_moveit.launch robot_name:=rx200 use_gazebo:=true``` <br />
+To start the node which manages the physical robot run. This will allow us to do pwm control of the gripper <br />
+```roslaunch interbotix_sdk arm_run.launch robot_name:=rx200 gripper_operating_mode="pwm"``` <br />
+For more information on what the arm_run.launch file does, read the interbotix_sdk/README.md file
 
 # ROS Packages in This Repo
 go_motion_planning - Provides services for picking and placing go pieces using MoveIt <br />
