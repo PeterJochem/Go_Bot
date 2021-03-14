@@ -77,6 +77,11 @@ add_service_files(
    FILES
    home_position.srv
    pickup_piece.srv
+   place_piece_in_unused.srv
+   remove_piece.srv
+   pickup_unused_piece.srv
+   place_piece.srv
+   play_piece.srv
 )
 
 ## Generate actions in the 'action' folder

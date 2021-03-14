@@ -4,3 +4,9 @@ home_position_z: 0.395
 home_position_roll: 0.006
 home_position_pitch: 0.039 
 home_position_yaw: 0.006
+row_width: 0.02
+row_height: 0.02
+z_stance_height: 0.05
+#piece_container_x: 1.2 # Where we will put pieces from the board 
+#piece_container_y: 1.2 # (x, y, z) in the world frame
+#piece_container_z: 1.1

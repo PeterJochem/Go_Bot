@@ -13,6 +13,11 @@
 #include <std_msgs/Float64.h>
 #include "go_motion_planning/home_position.h"
 #include "go_motion_planning/pickup_piece.h"
+#include "go_motion_planning/place_piece_in_unused.h"
+#include "go_motion_planning/remove_piece.h"
+#include "go_motion_planning/pickup_unused_piece.h"
+#include "go_motion_planning/place_piece.h"
+#include "go_motion_planning/play_piece.h"
 #include "tf2_ros/transform_listener.h"
 
 /** @brief Provides high level abstraction and motion planning services for the GoBot */
@@ -49,6 +54,8 @@ class go_motion_planner {
 		bool cartesian_sequence(geometry_msgs::Pose);
 		geometry_msgs::Pose stance_pose(int row, int column);	
 		geometry_msgs::Point board_location(int row, int column);
+		geometry_msgs::Point next_empty_unused_piece_location();
+		geometry_msgs::Point next_unused_piece_location();
 		geometry_msgs::Quaternion grasp_orientation(geometry_msgs::Point); 	
 
 		void setup_transform_listeners();
@@ -71,14 +78,29 @@ class go_motion_planner {
 
 		ros::ServiceServer home_position_service;
 		ros::ServiceServer pickup_piece_service;
+		ros::ServiceServer place_piece_in_unused_service;
+		ros::ServiceServer remove_piece_service;
+		ros::ServiceServer pickup_unused_piece_service;
+		ros::ServiceServer place_piece_service;
+		ros::ServiceServer play_piece_service;
 
-		bool move_to_home_position(go_motion_planning::home_position::Request &req, go_motion_planning::home_position::Response &res);	
-		bool pickup_piece(go_motion_planning::pickup_piece::Request &req, go_motion_planning::pickup_piece::Response &res);
-			
-		// Temporary Stuff for Testing 
-		bool move_to_position();
-	
+		// Service Implementations
+		bool pickup_piece(int row, int column);
+		bool remove_piece(int row, int column);
+		bool place_in_unused_pile();
+		bool place_piece(int row, int column);
+		bool pickup_unused_piece();
+		bool move_to_home_position();
+		bool play_piece(int row, int column);
 
+		// Service Bindings
+		bool move_to_home_position_service_binding(go_motion_planning::home_position::Request &req, go_motion_planning::home_position::Response &res);	
+		bool pickup_piece_service_binding(go_motion_planning::pickup_piece::Request &req, go_motion_planning::pickup_piece::Response &res);
+		bool place_piece_in_unused_service_binding(go_motion_planning::place_piece_in_unused::Request &req, go_motion_planning::place_piece_in_unused::Response &res);	
+		bool remove_piece_service_binding(go_motion_planning::remove_piece::Request &req, go_motion_planning::remove_piece::Response &res);
+		bool pickup_unused_piece_service_binding(go_motion_planning::pickup_unused_piece::Request &req, go_motion_planning::pickup_unused_piece::Response &res);
+		bool place_piece_service_binding(go_motion_planning::place_piece::Request &req, go_motion_planning::place_piece::Response &res);
+		bool play_piece_service_binding(go_motion_planning::play_piece::Request &req, go_motion_planning::play_piece::Response &res);
 
 	private:
 
@@ -95,7 +117,10 @@ class go_motion_planner {
   		const moveit::core::JointModelGroup* joint_model_group;
 		
 		geometry_msgs::Pose home_pose;	
+		double row_width, row_height, z_stance_height;
 		
-	
+		int num_unused_pieces = 0;
+		geometry_msgs::Point convert_board_frame_to_world(geometry_msgs::Point board_point);	
+						
 
 };

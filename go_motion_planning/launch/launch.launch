@@ -1,13 +1,16 @@
 <launch>
 
+  <rosparam command="load" file="$(find go_motion_planning)/config/setup.yaml"/>
+
   <node name="node" pkg="go_motion_planning" type="node" ns="/rx200" output="screen"/>
   <!-- /node -->
  
   <!-- This controls the arm in real life -->
   <!-- node name="arm_node" pkg="interbotix_sdk" type="arm_node"/ -->
 	
-  <node pkg="tf2_ros" type="static_transform_publisher" name="world" args="0.2 0 0.0 0 0 0 1 world go_board" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="world_board_tf_pub" args="0.2 0.0 0.0 0.0 0.0 0.0 1.0 world go_board" />
   
-  <rosparam command="load" file="$(find go_motion_planning)/config/setup.yaml"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="world_used_piece_pub" args="0.0 0.3 0.1 0.0 0.0 0.0 1.0 world piece_drop_location" />  
+  
 
 </launch>

@@ -6,23 +6,23 @@
 #include <moveit_msgs/CollisionObject.h>
 #include <moveit_visual_tools/moveit_visual_tools.h>
 #include "go_motion_planner.hpp"
-#include <std_srvs/SetBool.h> // Delete this
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 //#include "moveit_msgs/MoveGroupFeedback.h"
 #include "actionlib_msgs/GoalStatus.h"
 #include <tf/tf.h>
-#include <unistd.h> // For sleep - delete this
 #include <std_msgs/Float64.h>
 #include "go_motion_planning/home_position.h"
 #include "go_motion_planning/pickup_piece.h"
 #include <math.h>
 
 // TO Do:
-// 1) Create a service to move to a column
-// 2) Change the node names and the file names 
-// 3) Cartesian Grasping Sequence
-// 4) Setup ROS Test!!
+// 1) Create a service to place a piece?
+// 2) Create a service to remove a set of pieces?
+// 3) Add the pieces to Gazebo
+// 4) Change the node names and the file names 
+// 5) Make things in the class private/public
+// 6) Setup ROS Test!!
 
 
 go_motion_planner::go_motion_planner() {
@@ -61,12 +61,21 @@ void go_motion_planner::load_param_values() {
 	node_handle.getParam("/home_position_pitch", pitch);
 	node_handle.getParam("/home_position_yaw", yaw);
 
+	node_handle.getParam("/row_width", row_width);
+        node_handle.getParam("/row_height", row_height);
+        node_handle.getParam("/z_stance_height", z_stance_height);
+
 	home_pose = create_pose(x, y, z, roll, pitch, yaw); 
 }
 
 void go_motion_planner::setup_services() {
-	home_position_service = node_handle.advertiseService("/home_position", &go_motion_planner::move_to_home_position, this);
-	pickup_piece_service = node_handle.advertiseService("/pickup_piece", &go_motion_planner::pickup_piece, this);
+	home_position_service = node_handle.advertiseService("/home_position", &go_motion_planner::move_to_home_position_service_binding, this);
+	pickup_piece_service = node_handle.advertiseService("/pickup_piece", &go_motion_planner::pickup_piece_service_binding, this);
+	place_piece_in_unused_service = node_handle.advertiseService("/place_piece_in_unused", &go_motion_planner::place_piece_in_unused_service_binding, this);
+	remove_piece_service = node_handle.advertiseService("/remove_piece", &go_motion_planner::remove_piece_service_binding, this);
+	pickup_unused_piece_service = node_handle.advertiseService("/pickup_unused_piece", &go_motion_planner::pickup_unused_piece_service_binding, this);
+	place_piece_service = node_handle.advertiseService("/place_piece", &go_motion_planner::place_piece_service_binding, this);	
+	play_piece_service = node_handle.advertiseService("/play_piece", &go_motion_planner::play_piece_service_binding, this);  
 }
 
 void go_motion_planner::setup_subscribers() {
@@ -122,19 +131,52 @@ void go_motion_planner::initialize_moveit() {
 }
 
 
-bool go_motion_planner::move_to_home_position(go_motion_planning::home_position::Request &req, go_motion_planning::home_position::Response &res) {
-	
+bool go_motion_planner::move_to_home_position_service_binding(go_motion_planning::home_position::Request &req, go_motion_planning::home_position::Response &res) {
 	
 	res.success = move_to_pose(home_pose);
-	return true;
+	return res.success;
 }
 
+bool go_motion_planner::pickup_piece_service_binding(go_motion_planning::pickup_piece::Request &req, go_motion_planning::pickup_piece::Response &res) {
+       
+	res.success = pickup_piece(req.row, req.column);
+	return res.success;
+}
 
-bool go_motion_planner::pickup_piece(go_motion_planning::pickup_piece::Request &req, go_motion_planning::pickup_piece::Response &res) {
-        
+bool go_motion_planner::place_piece_in_unused_service_binding(go_motion_planning::place_piece_in_unused::Request &req, go_motion_planning::place_piece_in_unused::Response &res) {
+	
+	res.success = place_in_unused_pile();
+        return res.success;
+}
+
+bool go_motion_planner::remove_piece_service_binding(go_motion_planning::remove_piece::Request &req, go_motion_planning::remove_piece::Response &res) {
+
+        res.success = remove_piece(req.row, req.column);
+        return res.success;
+}
+
+bool go_motion_planner::pickup_unused_piece_service_binding(go_motion_planning::pickup_unused_piece::Request &req, go_motion_planning::pickup_unused_piece::Response &res) {
+	
+	res.success = pickup_unused_piece();
+	return res.success;
+}
+
+bool go_motion_planner::play_piece_service_binding(go_motion_planning::play_piece::Request &req, go_motion_planning::play_piece::Response &res) {
+	
+	res.success = play_piece(req.row, req.column);
+        return res.success;
+}
+
+bool go_motion_planner::place_piece_service_binding(go_motion_planning::place_piece::Request &req, go_motion_planning::place_piece::Response &res) {
+
+        res.success = place_piece(req.row, req.column);
+        return res.success;
+}
+
+bool go_motion_planner::pickup_piece(int row, int column) {	
+
 	// put this in a try block?
-
-	bool sucess = move_to_pose(stance_pose(req.row, req.column));
+	bool sucess = move_to_pose(stance_pose(row, column));
 
 	if (sucess) {
 		sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, 0.10, 0.0, 0.0, 0.0));
@@ -147,10 +189,170 @@ bool go_motion_planner::pickup_piece(go_motion_planning::pickup_piece::Request &
 	if (sucess) {
 		sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, -0.10, 0.0, 0.0, 0.0));
 	}
+		
+	return sucess;
+}
 
-	open_gripper_simulation();
-	res.success = sucess;	
+bool go_motion_planner::place_piece(int row, int column) {
+
+        // put this in a try block?
+        bool sucess = move_to_pose(stance_pose(row, column));
+
+        if (sucess) {
+                sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, 0.10, 0.0, 0.0, 0.0));
+        }
+
+        if (sucess) {
+                sucess = open_gripper_simulation();
+        }
+
+        if (sucess) {
+                sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, -0.10, 0.0, 0.0, 0.0));
+        }
+
+        return sucess;
+}
+
+
+bool go_motion_planner::remove_piece(int row, int column) {
+	
+	bool success = pickup_piece(row, column);	
+	if (success) { 
+		place_in_unused_pile();
+	}
+				
 	return true;
+}
+
+bool go_motion_planner::play_piece(int row, int column) {
+
+        bool success = pickup_unused_piece();
+        if (success) {
+        	place_piece(row, column);
+        }
+
+        return success;
+}
+
+
+bool go_motion_planner::place_in_unused_pile() {
+
+	// Change this so that we check the datastuctures to see what the array/line of unused pieces is like
+	// and let this determine where we put the piece
+	geometry_msgs::Point drop_point = next_empty_unused_piece_location();
+	geometry_msgs::Quaternion q = grasp_orientation(drop_point);
+	geometry_msgs::Pose p;
+	p.orientation = q;
+	p.position = drop_point; 
+	p.position.z = z_stance_height;
+	bool success = move_to_pose(p);
+
+	if (success) { 
+		p.position.z = 0.15; // Tune this value
+		success = cartesian_sequence(p);
+	}
+	
+	if (success) {
+		success = open_gripper_simulation();
+	}
+	
+	if (success) { 
+		p.position.z = z_stance_height; // Tune this value
+		success = cartesian_sequence(p);	
+	}
+	
+	
+	// Increment the data structure which records how many unused pieces there are
+	// is the dropping of the piece was successful
+	return success;	
+}
+
+
+bool go_motion_planner::pickup_unused_piece() { 
+	
+	// Change this so that we check the datastuctures to see what the array/line of unused pieces is like
+        // and let this determine where we put the piece
+	geometry_msgs::Point pickup_point = next_unused_piece_location();
+	geometry_msgs::Quaternion q = grasp_orientation(pickup_point);
+        geometry_msgs::Pose p;
+        p.orientation = q;
+        p.position = pickup_point;
+        p.position.z = z_stance_height;
+        bool success = move_to_pose(p);
+
+	if (success) {
+		success = open_gripper_simulation();
+	}
+
+	if (success) {
+                p.position.z = 0.15; // Tune this value
+                success = cartesian_sequence(p);
+        }
+
+        if (success) {
+                success = close_gripper_simulation();
+        }
+
+        if (success) {
+                p.position.z = z_stance_height; // Tune this value
+                success = cartesian_sequence(p);
+        }
+
+
+        // Increment the data structure which records how many unused pieces there are
+        // is the dropping of the piece was successful
+        return success;
+}
+
+
+// Compute where to place the piece we are removing from the board 
+geometry_msgs::Point go_motion_planner::next_empty_unused_piece_location() { 
+	
+	// This should be computed by looking at the datastructures to see where the unused pieces are
+	// Query data structure to see how many pieces already exist    
+        // num_unused_pieces
+	geometry_msgs::Point next_free_location;
+	next_free_location.x = -0.2;
+	next_free_location.y = 0.2;
+	next_free_location.z = 0.00;
+
+	return convert_board_frame_to_world(next_free_location);
+}
+
+// Compute where to place the piece we are placing on the board
+geometry_msgs::Point go_motion_planner::next_unused_piece_location() {
+
+        // This should be computed by looking at the datastructures to see where the unused pieces are
+        // Query data structure to see how many pieces already exist
+        // num_unused_pieces
+        geometry_msgs::Point next_free_location;
+        next_free_location.x = -0.2;
+        next_free_location.y = 0.2;
+        next_free_location.z = 0.00;
+
+        return convert_board_frame_to_world(next_free_location);
+}
+
+geometry_msgs::Point go_motion_planner::convert_board_frame_to_world(geometry_msgs::Point point_go_board_frame) { 
+
+	geometry_msgs::PointStamped point_stamped_world;
+        geometry_msgs::PointStamped point_stamped_go_board_frame;
+	
+
+	//go_board_point.header.seq = This is filled automatically
+        point_stamped_go_board_frame.header.stamp = ros::Time::now();
+	point_stamped_go_board_frame.header.frame_id = "go_board";
+	point_stamped_go_board_frame.point = point_go_board_frame;
+
+	try {
+                tfBuffer->transform(point_stamped_go_board_frame, point_stamped_world, "world");
+        }
+        catch (tf2::TransformException &ex) {
+                // FIX ME This error should propagate up instead
+                ROS_WARN("Failure %s\n", ex.what()); //Print exception which was caught
+        }
+
+        return point_stamped_world.point;
 }
 
 geometry_msgs::Pose go_motion_planner::stance_pose(int row, int column) { 
@@ -167,31 +369,15 @@ geometry_msgs::Pose go_motion_planner::stance_pose(int row, int column) {
 }
 
 geometry_msgs::Point go_motion_planner::board_location(int row, int column) {
-	
-	double row_width = 0.02; // Move to the param server with a yaml file
-        double row_height = 0.02;
-	double z_stance_height = 0.05; 
 
-        geometry_msgs::PointStamped world_point;
-        geometry_msgs::PointStamped go_board_point;
+        geometry_msgs::Point go_board_frame_point;
 
         //go_board_point.header.seq = This is filled automatically
-        go_board_point.header.stamp = ros::Time::now();
-        go_board_point.header.frame_id = "go_board";
+        go_board_frame_point.x = row_width * row;
+        go_board_frame_point.y = row_height * column;
+        go_board_frame_point.z = 0.0;
 
-        go_board_point.point.x = row_width * row;
-        go_board_point.point.y = row_height * column;
-        go_board_point.point.z = 0.0;
-
-        try {
-        	tfBuffer->transform(go_board_point, world_point, "world");
-        }
-        catch (tf2::TransformException &ex) {
-                // FIX ME This error should propagate up instead 
-		ROS_WARN("Failure %s\n", ex.what()); //Print exception which was caught
-        }
-
-	return world_point.point;
+	return convert_board_frame_to_world(go_board_frame_point);
 }
 
 // The stance_point is in the world frame
@@ -350,39 +536,6 @@ void go_motion_planner::add_orientation_constraints(float roll_tolerance, float 
         test_constraints.orientation_constraints.push_back(ocm);
         move_group->setPathConstraints(test_constraints);
 }
-
-// Temporary function for testing 
-bool go_motion_planner::move_to_position() { 
-	
-	//const robot_state::JointModelGroup* joint_model_group =
-	//move_group->getCurrentState()->getJointModelGroup(PLANNING_GROUP);
-
-	for (int i= 0; i < 5; i++) {
-	
-		const robot_state::JointModelGroup* joint_model_group =
-        move_group->getCurrentState()->getJointModelGroup(PLANNING_GROUP);
-
-		auto new_pose = create_relative_pose(0, 0, 0.01, 0.0, 0.0, 0.0);
-		if ((i % 2) == 0) {
-			new_pose = create_relative_pose(0, 0, -0.01, 0.0, 0.0, 0.0); 
-		}
-		
-		add_orientation_constraints(3.14 / 3.0, 3.14 / 3.0, 3.14 / 3.0);
-		move_group->setPoseTarget(new_pose);	
-		moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-		bool success = (move_group->plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-		if (success) {
-			//move_group->move();
-			move_group->execute(my_plan); // This blocks until the plan is done executing
-			std::cout << "Executed plan : " << i << std::endl;
-		}
-	}
-
-	return true;
-}
-
-
-
 
 int main(int argc, char** argv) {
    
