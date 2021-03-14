@@ -8,6 +8,6 @@
 	
   <node pkg="tf2_ros" type="static_transform_publisher" name="world" args="0.2 0 0.0 0 0 0 1 world go_board" />
   
-
+  <rosparam command="load" file="$(find go_motion_planning)/config/setup.yaml"/>
 
 </launch>

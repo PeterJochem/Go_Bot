@@ -16,24 +16,52 @@
 #include <std_msgs/Float64.h>
 #include "go_motion_planning/home_position.h"
 #include "go_motion_planning/pickup_piece.h"
+#include <math.h>
 
 // TO Do:
 // 1) Create a service to move to a column
 // 2) Change the node names and the file names 
-// 3) Setup ROS Test!!
+// 3) Cartesian Grasping Sequence
+// 4) Setup ROS Test!!
+
 
 go_motion_planner::go_motion_planner() {
 	
 	node_handle = ros::NodeHandle();
 	initialize_moveit();
+	load_param_values();
 	setup_services();			
 	setup_publishers();
 	setup_subscribers();
 	setup_transform_listeners();
 	setup_transform_listeners();
-	
+		
 	
 
+}
+
+void go_motion_planner::wait_for_params() {
+
+	std::cout << "Waiting for parameters to be available on the param server" << std::endl;
+        while (!node_handle.hasParam("/home_position_x")) {
+                ;
+        }
+	std::cout << "Parameters are available on the param server" << std::endl;
+}
+
+void go_motion_planner::load_param_values() { 
+	
+	double x, y, z, roll, pitch, yaw;
+	
+	wait_for_params();
+	node_handle.getParam("/home_position_x", x);  
+	node_handle.getParam("/home_position_y", y);
+	node_handle.getParam("/home_position_z", z);
+	node_handle.getParam("/home_position_roll", roll);
+	node_handle.getParam("/home_position_pitch", pitch);
+	node_handle.getParam("/home_position_yaw", yaw);
+
+	home_pose = create_pose(x, y, z, roll, pitch, yaw); 
 }
 
 void go_motion_planner::setup_services() {
@@ -95,6 +123,9 @@ void go_motion_planner::initialize_moveit() {
 
 
 bool go_motion_planner::move_to_home_position(go_motion_planning::home_position::Request &req, go_motion_planning::home_position::Response &res) {
+	
+	
+	res.success = move_to_pose(home_pose);
 	return true;
 }
 
@@ -103,25 +134,30 @@ bool go_motion_planner::pickup_piece(go_motion_planning::pickup_piece::Request &
         
 	// put this in a try block?
 
-	// Move to the stance position
-	geometry_msgs::Pose my_stance_pose = stance_pose(req.row, req.column); 
+	bool sucess = move_to_pose(stance_pose(req.row, req.column));
+
+	if (sucess) {
+		sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, 0.10, 0.0, 0.0, 0.0));
+	}
 	
-	std::cout << "The stance pose is " << my_stance_pose << std::endl;
-	return move_to_pose(my_stance_pose);
+	if (sucess) {
+		sucess = close_gripper_simulation();
+	}
 
+	if (sucess) {
+		sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, -0.10, 0.0, 0.0, 0.0));
+	}
 
-
-	// Do a cartesian path down 
-	// close the gripper
-	// Do a cartesian path up 			
-	// move to home?
+	open_gripper_simulation();
+	res.success = sucess;	
+	return true;
 }
 
 geometry_msgs::Pose go_motion_planner::stance_pose(int row, int column) { 
 	
 	geometry_msgs::Pose desired_pose;
 	geometry_msgs::Point desired_point = board_location(row, column);
-	geometry_msgs::Quaternion desired_orientation = grasp_orientation();	
+	geometry_msgs::Quaternion desired_orientation = grasp_orientation(desired_point);	
 	
 	desired_pose.position = desired_point;
 	desired_pose.position.z = desired_point.z + 0.10;
@@ -133,7 +169,7 @@ geometry_msgs::Pose go_motion_planner::stance_pose(int row, int column) {
 geometry_msgs::Point go_motion_planner::board_location(int row, int column) {
 	
 	double row_width = 0.02; // Move to the param server with a yaml file
-        double row_height = 0.002;
+        double row_height = 0.02;
 	double z_stance_height = 0.05; 
 
         geometry_msgs::PointStamped world_point;
@@ -158,10 +194,33 @@ geometry_msgs::Point go_motion_planner::board_location(int row, int column) {
 	return world_point.point;
 }
 
-geometry_msgs::Quaternion go_motion_planner::grasp_orientation() {	
-	return quaternion_from_rpy(0.029, 1.522, -0.006); 
-	//return quaternion_from_rpy(-0.618, -1.511, 0.618);
+// The stance_point is in the world frame
+geometry_msgs::Quaternion go_motion_planner::grasp_orientation(geometry_msgs::Point stance_point) {	
+	
+	// Compute the number of radians we need to rotate about the z-axis	
+	double roll = atan2(stance_point.y, stance_point.x);
+	return quaternion_from_rpy(0.029, 1.522, roll); 
 }
+
+
+/** @brief
+ */
+bool go_motion_planner::cartesian_sequence(geometry_msgs::Pose pose) { 
+	
+	std::vector<geometry_msgs::Pose> waypoints;
+	waypoints.push_back(pose);
+	
+	moveit_msgs::RobotTrajectory trajectory;
+	const double jump_threshold = 0.0;
+	const double eef_step = 0.01;
+	double fraction = move_group->computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
+        if (fraction > 0.90) {
+        	move_group->execute(trajectory); // This blocks until the plan is done executing
+        	return true;
+	}
+			
+	return false;
+}	
 
 /* self.pub_gripper_command = rospy.Publisher(robot_name + "/gripper/command", Float64, queue_size=100)
  * Do PWM

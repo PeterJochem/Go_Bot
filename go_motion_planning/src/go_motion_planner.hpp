@@ -46,12 +46,14 @@ class go_motion_planner {
 		void add_orientation_constraints(float roll, float pitch, float yaw);	
 			
 		bool move_to_pose(geometry_msgs::Pose pose);
+		bool cartesian_sequence(geometry_msgs::Pose);
 		geometry_msgs::Pose stance_pose(int row, int column);	
 		geometry_msgs::Point board_location(int row, int column);
-		geometry_msgs::Quaternion grasp_orientation(); 	
+		geometry_msgs::Quaternion grasp_orientation(geometry_msgs::Point); 	
 
 		void setup_transform_listeners();
 
+		void load_param_values();
 		void setup_subscribers();
 		void setup_publishers();
 		ros::Publisher gripper_position_pub;
@@ -83,15 +85,17 @@ class go_motion_planner {
 		/** @brief  
 		 */
 		void initialize_moveit();
-		
+		void wait_for_params();
+
 		// MoveIt data structures 	
 		std::string PLANNING_GROUP;
 	  	moveit::planning_interface::MoveGroupInterface* move_group;
 		moveit::planning_interface::MoveGroupInterface* gripper_move_group;
   		moveit::planning_interface::PlanningSceneInterface* planning_scene_interface;
   		const moveit::core::JointModelGroup* joint_model_group;
-						
-
+		
+		geometry_msgs::Pose home_pose;	
+		
 	
 
 };
