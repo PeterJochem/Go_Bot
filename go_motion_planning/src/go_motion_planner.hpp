@@ -122,7 +122,7 @@ class go_motion_planner {
   		const moveit::core::JointModelGroup* joint_model_group;
 		
 		geometry_msgs::Pose home_pose;	
-		double row_width, row_height, z_board_plane, piece_height, z_stance_offset;
+		double row_width, row_height, z_board_plane, finger_length, piece_height, z_stance_offset;
 		
 		int num_unused_pieces = 0;
 		geometry_msgs::Point convert_board_frame_to_world(geometry_msgs::Point board_point);	

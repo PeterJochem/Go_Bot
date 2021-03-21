@@ -65,7 +65,8 @@ void go_motion_planner::load_param_values() {
 	node_handle.getParam("/z_board_plane", z_board_plane);
 	node_handle.getParam("/piece_height", piece_height);
 	node_handle.getParam("/z_stance_offset", z_stance_offset);
-
+	node_handle.getParam("/finger_length", finger_length);
+		
 
 	home_pose = create_pose(x, y, z, roll, pitch, yaw); 
 }
@@ -389,7 +390,8 @@ geometry_msgs::Pose go_motion_planner::stance_pose(int row, int column) {
 	geometry_msgs::Quaternion desired_orientation = grasp_orientation(desired_point);	
 	
 	desired_pose.position = desired_point;
-	desired_pose.position.z = 0.083 +  z_board_plane + piece_height/2 + z_stance_offset; // z_stance_height; //desired_point.z + 0.10;
+	//desired_pose.position.z = 0.083 +  z_board_plane + piece_height/2 + z_stance_offset; // z_stance_height; //desired_point.z + 0.10;
+	desired_pose.position.z = finger_length +  z_board_plane + piece_height/2 + z_stance_offset;
 	desired_pose.orientation = desired_orientation;
 	
 	return desired_pose; 
