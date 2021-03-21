@@ -82,6 +82,7 @@ add_service_files(
    pickup_unused_piece.srv
    place_piece.srv
    play_piece.srv
+   pickup_set_of_pieces.srv
 )
 
 ## Generate actions in the 'action' folder

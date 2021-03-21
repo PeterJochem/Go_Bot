@@ -4,9 +4,16 @@ home_position_z: 0.395
 home_position_roll: 0.006
 home_position_pitch: 0.039 
 home_position_yaw: 0.006
-row_width: 0.02
-row_height: 0.02
-z_stance_height: 0.05
+row_width: 0.035
+row_height: 0.030
+z_board_plane: 0.0
+finger_length: 0.067 
+# 0.335 / 5
+piece_height: 0.0085
+#0.085
+z_stance_offset: 0.1
+# relative_stance_offset: 0.01 * 20  
+# Above number is the z position pose value of the board in gazebo
 #piece_container_x: 1.2 # Where we will put pieces from the board 
 #piece_container_y: 1.2 # (x, y, z) in the world frame
 #piece_container_z: 1.1

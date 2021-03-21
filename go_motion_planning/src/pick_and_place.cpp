@@ -35,15 +35,13 @@ go_motion_planner::go_motion_planner() {
 	setup_subscribers();
 	setup_transform_listeners();
 	setup_transform_listeners();
-		
 	
-
 }
 
 void go_motion_planner::wait_for_params() {
 
 	std::cout << "Waiting for parameters to be available on the param server" << std::endl;
-        while (!node_handle.hasParam("/home_position_x")) {
+        while (!node_handle.hasParam("/home_position_x") && !node_handle.hasParam("/z_board_plane")) {
                 ;
         }
 	std::cout << "Parameters are available on the param server" << std::endl;
@@ -63,7 +61,11 @@ void go_motion_planner::load_param_values() {
 
 	node_handle.getParam("/row_width", row_width);
         node_handle.getParam("/row_height", row_height);
-        node_handle.getParam("/z_stance_height", z_stance_height);
+        
+	node_handle.getParam("/z_board_plane", z_board_plane);
+	node_handle.getParam("/piece_height", piece_height);
+	node_handle.getParam("/z_stance_offset", z_stance_offset);
+
 
 	home_pose = create_pose(x, y, z, roll, pitch, yaw); 
 }
@@ -76,6 +78,7 @@ void go_motion_planner::setup_services() {
 	pickup_unused_piece_service = node_handle.advertiseService("/pickup_unused_piece", &go_motion_planner::pickup_unused_piece_service_binding, this);
 	place_piece_service = node_handle.advertiseService("/place_piece", &go_motion_planner::place_piece_service_binding, this);	
 	play_piece_service = node_handle.advertiseService("/play_piece", &go_motion_planner::play_piece_service_binding, this);  
+	pickup_set_of_pieces_service = node_handle.advertiseService("/pickup_set_of_pieces", &go_motion_planner::pickup_set_of_pieces_service_binding, this);
 }
 
 void go_motion_planner::setup_subscribers() {
@@ -175,11 +178,14 @@ bool go_motion_planner::place_piece_service_binding(go_motion_planning::place_pi
 
 bool go_motion_planner::pickup_piece(int row, int column) {	
 
+
+	open_gripper_simulation(); // For testing
+	
 	// put this in a try block?
 	bool sucess = move_to_pose(stance_pose(row, column));
-
 	if (sucess) {
-		sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, 0.10, 0.0, 0.0, 0.0));
+		// Compute the relative z remaining?
+		sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, -z_stance_offset, 0.0, 0.0, 0.0));
 	}
 	
 	if (sucess) {
@@ -187,10 +193,31 @@ bool go_motion_planner::pickup_piece(int row, int column) {
 	}
 
 	if (sucess) {
-		sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, -0.10, 0.0, 0.0, 0.0));
+		sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, z_stance_offset, 0.0, 0.0, 0.0));
 	}
 		
 	return sucess;
+}
+
+bool go_motion_planner::pickup_set_of_pieces_service_binding(go_motion_planning::pickup_set_of_pieces::Request &req, go_motion_planning::pickup_set_of_pieces::Response &res) { 
+
+	bool success = true;
+	if (req.row_coords.size() != req.column_coords.size()) {
+		std::cout << "Illegal input to the pickup_set_of_pieces_service" << std::endl;	
+		return false;
+	}
+	
+	while (success && req.row_coords.size() > 0 && req.column_coords.size() > 0) {
+		success = remove_piece(req.row_coords.back(), req.column_coords.back());
+		req.row_coords.pop_back();
+		req.column_coords.pop_back();
+	}
+	
+	if (!success) {
+        	std::cout << "Motion planning/execution failure while trying to remove a set of pieces" << std::endl;
+        }
+
+	return success;
 }
 
 bool go_motion_planner::place_piece(int row, int column) {
@@ -199,7 +226,7 @@ bool go_motion_planner::place_piece(int row, int column) {
         bool sucess = move_to_pose(stance_pose(row, column));
 
         if (sucess) {
-                sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, 0.10, 0.0, 0.0, 0.0));
+                sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, -z_stance_offset, 0.0, 0.0, 0.0));
         }
 
         if (sucess) {
@@ -207,7 +234,7 @@ bool go_motion_planner::place_piece(int row, int column) {
         }
 
         if (sucess) {
-                sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, -0.10, 0.0, 0.0, 0.0));
+                sucess = cartesian_sequence(create_relative_pose(0.0, 0.0, z_stance_offset, 0.0, 0.0, 0.0));
         }
 
         return sucess;
@@ -244,9 +271,9 @@ bool go_motion_planner::place_in_unused_pile() {
 	geometry_msgs::Pose p;
 	p.orientation = q;
 	p.position = drop_point; 
-	p.position.z = z_stance_height;
+	p.position.z = 0.15; //  z_board_plane + piece_height + z_stance_offset;
+	
 	bool success = move_to_pose(p);
-
 	if (success) { 
 		p.position.z = 0.15; // Tune this value
 		success = cartesian_sequence(p);
@@ -257,7 +284,7 @@ bool go_motion_planner::place_in_unused_pile() {
 	}
 	
 	if (success) { 
-		p.position.z = z_stance_height; // Tune this value
+		p.position.z = 0.1; //z_stance_height; // Tune this value
 		success = cartesian_sequence(p);	
 	}
 	
@@ -277,9 +304,9 @@ bool go_motion_planner::pickup_unused_piece() {
         geometry_msgs::Pose p;
         p.orientation = q;
         p.position = pickup_point;
-        p.position.z = z_stance_height;
-        bool success = move_to_pose(p);
-
+        p.position.z = 0.1; // Tune this value //z_board_plane + piece_height + z_stance_offset;
+        
+	bool success = move_to_pose(p);
 	if (success) {
 		success = open_gripper_simulation();
 	}
@@ -294,7 +321,7 @@ bool go_motion_planner::pickup_unused_piece() {
         }
 
         if (success) {
-                p.position.z = z_stance_height; // Tune this value
+                p.position.z = 0.1; //Tune this value //z_stance_height; // Tune this value
                 success = cartesian_sequence(p);
         }
 
@@ -362,7 +389,7 @@ geometry_msgs::Pose go_motion_planner::stance_pose(int row, int column) {
 	geometry_msgs::Quaternion desired_orientation = grasp_orientation(desired_point);	
 	
 	desired_pose.position = desired_point;
-	desired_pose.position.z = desired_point.z + 0.10;
+	desired_pose.position.z = 0.090 +  z_board_plane + piece_height/2 + z_stance_offset; // z_stance_height; //desired_point.z + 0.10;
 	desired_pose.orientation = desired_orientation;
 	
 	return desired_pose; 
@@ -375,7 +402,7 @@ geometry_msgs::Point go_motion_planner::board_location(int row, int column) {
         //go_board_point.header.seq = This is filled automatically
         go_board_frame_point.x = row_width * row;
         go_board_frame_point.y = row_height * column;
-        go_board_frame_point.z = 0.0;
+        go_board_frame_point.z = z_board_plane;
 
 	return convert_board_frame_to_world(go_board_frame_point);
 }

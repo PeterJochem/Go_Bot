@@ -18,6 +18,7 @@
 #include "go_motion_planning/pickup_unused_piece.h"
 #include "go_motion_planning/place_piece.h"
 #include "go_motion_planning/play_piece.h"
+#include "go_motion_planning/pickup_set_of_pieces.h"
 #include "tf2_ros/transform_listener.h"
 
 /** @brief Provides high level abstraction and motion planning services for the GoBot */
@@ -83,6 +84,7 @@ class go_motion_planner {
 		ros::ServiceServer pickup_unused_piece_service;
 		ros::ServiceServer place_piece_service;
 		ros::ServiceServer play_piece_service;
+		ros::ServiceServer pickup_set_of_pieces_service;
 
 		// Service Implementations
 		bool pickup_piece(int row, int column);
@@ -92,6 +94,8 @@ class go_motion_planner {
 		bool pickup_unused_piece();
 		bool move_to_home_position();
 		bool play_piece(int row, int column);
+		//bool pickup_set_of_pieces();
+	
 
 		// Service Bindings
 		bool move_to_home_position_service_binding(go_motion_planning::home_position::Request &req, go_motion_planning::home_position::Response &res);	
@@ -101,6 +105,7 @@ class go_motion_planner {
 		bool pickup_unused_piece_service_binding(go_motion_planning::pickup_unused_piece::Request &req, go_motion_planning::pickup_unused_piece::Response &res);
 		bool place_piece_service_binding(go_motion_planning::place_piece::Request &req, go_motion_planning::place_piece::Response &res);
 		bool play_piece_service_binding(go_motion_planning::play_piece::Request &req, go_motion_planning::play_piece::Response &res);
+		bool pickup_set_of_pieces_service_binding(go_motion_planning::pickup_set_of_pieces::Request &req, go_motion_planning::pickup_set_of_pieces::Response &res); 
 
 	private:
 
@@ -117,7 +122,7 @@ class go_motion_planner {
   		const moveit::core::JointModelGroup* joint_model_group;
 		
 		geometry_msgs::Pose home_pose;	
-		double row_width, row_height, z_stance_height;
+		double row_width, row_height, z_board_plane, piece_height, z_stance_offset;
 		
 		int num_unused_pieces = 0;
 		geometry_msgs::Point convert_board_frame_to_world(geometry_msgs::Point board_point);	
