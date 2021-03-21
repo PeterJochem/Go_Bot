@@ -7,7 +7,8 @@ home_position_yaw: 0.006
 row_width: 0.035
 row_height: 0.030
 z_board_plane: 0.0
-finger_length: 0.067 
+finger_length: 0.058 
+#0.062 
 # 0.335 / 5
 piece_height: 0.0085
 #0.085

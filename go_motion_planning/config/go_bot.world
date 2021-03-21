@@ -1,0 +1,1247 @@
+<sdf version='1.6'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>65535</collide_bitmask>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <audio>
+      <device>default</device>
+    </audio>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='rx200'>
+      <link name='rx200/base_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>-0.035439 -0.003359 0.025341 0 -0 1.5708</pose>
+          <mass>0.766135</mass>
+          <inertia>
+            <ixx>0.003353</ixx>
+            <ixy>-0.0001246</ixy>
+            <ixz>1.106e-05</ixz>
+            <iyy>0.001357</iyy>
+            <iyz>0.0002103</iyz>
+            <izz>0.004111</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/base_link_collision'>
+          <pose frame=''>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-1-Base.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/base_link_visual'>
+          <pose frame=''>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-1-Base.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='fixed' type='fixed'>
+        <child>rx200/base_link</child>
+        <parent>world</parent>
+      </joint>
+      <link name='rx200/shoulder_link'>
+        <pose frame=''>0 0 0.065 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>-8.5e-05 1.7e-05 0.013201 0 -0 1.5708</pose>
+          <mass>0.257774</mass>
+          <inertia>
+            <ixx>0.0002663</ixx>
+            <ixy>9e-10</ixy>
+            <ixz>5.11e-08</ixz>
+            <iyy>0.0004428</iyy>
+            <iyz>4.416e-07</iyz>
+            <izz>0.0004711</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/shoulder_link_collision'>
+          <pose frame=''>0 0 0.0015 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-2-Shoulder.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/shoulder_link_visual'>
+          <pose frame=''>0 0 0.0015 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-2-Shoulder.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='waist' type='revolute'>
+        <child>rx200/shoulder_link</child>
+        <parent>rx200/base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-3.14159</lower>
+            <upper>3.14159</upper>
+            <effort>100</effort>
+            <velocity>3.14159</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='rx200/upper_arm_link'>
+        <pose frame=''>0 0 0.10391 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.011951 -0.000117 0.13943 0 -0 1.5708</pose>
+          <mass>0.297782</mass>
+          <inertia>
+            <ixx>0.00171</ixx>
+            <ixy>-9.773e-07</ixy>
+            <ixz>2.0936e-06</ixz>
+            <iyy>0.001631</iyy>
+            <iyz>0.0002132</iyz>
+            <izz>0.0001478</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/upper_arm_link_collision'>
+          <pose frame=''>0 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-3-UA.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/upper_arm_link_visual'>
+          <pose frame=''>0 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-3-UA.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='shoulder' type='revolute'>
+        <child>rx200/upper_arm_link</child>
+        <parent>rx200/shoulder_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1.8675</lower>
+            <upper>1.93732</upper>
+            <effort>100</effort>
+            <velocity>1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='rx200/forearm_link'>
+        <pose frame=''>0.05 0 0.30391 -3.14159 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.114745 -9.4e-05 0 0 -0 1.5708</pose>
+          <mass>0.258863</mass>
+          <inertia>
+            <ixx>0.001055</ixx>
+            <ixy>-1.8286e-06</ixy>
+            <ixz>0</ixz>
+            <iyy>6.421e-05</iyy>
+            <iyz>0</iyz>
+            <izz>0.001076</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/forearm_link_collision'>
+          <pose frame=''>0 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-4-Forearm.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/forearm_link_visual'>
+          <pose frame=''>0 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-4-Forearm.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='elbow' type='revolute'>
+        <child>rx200/forearm_link</child>
+        <parent>rx200/upper_arm_link</parent>
+        <axis>
+          <xyz>0 -1 -0</xyz>
+          <limit>
+            <lower>-1.62316</lower>
+            <upper>1.88496</upper>
+            <effort>100</effort>
+            <velocity>3.14159</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='rx200/wrist_link'>
+        <pose frame=''>0.25 0 0.30391 -3.14159 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.04236 1e-05 -0.010577 -3.14159 -0 -1.5708</pose>
+          <mass>0.084957</mass>
+          <inertia>
+            <ixx>3.082e-05</ixx>
+            <ixy>1.91e-08</ixy>
+            <ixz>2.3e-09</ixz>
+            <iyy>2.822e-05</iyy>
+            <iyz>2.5481e-06</iyz>
+            <izz>3.152e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/wrist_link_collision'>
+          <pose frame=''>0 0 0 -3.14159 -0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-5-Wrist.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/wrist_link_visual'>
+          <pose frame=''>0 0 0 -3.14159 -0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-5-Wrist.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='wrist_angle' type='revolute'>
+        <child>rx200/wrist_link</child>
+        <parent>rx200/forearm_link</parent>
+        <axis>
+          <xyz>0 -1 -0</xyz>
+          <limit>
+            <lower>-2.14675</lower>
+            <upper>1.74533</upper>
+            <effort>100</effort>
+            <velocity>3.14159</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='rx200/gripper_link'>
+        <pose frame=''>0.315 0 0.30391 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.02163 0 0.01141 0 -0 1.5708</pose>
+          <mass>0.072885</mass>
+          <inertia>
+            <ixx>2.537e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.836e-05</iyy>
+            <iyz>4.34e-07</iyz>
+            <izz>1.674e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/gripper_link_collision'>
+          <pose frame=''>-0.02 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-6-Gripper.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/gripper_link_visual'>
+          <pose frame=''>-0.02 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-6-Gripper.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='wrist_rotate' type='revolute'>
+        <child>rx200/gripper_link</child>
+        <parent>rx200/wrist_link</parent>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-3.14159</lower>
+            <upper>3.14159</upper>
+            <effort>100</effort>
+            <velocity>3.14159</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='rx200/ee_arm_link'>
+        <pose frame=''>0.358 0 0.30391 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.001</iyy>
+            <iyz>0</iyz>
+            <izz>0.001</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='ee_arm' type='revolute'>
+        <child>rx200/ee_arm_link</child>
+        <parent>rx200/gripper_link</parent>
+        <axis>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='rx200/gripper_prop_link'>
+        <pose frame=''>0.3635 0 0.30391 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.000846 -2e-06 4.2e-05 0 -0 1.5708</pose>
+          <mass>0.00434</mass>
+          <inertia>
+            <ixx>5.923e-07</ixx>
+            <ixy>0</ixy>
+            <ixz>3.195e-07</ixz>
+            <iyy>1.1156e-06</iyy>
+            <iyz>-4e-10</iyz>
+            <izz>5.743e-07</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/gripper_prop_link_collision'>
+          <pose frame=''>-0.0685 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-7-Gripper-Prop.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/gripper_prop_link_visual'>
+          <pose frame=''>-0.0685 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-7-Gripper-Prop.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='gripper' type='revolute'>
+        <child>rx200/gripper_prop_link</child>
+        <parent>rx200/ee_arm_link</parent>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='rx200/gripper_bar_link'>
+        <pose frame=''>0.358 0 0.30391 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.009687 1e-06 0.004962 0 -0 1.5708</pose>
+          <mass>0.034199</mass>
+          <inertia>
+            <ixx>7.4125e-06</ixx>
+            <ixy>-8e-10</ixy>
+            <ixz>-6e-10</ixz>
+            <iyy>2.843e-05</iyy>
+            <iyz>-1.3889e-06</iyz>
+            <izz>2.86e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/gripper_bar_link_collision'>
+          <pose frame=''>-0.063 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-8-Gripper-Bar.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/gripper_bar_link_visual'>
+          <pose frame=''>-0.063 0 0 0 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-8-Gripper-Bar.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='gripper_bar' type='revolute'>
+        <child>rx200/gripper_bar_link</child>
+        <parent>rx200/ee_arm_link</parent>
+        <axis>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='rx200/fingers_link'>
+        <pose frame=''>0.381 0 0.30391 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.001</iyy>
+            <iyz>0</iyz>
+            <izz>0.001</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='ee_bar' type='revolute'>
+        <child>rx200/fingers_link</child>
+        <parent>rx200/gripper_bar_link</parent>
+        <axis>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='rx200/ee_gripper_link'>
+        <pose frame=''>0.408575 0 0.30391 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.001</iyy>
+            <iyz>0</iyz>
+            <izz>0.001</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='ee_gripper' type='revolute'>
+        <child>rx200/ee_gripper_link</child>
+        <parent>rx200/fingers_link</parent>
+        <axis>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='rx200/left_finger_link'>
+        <pose frame=''>0.381 0 0.30391 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.013816 0 0 0 -0 -1.5708</pose>
+          <mass>0.016246</mass>
+          <inertia>
+            <ixx>4.731e-06</ixx>
+            <ixy>-4.56e-07</ixy>
+            <ixz>0</ixz>
+            <iyy>1.5506e-06</iyy>
+            <iyz>0</iyz>
+            <izz>3.7467e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/left_finger_link_collision'>
+          <pose frame=''>0 0.005 0 0 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-9-Finger.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+                <max_vel>0</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>50</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/left_finger_link_visual'>
+          <pose frame=''>0 0.005 0 0 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-9-Finger.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='left_finger' type='prismatic'>
+        <child>rx200/left_finger_link</child>
+        <parent>rx200/fingers_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>0.015</lower>
+            <upper>0.037</upper>
+            <effort>10</effort>
+            <velocity>1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='rx200/right_finger_link'>
+        <pose frame=''>0.381 0 0.30391 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0.013816 0 0 -3.14159 -0 -1.5708</pose>
+          <mass>0.016246</mass>
+          <inertia>
+            <ixx>4.731e-06</ixx>
+            <ixy>4.56e-07</ixy>
+            <ixz>0</ixz>
+            <iyy>1.5506e-06</iyy>
+            <iyz>0</iyz>
+            <izz>3.7467e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='rx200/right_finger_link_collision'>
+          <pose frame=''>0 -0.005 0 3.14159 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-9-Finger.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+                <max_vel>0</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>500</mu>
+                <mu2>500</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rx200/right_finger_link_visual'>
+          <pose frame=''>0 -0.005 0 3.14159 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/peterjochem/Desktop/Go_Bot/catkin_ws/src/interbotix_ros_arms/interbotix_descriptions/meshes/meshes_rx200/RXA-200-M-9-Finger.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Custom/Interbotix</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='right_finger' type='prismatic'>
+        <child>rx200/right_finger_link</child>
+        <parent>rx200/fingers_link</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.037</lower>
+            <upper>-0.015</upper>
+            <effort>10</effort>
+            <velocity>1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <static>0</static>
+      <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        <legacyModeNS>1</legacyModeNS>
+        <robotNamespace>/rx200/</robotNamespace>
+      </plugin>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+    </model>
+    <model name='go_board'>
+      <static>0</static>
+      <link name='link'>
+        <inertial>
+          <mass>0.05</mass>
+          <inertia>
+            <ixx>0.0015</ixx>
+            <ixy>0.1</ixy>
+            <ixz>0.1</ixz>
+            <iyy>0.0015</iyy>
+            <iyz>0.1</iyz>
+            <izz>0.00108</izz>
+          </inertia>
+        </inertial>
+        <collision name='colision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.42 0.42 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>3e+07</mu>
+                <mu2>3e+06</mu2>
+                <fdir1>0 0 0</fdir1>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+09</kp>
+                <kd>1e+06</kd>
+                <min_depth>0.0025</min_depth>
+                <max_vel>0.1</max_vel>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual1'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://go_board/meshes/go_board.dae</uri>
+              <scale>8.4 8.4 0.4</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.1</linear>
+          <angular>0.1</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <pose frame=''>0.347909 0.023361 0 0 -0 0</pose>
+    </model>
+    <model name='go_piece'>
+      <link name='link'>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>0.001</mass>
+          <inertia>
+            <ixx>1.02503</ixx>
+            <ixy>1.1</ixy>
+            <ixz>1.1</ixz>
+            <iyy>1.02503</iyy>
+            <iyz>1.1</iyz>
+            <izz>1.04802</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.0098</radius>
+              <length>0.01</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient>
+            <diffuse>0.1 0.1 0.2 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <laser_retro>0</laser_retro>
+          <max_contacts>0</max_contacts>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0098</radius>
+              <length>0.01</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu2>500</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+      </link>
+      <static>0</static>
+      <allow_auto_disable>1</allow_auto_disable>
+      <pose frame=''>0.381134 -0.232334 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>174 696000000</sim_time>
+      <real_time>181 395159085</real_time>
+      <wall_time>1616355012 917540238</wall_time>
+      <iterations>174696</iterations>
+      <model name='go_board'>
+        <pose frame=''>0.347751 0.023594 0.0075 0 0 -9.6e-05</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0.347751 0.023594 0.0075 0 0 -9.6e-05</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.0008 0.00022 0.312775 -0.02202 0.079985 0</acceleration>
+          <wrench>4e-05 1.1e-05 0.015639 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='go_piece'>
+        <pose frame=''>0.301521 -0.030017 0.022502 -0.000172 -0.000103 0.001424</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0.301521 -0.030017 0.022502 -0.000172 -0.000103 0.001424</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.002463 0.002075 -0.454771 9.5e-05 -0 0</acceleration>
+          <wrench>2e-06 2e-06 -0.000455 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='rx200'>
+        <pose frame=''>-0 -0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='rx200/base_link'>
+          <pose frame=''>-0 -0 0 0 -0 0</pose>
+          <velocity>-0 0 -0 5e-06 -7e-06 -1e-06</velocity>
+          <acceleration>-0.000502 0.000181 -0.001188 -0.003828 -0.018481 -0.000675</acceleration>
+          <wrench>-0.000384 0.000139 -0.00091 0 -0 0</wrench>
+        </link>
+        <link name='rx200/ee_arm_link'>
+          <pose frame=''>0.299294 -0.029789 0.183297 0.028236 1.53861 -0.099147</pose>
+          <velocity>-0 -7e-06 1e-06 0.00211 -0.000276 0.000113</velocity>
+          <acceleration>0.011884 0.046842 -0.002157 -1.00434 -0.683269 0.273295</acceleration>
+          <wrench>1.2e-05 4.7e-05 -2e-06 0 -0 0</wrench>
+        </link>
+        <link name='rx200/ee_gripper_link'>
+          <pose frame=''>0.300914 -0.02995 0.132727 0.028125 1.5386 -0.099258</pose>
+          <velocity>-9e-06 -7.7e-05 -4e-06 -0.001929 0.000249 -7e-05</velocity>
+          <acceleration>-0.005554 -0.045316 -0.007274 -2.21426 0.271887 -0.111088</acceleration>
+          <wrench>-6e-06 -4.5e-05 -7e-06 0 -0 0</wrench>
+        </link>
+        <link name='rx200/fingers_link'>
+          <pose frame=''>0.30003 -0.029862 0.160298 0.028125 1.5386 -0.099258</pose>
+          <velocity>-2e-06 -2e-05 3e-06 -0.001951 0.000251 -6.9e-05</velocity>
+          <acceleration>0.004613 0.024495 0.004098 -2.29147 0.281766 -0.111326</acceleration>
+          <wrench>5e-06 2.4e-05 4e-06 0 -0 0</wrench>
+        </link>
+        <link name='rx200/forearm_link'>
+          <pose frame=''>0.096899 -0.009645 0.285618 -3.14159 -0.028101 -0.099204</pose>
+          <velocity>3e-06 2.7e-05 -1e-06 -6.7e-05 -3e-06 -8.8e-05</velocity>
+          <acceleration>-0.001284 0.005711 -0.000822 0.186444 -1.25809 1.2275</acceleration>
+          <wrench>-0.000332 0.001478 -0.000213 0 -0 0</wrench>
+        </link>
+        <link name='rx200/gripper_bar_link'>
+          <pose frame=''>0.299294 -0.029789 0.183284 0.028238 1.53862 -0.099144</pose>
+          <velocity>-7e-06 -5.5e-05 1e-06 0.001579 -0.000213 9e-05</velocity>
+          <acceleration>-0.002074 -0.025737 0.001263 -2.13325 0.924433 0.561331</acceleration>
+          <wrench>-7.1e-05 -0.00088 4.3e-05 0 -0 0</wrench>
+        </link>
+        <link name='rx200/gripper_link'>
+          <pose frame=''>0.297918 -0.029652 0.226271 0.028236 1.53862 -0.099147</pose>
+          <velocity>-1e-06 -1.2e-05 2e-06 -0.000226 3.4e-05 -4.5e-05</velocity>
+          <acceleration>0.005773 0.012253 -0.000335 -0.030616 0.010078 0.063829</acceleration>
+          <wrench>0.000421 0.000893 -2.4e-05 0 -0 0</wrench>
+        </link>
+        <link name='rx200/gripper_prop_link'>
+          <pose frame=''>0.29947 -0.029806 0.177782 -0.122006 1.53861 -0.099146</pose>
+          <velocity>-9e-06 -7.2e-05 2e-06 0.002047 -0.000287 0.002471</velocity>
+          <acceleration>-0.014831 -0.110484 0.005458 -0.031551 -0.585429 -2.88304</acceleration>
+          <wrench>-6.4e-05 -0.000479 2.4e-05 0 -0 0</wrench>
+        </link>
+        <link name='rx200/left_finger_link'>
+          <pose frame=''>0.304729 0.006829 0.160322 0.027349 1.5386 -0.100032</pose>
+          <velocity>7e-06 3.1e-05 -7.7e-05 -0.00194 0.000249 -8.2e-05</velocity>
+          <acceleration>0.003684 -0.003355 -0.094489 -0.985131 0.070711 -0.271603</acceleration>
+          <wrench>6e-05 -5.5e-05 -0.001535 0 -0 0</wrench>
+        </link>
+        <link name='rx200/right_finger_link'>
+          <pose frame=''>0.295331 -0.066554 0.160261 0.028547 1.53859 -0.098839</pose>
+          <velocity>1e-06 3.1e-05 6.9e-05 -0.001914 0.000248 -8e-05</velocity>
+          <acceleration>-0.00503 -0.002387 0.069372 -0.973717 0.070661 -0.306671</acceleration>
+          <wrench>-8.2e-05 -3.9e-05 0.001127 0 -0 0</wrench>
+        </link>
+        <link name='rx200/shoulder_link'>
+          <pose frame=''>0 -0 0.065 0 -0 -0.099205</pose>
+          <velocity>-0 2e-06 -0 -6e-06 -2e-06 2.5e-05</velocity>
+          <acceleration>-0.000723 0.006028 -0.000672 2.64574 -0.724101 0.145755</acceleration>
+          <wrench>-0.000186 0.001554 -0.000173 0 -0 0</wrench>
+        </link>
+        <link name='rx200/upper_arm_link'>
+          <pose frame=''>0 -0 0.10391 1e-06 0.246977 -0.099205</pose>
+          <velocity>0 8e-06 -0 -9.3e-05 1.5e-05 2.7e-05</velocity>
+          <acceleration>0.002475 0.043182 -0.000702 -0.805301 0.182352 -1.49322</acceleration>
+          <wrench>0.000737 0.012859 -0.000209 0 -0 0</wrench>
+        </link>
+        <link name='rx200/wrist_link'>
+          <pose frame=''>0.295837 -0.029445 0.291237 -3.14156 1.53863 -0.099174</pose>
+          <velocity>0 -2e-06 1e-06 -0.000117 2.4e-05 -0.000103</velocity>
+          <acceleration>-0.000832 -0.021822 -2.2e-05 -0.697331 0.057872 0.668212</acceleration>
+          <wrench>-7.1e-05 -0.001854 -2e-06 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>0.906652 -0.486483 0.258172 0 0.171643 2.3602</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>

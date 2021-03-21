@@ -24,7 +24,7 @@
 	<geometry>
 	  <cylinder>
             <radius>0.0098</radius>
-            <length>0.04</length>
+            <length>0.01</length>
 	  </cylinder>
 	<!-- box>
 		 <size>0.03 0.03 0.025</size>
@@ -57,7 +57,7 @@
         <geometry>
           <cylinder>
             <radius>0.0098</radius>
-            <length>0.04</length>
+            <length>0.01</length>
 	  </cylinder>
 	<!-- box>
                  <size>0.03 0.03 0.025</size>

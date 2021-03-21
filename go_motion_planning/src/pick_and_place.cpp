@@ -389,7 +389,7 @@ geometry_msgs::Pose go_motion_planner::stance_pose(int row, int column) {
 	geometry_msgs::Quaternion desired_orientation = grasp_orientation(desired_point);	
 	
 	desired_pose.position = desired_point;
-	desired_pose.position.z = 0.090 +  z_board_plane + piece_height/2 + z_stance_offset; // z_stance_height; //desired_point.z + 0.10;
+	desired_pose.position.z = 0.083 +  z_board_plane + piece_height/2 + z_stance_offset; // z_stance_height; //desired_point.z + 0.10;
 	desired_pose.orientation = desired_orientation;
 	
 	return desired_pose; 
