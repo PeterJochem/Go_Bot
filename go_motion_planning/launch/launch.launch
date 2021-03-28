@@ -8,7 +8,7 @@
   <!-- This controls the arm in real life -->
   <!-- node name="arm_node" pkg="interbotix_sdk" type="arm_node"/ -->
 	
-  <node pkg="tf2_ros" type="static_transform_publisher" name="world_board_tf_pub" args="0.09 -0.21 0.0 0.0 0.0 0.0 1.0 world go_board" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="world_board_tf_pub" args="0.12 -0.185 0.0 0.0 0.0 0.0 1.0 world go_board" />
   
   <node pkg="tf2_ros" type="static_transform_publisher" name="world_used_piece_pub" args="0.0 0.3 0.1 0.0 0.0 0.0 1.0 world piece_drop_location" />  
   

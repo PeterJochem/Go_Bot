@@ -65,7 +65,46 @@ $(function() {
 <div class="textblock"><p>I used a ReactorX200 arm to play go. This project has a few components. I first programmed the robot using MoveIt to pick and place go pieces in Gazebo. I then implemented a deep reinforcement learning agent to play go. Finally, I created a simple web interface to allow people to play go against the robot remotely.</p>
 <h1>Running in Robot in Gazebo</h1>
 <p>To run the robot in Gazebo with MoveIt, run <br />
- </p><div class="fragment"><div class="line">To start the node which manages the physical robot run. This will allow us to do pwm control of the gripper &lt;br /&gt;</div><div class="line">```roslaunch interbotix_sdk arm_run.launch robot_name:=rx200 gripper_operating_mode=&quot;pwm&quot;``` &lt;br /&gt;</div><div class="line">For more information on what the arm_run.launch file does, read the interbotix_sdk/README.md file</div><div class="line"></div><div class="line"># ROS Packages in This Repo</div><div class="line">go_motion_planning - Provides services for picking and placing go pieces using MoveIt &lt;br /&gt;</div><div class="line">go_robot_server - Web interface and server for to allow remote play with the robot &lt;br /&gt;</div><div class="line">interbotix_ros_arms - Lower level ROS nodes for ReactorX series &lt;br /&gt;</div><div class="line"></div><div class="line"></div><div class="line"># Docker Instructions</div><div class="line">I had some trouble getting all the packages at the correct versions to compile so I made a Docker container. Here are the instructions on how to connect to the Docker container and also, if need be, create a new container</div><div class="line">Put it all in a bash script?</div><div class="line">A really good description on how to use Docker with ROS can be found [here](https://docs.freedomrobotics.ai/docs/ros-development-in-docker-on-mac-and-windows) &lt;br /&gt;</div><div class="line"></div><div class="line">## Connect to the Running Container  </div><div class="line">1) ```sudo docker ps``` to see if the container is running</div><div class="line"></div><div class="line">2) ```sudo docker exec -it robot_env bash``` &lt;br /&gt;</div><div class="line"></div><div class="line">## Setting up the Docker Container </div><div class="line"></div><div class="line">1) ```sudo xhost +``` &lt;br /&gt;</div><div class="line">2) ```export DISPLAY=:0.0``` &lt;br /&gt;</div><div class="line">The first two help setup some sort of graphics dependecy within the Docker container. RVIZ won&#39;t be able to run without this</div><div class="line"></div><div class="line">3) ```sudo docker pull osrf/ros:melodic-desktop-full``` &lt;br /&gt;</div><div class="line">The standard Docker Hub ROS images are the non-Desktop ones. These will not install neccsery graphics packages in order to run RVIZ</div><div class="line"></div><div class="line">4) ```sudo docker run -it --env DISPLAY=unix$DISPLAY --privileged  --volume /tmp/.X11-unix:/tmp/.X11-unix -dt --name robot_env --privileged -v /dev/ttyDXL/:/dev/ttyDXL --restart unless-stopped -v `pwd`:/root/workspace osrf/ros:melodic-desktop-full``` &lt;br /&gt;</div><div class="line"></div><div class="line">5) ```sudo docker exec -it robot_env bash``` &lt;br /&gt;</div><div class="line"></div><div class="line">6) ```source ros_entrypoint.sh``` &lt;br /&gt;</div><div class="line"></div><div class="line">7) ```sudo apt-get update``` &lt;br /&gt;</div><div class="line">Without this, rosdep won’t find any packages with the given names to install in the Docker container</div><div class="line"></div><div class="line">8) ```mkdir /etc/udev``` &lt;br /&gt;</div><div class="line"></div><div class="line">9) ```sudo apt install udev``` &lt;br /&gt;</div><div class="line"></div><div class="line">10) ```rosdep update``` &lt;br /&gt;</div><div class="line"></div><div class="line">11) ```rosdep install --from-paths src --ignore-src -r -y``` &lt;br /&gt;</div><div class="line"></div><div class="line">12) ```sudo apt install python-pip``` &lt;br /&gt;</div><div class="line"></div><div class="line">13) ```sudo pip install modern_robotics``` &lt;br /&gt;</div><div class="line"></div><div class="line">14) ```sudo cp catkin_ws/src/interbotix_ros_arms/interbotix_sdk/10-interbotix-udev.rules /etc/udev/rules.d``` &lt;br /&gt;</div><div class="line"></div><div class="line">15) ```sudo udevadm control --reload-rules &amp;&amp; udevadm trigger``` &lt;br /&gt;</div><div class="line"></div><div class="line">16) ```sudo apt install vim``` &lt;br /&gt;</div><div class="line"></div><div class="line">17) ```vim usr/share/ignition/fuel_tools/config.yam</div></div><!-- fragment --><p> Change the url in the config.yaml file to <code><a href="https://api.ignitionrobotics.org">https://api.ignitionrobotics.org</a></code></p>
+ </p><div class="fragment"><div class="line">To start the node which manages the physical robot run. This will allow us to do pwm control of the gripper &lt;br /&gt;</div><div class="line">```roslaunch interbotix_sdk arm_run.launch robot_name:=rx200 gripper_operating_mode=&quot;pwm&quot;``` &lt;br /&gt;</div><div class="line">For more information on what the arm_run.launch file does, read the interbotix_sdk/README.md file</div><div class="line"></div><div class="line"># ROS Packages in This Repo</div><div class="line">go_motion_planning - Provides services for picking and placing go pieces using MoveIt &lt;br /&gt;</div><div class="line">go_robot_server - Web interface and server for to allow remote play with the robot &lt;br /&gt;</div><div class="line">interbotix_ros_arms - Lower level ROS nodes for ReactorX series &lt;br /&gt;</div><div class="line"></div><div class="line"># Doxygen Documentation</div><div class="line">The Doxygen documentation is available at file:///home/peterjochem/Desktop/Go_Bot/catkin_ws/src/docs/html/index.html</div><div class="line"></div><div class="line"># Unit Testing</div><div class="line">I used gtest to create unit tests. To run the unit test, run ```catkin_make run_tests``` or ```catkin_make run_tests &lt;package_name</div></div><!-- fragment --><h1>Docker Instructions</h1>
+<p>I had some trouble getting all the packages at the correct versions to compile so I made a Docker container. Here are the instructions on how to connect to the Docker container and also, if need be, create a new container Put it all in a bash script? A really good description on how to use Docker with ROS can be found <a href="https://docs.freedomrobotics.ai/docs/ros-development-in-docker-on-mac-and-windows">here</a> <br />
+</p>
+<h2>Connect to the Running Container</h2>
+<p>1) <code>sudo docker ps</code> to see if the container is running</p>
+<p>2) <code>sudo docker exec -it robot_env bash</code> <br />
+</p>
+<h2>Setting up the Docker Container</h2>
+<p>1) <code>sudo xhost +</code> <br />
+ 2) <code>export DISPLAY=:0.0</code> <br />
+ The first two help setup some sort of graphics dependecy within the Docker container. RVIZ won't be able to run without this</p>
+<p>3) <code>sudo docker pull osrf/ros:melodic-desktop-full</code> <br />
+ The standard Docker Hub ROS images are the non-Desktop ones. These will not install neccsery graphics packages in order to run RVIZ</p>
+<p>4) <code>sudo docker run -it --env DISPLAY=unix$DISPLAY --privileged --volume /tmp/.X11-unix:/tmp/.X11-unix -dt --name robot_env --privileged -v /dev/ttyDXL/:/dev/ttyDXL --restart unless-stopped -v `pwd`:/root/workspace osrf/ros:melodic-desktop-full</code> <br />
+</p>
+<p>5) <code>sudo docker exec -it robot_env bash</code> <br />
+</p>
+<p>6) <code>source ros_entrypoint.sh</code> <br />
+</p>
+<p>7) <code>sudo apt-get update</code> <br />
+ Without this, rosdep won’t find any packages with the given names to install in the Docker container</p>
+<p>8) <code>mkdir /etc/udev</code> <br />
+</p>
+<p>9) <code>sudo apt install udev</code> <br />
+</p>
+<p>10) <code>rosdep update</code> <br />
+</p>
+<p>11) <code>rosdep install --from-paths src --ignore-src -r -y</code> <br />
+</p>
+<p>12) <code>sudo apt install python-pip</code> <br />
+</p>
+<p>13) <code>sudo pip install modern_robotics</code> <br />
+</p>
+<p>14) <code>sudo cp catkin_ws/src/interbotix_ros_arms/interbotix_sdk/10-interbotix-udev.rules /etc/udev/rules.d</code> <br />
+</p>
+<p>15) <code>sudo udevadm control --reload-rules &amp;&amp; udevadm trigger</code> <br />
+</p>
+<p>16) <code>sudo apt install vim</code> <br />
+</p>
+<p>17) <code>vim usr/share/ignition/fuel_tools/config.yaml</code> Change the url in the config.yaml file to <code><a href="https://api.ignitionrobotics.org">https://api.ignitionrobotics.org</a></code></p>
 <h2>Restarting the Container on Reboot</h2>
 <p>1) <code>sudo docker start robot_env</code> </p>
 </div></div><!-- contents -->

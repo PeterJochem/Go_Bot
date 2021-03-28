@@ -1,3 +1,7 @@
+/*** @file Tests for the motion_planning package
+ * @author Peter Jochem <peterjochem2020@u.northwestern.edu>
+ * @section Tests for the motion_planning package */
+
 #include <ros/ros.h>
 #include <gtest/gtest.h>
 #include "geometry_msgs/Twist.h"

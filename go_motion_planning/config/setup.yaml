@@ -4,8 +4,8 @@ home_position_z: 0.395
 home_position_roll: 0.006
 home_position_pitch: 0.039 
 home_position_yaw: 0.006
-row_width: 0.035
-row_height: 0.030
+row_width: 0.031 #0.0325
+row_height: 0.0325 # Why are these not the same?
 z_board_plane: 0.0
 finger_length: 0.083
 #0.058 

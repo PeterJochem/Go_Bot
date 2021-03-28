@@ -1083,18 +1083,18 @@
       <pose frame=''>0.329083 0.008315 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>1066 702000000</sim_time>
-      <real_time>838 216495000</real_time>
-      <wall_time>1616944549 427277186</wall_time>
-      <iterations>813987</iterations>
+      <sim_time>1150 470000000</sim_time>
+      <real_time>87 782424196</real_time>
+      <wall_time>1616954312 424917127</wall_time>
+      <iterations>83768</iterations>
       <model name='chessboard'>
-        <pose frame=''>0.313784 -0.004845 0.007521 0 -0 0</pose>
+        <pose frame=''>0.290595 -0.004845 0.007529 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>0.313784 -0.004845 0.007521 0 -0 0</pose>
+          <pose frame=''>0.290595 -0.004845 0.007529 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.000673 -0.000458 0.012683 0.045736 0.067216 1e-06</acceleration>
-          <wrench>3.4e-05 -2.3e-05 0.000634 0 -0 0</wrench>
+          <acceleration>0.000863 0.000284 0 -0.028583 0.086196 0</acceleration>
+          <wrench>4.3e-05 1.4e-05 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='ground_plane'>
@@ -1112,81 +1112,81 @@
         <scale>1 1 1</scale>
         <link name='rx200/base_link'>
           <pose frame=''>-0 -0 0 0 -0 0</pose>
-          <velocity>-0 -0 -1e-06 -3.5e-05 3e-06 0</velocity>
-          <acceleration>-0.000113 0.00146 -0.001878 -0.064814 0.005542 -0.002372</acceleration>
-          <wrench>-8.7e-05 0.001119 -0.001439 0 -0 0</wrench>
+          <velocity>-0 0 3e-06 9.8e-05 -9e-06 -1e-06</velocity>
+          <acceleration>-0.001218 -0.004521 0.006039 0.193648 -0.046699 -0.002623</acceleration>
+          <wrench>-0.000933 -0.003464 0.004627 0 -0 0</wrench>
         </link>
         <link name='rx200/ee_arm_link'>
-          <pose frame=''>0.299384 -0.089665 0.180036 0.029694 1.54969 -0.290724</pose>
-          <velocity>-1.3e-05 -3.3e-05 -1e-06 -0.001732 0.000564 -7.3e-05</velocity>
-          <acceleration>-0.021357 -0.05711 0.000433 1.5775 1.54749 -0.180856</acceleration>
-          <wrench>-2.1e-05 -5.7e-05 0 0 -0 0</wrench>
+          <pose frame=''>0.119593 -0.209249 0.184325 0.030003 1.53591 -1.05113</pose>
+          <velocity>6.6e-05 2.7e-05 -2e-06 0.000467 -0.000948 5.8e-05</velocity>
+          <acceleration>0.146915 0.064996 -0.007406 -1.46215 0.089321 -2.95465</acceleration>
+          <wrench>0.000147 6.5e-05 -7e-06 0 -0 0</wrench>
         </link>
         <link name='rx200/ee_gripper_link'>
-          <pose frame=''>0.300406 -0.08997 0.129451 0.029734 1.54967 -0.290684</pose>
-          <velocity>7e-06 2.3e-05 3e-06 0.001828 -0.000621 7.3e-05</velocity>
-          <acceleration>-0.00292 -0.00527 0.007126 2.38979 -0.782525 0.108855</acceleration>
-          <wrench>-3e-06 -5e-06 7e-06 0 -0 0</wrench>
+          <pose frame=''>0.120469 -0.21078 0.13376 0.02993 1.53589 -1.05121</pose>
+          <velocity>-2.2e-05 -1.6e-05 -2e-06 -0.000879 0.001689 -0.000121</velocity>
+          <acceleration>0.059989 0.025191 -0.008606 1.96544 0.987398 2.96305</acceleration>
+          <wrench>6e-05 2.5e-05 -9e-06 0 -0 0</wrench>
         </link>
         <link name='rx200/fingers_link'>
-          <pose frame=''>0.299849 -0.089803 0.15703 0.029735 1.54967 -0.290683</pose>
-          <velocity>-1.1e-05 -3e-05 -1e-06 0.00186 -0.000632 7.2e-05</velocity>
-          <acceleration>-0.025853 -0.077163 0.000139 2.44797 -0.802025 0.107046</acceleration>
-          <wrench>-2.6e-05 -7.7e-05 0 0 -0 0</wrench>
+          <pose frame=''>0.119992 -0.209945 0.161328 0.029929 1.53589 -1.05121</pose>
+          <velocity>2.9e-05 1e-05 -1e-06 -0.000898 0.001724 -0.000121</velocity>
+          <acceleration>0.126805 0.058761 -0.005476 1.92691 0.91539 2.96187</acceleration>
+          <wrench>0.000127 5.9e-05 -5e-06 0 -0 0</wrench>
         </link>
         <link name='rx200/forearm_link'>
-          <pose frame=''>0.105851 -0.031703 0.277951 -3.14159 -0.050302 -0.290997</pose>
-          <velocity>4e-06 1.2e-05 -2e-06 -5.7e-05 1.1e-05 -4.1e-05</velocity>
-          <acceleration>0.005608 0.015068 -0.00134 -0.196581 -1.01395 0.695735</acceleration>
-          <wrench>0.001452 0.003901 -0.000347 0 -0 0</wrench>
+          <pose frame=''>0.018735 -0.032785 0.306578 -3.14158 0.071674 -1.05157</pose>
+          <velocity>-1.7e-05 -6e-06 6e-06 3.1e-05 2.8e-05 -2.7e-05</velocity>
+          <acceleration>-0.067432 -0.028502 0.00184 -0.641632 0.632202 2.49125</acceleration>
+          <wrench>-0.017456 -0.007378 0.000476 0 -0 0</wrench>
         </link>
         <link name='rx200/gripper_bar_link'>
-          <pose frame=''>0.299383 -0.089664 0.180023 0.029702 1.54969 -0.290716</pose>
-          <velocity>-2e-06 -3e-06 -0 -0.001215 0.000395 -4.9e-05</velocity>
-          <acceleration>-0.010754 -0.030105 0.001857 -1.31633 -1.12403 2.6497</acceleration>
-          <wrench>-0.000368 -0.00103 6.3e-05 0 -0 0</wrench>
+          <pose frame=''>0.119593 -0.209248 0.184312 0.029998 1.53591 -1.05114</pose>
+          <velocity>2e-05 6e-06 -1e-06 0.000172 -0.000444 -5e-06</velocity>
+          <acceleration>0.098688 0.04485 -0.006105 2.9911 0.400747 0.163032</acceleration>
+          <wrench>0.003375 0.001534 -0.000209 0 -0 0</wrench>
         </link>
         <link name='rx200/gripper_link'>
-          <pose frame=''>0.298515 -0.089405 0.223022 0.029655 1.5497 -0.290762</pose>
-          <velocity>-8e-06 -1.7e-05 -1e-06 -0.000122 2.1e-05 9e-06</velocity>
-          <acceleration>-0.012712 -0.030898 0.000995 -0.182139 0.039618 0.075606</acceleration>
-          <wrench>-0.000927 -0.002252 7.3e-05 0 -0 0</wrench>
+          <pose frame=''>0.118848 -0.207947 0.227295 0.029917 1.53591 -1.05122</pose>
+          <velocity>3.9e-05 1.6e-05 -2e-06 7.2e-05 -0.000225 -4.2e-05</velocity>
+          <acceleration>0.103888 0.045239 -0.006279 0.382756 -0.991433 -0.086263</acceleration>
+          <wrench>0.007572 0.003297 -0.000458 0 -0 0</wrench>
         </link>
         <link name='rx200/gripper_prop_link'>
-          <pose frame=''>0.299494 -0.089697 0.174519 3.09447 1.54969 -0.290725</pose>
-          <velocity>3e-06 1.1e-05 -1e-06 -0.001784 0.000594 0.001678</velocity>
-          <acceleration>0.007821 0.023997 0.001317 -1.46443 0.31328 -2.90996</acceleration>
-          <wrench>3.4e-05 0.000104 6e-06 0 -0 0</wrench>
+          <pose frame=''>0.119689 -0.209415 0.178811 2.48943 1.53591 -1.05113</pose>
+          <velocity>-1.2e-05 -1.1e-05 1e-06 0.000596 -0.001187 -0.006378</velocity>
+          <acceleration>0.030821 0.01051 -0.004903 1.58803 -1.12306 2.49104</acceleration>
+          <wrench>0.000134 4.6e-05 -2.1e-05 0 -0 0</wrench>
         </link>
         <link name='rx200/left_finger_link'>
-          <pose frame=''>0.304574 -0.075563 0.157031 0.029263 1.54967 -0.291154</pose>
-          <velocity>-1.1e-05 -2.8e-05 3.2e-05 0.001853 -0.000628 7.7e-05</velocity>
-          <acceleration>-0.000928 0.003624 0.045558 0.778312 -0.600506 0.161422</acceleration>
-          <wrench>-1.5e-05 5.9e-05 0.00074 0 -0 0</wrench>
+          <pose frame=''>0.133236 -0.202886 0.161335 0.029655 1.53589 -1.05148</pose>
+          <velocity>3.1e-05 9e-06 -3.2e-05 -0.00089 0.001708 -0.000121</velocity>
+          <acceleration>-0.002123 -0.010752 -0.04811 2.69233 0.630084 3.05945</acceleration>
+          <wrench>-3.4e-05 -0.000175 -0.000782 0 -0 0</wrench>
         </link>
         <link name='rx200/right_finger_link'>
-          <pose frame=''>0.29512 -0.104052 0.157018 0.029983 1.54967 -0.290436</pose>
-          <velocity>-9e-06 -2.9e-05 -2.8e-05 0.001847 -0.000628 7.5e-05</velocity>
-          <acceleration>0.003475 0.002215 -0.032726 0.770983 -0.602595 0.151915</acceleration>
-          <wrench>5.6e-05 3.6e-05 -0.000532 0 -0 0</wrench>
+          <pose frame=''>0.106744 -0.217005 0.16131 0.030074 1.53589 -1.05106</pose>
+          <velocity>3e-05 1.2e-05 2.4e-05 -0.000889 0.001706 -0.000124</velocity>
+          <acceleration>-0.004331 -0.006769 0.024001 2.69065 0.635714 3.03727</acceleration>
+          <wrench>-7e-05 -0.00011 0.00039 0 -0 0</wrench>
         </link>
         <link name='rx200/shoulder_link'>
-          <pose frame=''>-0 -0 0.065 0 -0 -0.290999</pose>
-          <velocity>0 2e-06 -1e-06 -4.5e-05 6e-06 -2.3e-05</velocity>
-          <acceleration>0.000323 0.004823 -0.002437 -1.55642 -1.12556 0.933264</acceleration>
-          <wrench>8.3e-05 0.001243 -0.000628 0 -0 0</wrench>
+          <pose frame=''>-0 -0 0.065 0 -0 -1.05157</pose>
+          <velocity>-0 -6e-06 4e-06 0.000117 -1.1e-05 -3.4e-05</velocity>
+          <acceleration>-0.003993 -0.015143 0.008991 -2.76309 1.48344 -0.484245</acceleration>
+          <wrench>-0.001029 -0.003903 0.002318 0 -0 0</wrench>
         </link>
         <link name='rx200/upper_arm_link'>
-          <pose frame=''>-0 -0 0.10391 2e-06 0.320701 -0.290998</pose>
-          <velocity>1e-06 5e-06 -2e-06 -5.9e-05 2.3e-05 -2.7e-05</velocity>
-          <acceleration>0.00559 0.017206 -0.003469 -2.68451 -0.855834 1.67036</acceleration>
-          <wrench>0.001665 0.005124 -0.001033 0 -0 0</wrench>
+          <pose frame=''>-0 -0 0.10391 7e-06 -0.060775 -1.05157</pose>
+          <velocity>-0 -1e-05 4e-06 -2.5e-05 -7.9e-05 -3.3e-05</velocity>
+          <acceleration>-0.043112 -0.02426 0.009824 1.88752 -0.929516 2.99137</acceleration>
+          <wrench>-0.012838 -0.007224 0.002926 0 -0 0</wrench>
         </link>
         <link name='rx200/wrist_link'>
-          <pose frame=''>0.297201 -0.089012 0.288007 -3.14148 1.5497 -0.290884</pose>
-          <velocity>-1e-06 -2e-06 -1e-06 -7.3e-05 4.8e-05 -4e-05</velocity>
-          <acceleration>-0.003067 -0.005331 0.000545 0.07148 0.597133 1.25772</acceleration>
-          <wrench>-0.000261 -0.000453 4.6e-05 0 -0 0</wrench>
+          <pose frame=''>0.117723 -0.205979 0.292255 -3.14135 1.53592 -1.05133</pose>
+          <velocity>2e-06 6e-06 -2e-06 -7.3e-05 -0.000134 -6.1e-05</velocity>
+          <acceleration>0.007757 0.001661 -0.00416 2.91669 -1.36319 0.974771</acceleration>
+          <wrench>0.000659 0.000141 -0.000353 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
@@ -1195,7 +1195,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>0.985737 0.007996 0.25581 -0 0.195837 -3.10619</pose>
+        <pose frame=''>0.123245 0.633386 0.270867 -0 0.343837 -1.69819</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>

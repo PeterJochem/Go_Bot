@@ -1,3 +1,6 @@
+/// @file
+/// @brief Library for two-dimensional rigid body transformations
+
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
 #include <moveit_msgs/DisplayRobotState.h>

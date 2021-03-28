@@ -1,11 +1,26 @@
 #!/usr/bin/env python
+"""! @brief Services for spawning and removing objects in Gazebo"""
+##
+# Parameters:   /row_width: Name of the base frame 
+#  		/row_height: the side lengths of pentagon 
+#		/piece_height: robot's starting_x
+#		/z_board_plane: robot's starting position in world frame
+# 
+# Publishers: None
+#	
+# Subscribers: None
+#
+# Services: /spawn_piece_service - Add a piece at a grid position on the board
+#           /remove_pieces_from_gazebo - Remove all the pieces from the board in Gazebo
+
+
 import rospy, tf2_ros
 import tf
 import tf_conversions
 from gazebo_msgs.srv import DeleteModel, SpawnModel
 from geometry_msgs.msg import *
 from geometry_msgs.msg import PointStamped, Pose, Quaternion
-from go_motion_planning.srv import spawn_piece
+from go_motion_planning.srv import spawn_piece, remove_pieces_from_gazebo
 import random
 
 class spawn_items:
@@ -26,7 +41,34 @@ class spawn_items:
         self.delete_model = rospy.ServiceProxy("/gazebo/delete_model", DeleteModel)
         self.spawn_model = rospy.ServiceProxy("/gazebo/spawn_sdf_model", SpawnModel)
         
-        spawn_piece_service = rospy.Service("spawn_piece", spawn_piece, self.add_piece)
+        self.spawned_pieces = []
+        self.spawn_piece_service = rospy.Service("spawn_piece", spawn_piece, self.add_piece)
+        self.remove_piece_service = rospy.Service("remove_pieces_from_gazebo", remove_pieces_from_gazebo, self.remove_pieces)
+        
+    def add_piece(self, req):
+
+        x, y = self.convert_from_grid_cords_to_world(req.row, req.column)
+        z = 0.1 # Use param server value
+
+        name = self.next_piece_name(req.isBlack)
+        if (req.isBlack):
+            sdf = self.black_piece_sdf
+        else:
+            sdf = self.white_piece_sdf
+
+        # Spawn the piece
+        initial_pose = Pose(Point(x, y, z), Quaternion(*(tf_conversions.transformations.quaternion_from_euler(0.0, 0.0, 0.0))))
+        self.spawn_model(name, sdf, "/", initial_pose, "world")
+        self.spawned_pieces.append(name)
+
+        return True
+
+    def remove_pieces(self, req):
+
+        for name in self.spawned_pieces:
+            self.delete_model(name)
+         
+        return True
 
     def convert_from_grid_cords_to_world(self, grid_x, grid_y):
         
@@ -43,24 +85,7 @@ class spawn_items:
         point_world = self.listener.transformPoint("world", point_board)
         return point_world.point.x, point_world.point.y
 
-    def add_piece(self, req):
-        
-        x, y = self.convert_from_grid_cords_to_world(req.row, req.column) 
-        z = 0.1 # Use param server value
-
-        name = self.next_piece_name(req.isBlack) 
-        if (req.isBlack):
-            sdf = self.black_piece_sdf
-        else:
-            sdf = self.white_piece_sdf
-
-        # Spawn the piece
-        initial_pose = Pose(Point(x, y, z), Quaternion(*(tf_conversions.transformations.quaternion_from_euler(0.0, 0.0, 0.0))))
-        self.spawn_model(name, sdf, "/", initial_pose, "world")
-        
-        return True
-     
-    """Generate a new piece name"""
+    
     def next_piece_name(self, black=True):
         
         value = random.randint(0, 10000)

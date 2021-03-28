@@ -1,0 +1,176 @@
+\hypertarget{classgo__motion__planner}{}\section{go\+\_\+motion\+\_\+planner Class Reference}
+\label{classgo__motion__planner}\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+
+
+Provides high level abstraction and motion planning services for the Go\+Bot.  
+
+
+
+
+{\ttfamily \#include $<$go\+\_\+motion\+\_\+planner.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a74e2e97851998d7f6b8c29f31e0adfb0}\label{classgo__motion__planner_a74e2e97851998d7f6b8c29f31e0adfb0}} 
+geometry\+\_\+msgs\+::\+Pose {\bfseries create\+\_\+pose} (float x, float y, float z, float roll, float pitch, float yaw)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a70e5bea73ba3ec12f0d91d107c58dec1}\label{classgo__motion__planner_a70e5bea73ba3ec12f0d91d107c58dec1}} 
+geometry\+\_\+msgs\+::\+Pose \hyperlink{classgo__motion__planner_a70e5bea73ba3ec12f0d91d107c58dec1}{create\+\_\+relative\+\_\+pose} (float d\+\_\+x, float d\+\_\+y, float d\+\_\+z, float d\+\_\+roll, float d\+\_\+pitch, float d\+\_\+yaw)
+\begin{DoxyCompactList}\small\item\em Create a pose goal relative to the robot\textquotesingle{}s end effector\textquotesingle{}s current pose. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgo__motion__planner_a60dfb0301a459aad73f0e597ef773ef3}\label{classgo__motion__planner_a60dfb0301a459aad73f0e597ef773ef3}} 
+geometry\+\_\+msgs\+::\+Quaternion {\bfseries quaternion\+\_\+from\+\_\+rpy} (double roll, double pitch, double yaw)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_ab4b74ceb1ce2cab6859d8f7f0f32caa5}\label{classgo__motion__planner_ab4b74ceb1ce2cab6859d8f7f0f32caa5}} 
+std\+::tuple$<$ float, float, float $>$ {\bfseries rpy\+\_\+from\+\_\+quaternion} (geometry\+\_\+msgs\+::\+Quaternion q)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a14a615472cc4daae8049627c4aacf1e2}\label{classgo__motion__planner_a14a615472cc4daae8049627c4aacf1e2}} 
+void {\bfseries add\+\_\+orientation\+\_\+constraints} (float roll, float pitch, float yaw)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a2be951f1c56888d0e710290c884a6050}\label{classgo__motion__planner_a2be951f1c56888d0e710290c884a6050}} 
+bool {\bfseries move\+\_\+to\+\_\+pose} (geometry\+\_\+msgs\+::\+Pose pose)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a0c8a279562b60fd12202452f09d5b149}\label{classgo__motion__planner_a0c8a279562b60fd12202452f09d5b149}} 
+bool {\bfseries cartesian\+\_\+sequence} (geometry\+\_\+msgs\+::\+Pose)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a2120e26233b9622d9af923f7649b73fe}\label{classgo__motion__planner_a2120e26233b9622d9af923f7649b73fe}} 
+geometry\+\_\+msgs\+::\+Pose {\bfseries stance\+\_\+pose} (int row, int column)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a26ec310b72222bc827f595e94ada0719}\label{classgo__motion__planner_a26ec310b72222bc827f595e94ada0719}} 
+geometry\+\_\+msgs\+::\+Point {\bfseries board\+\_\+location} (int row, int column)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a7ca51ab871bab4e80b208587b1c8ee45}\label{classgo__motion__planner_a7ca51ab871bab4e80b208587b1c8ee45}} 
+geometry\+\_\+msgs\+::\+Point {\bfseries next\+\_\+empty\+\_\+unused\+\_\+piece\+\_\+location} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_ac70899ea0cb646a112c51f9a056fa4b1}\label{classgo__motion__planner_ac70899ea0cb646a112c51f9a056fa4b1}} 
+geometry\+\_\+msgs\+::\+Point {\bfseries next\+\_\+unused\+\_\+piece\+\_\+location} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_aa8f5de4110bd29391e00b26eda2a5bcc}\label{classgo__motion__planner_aa8f5de4110bd29391e00b26eda2a5bcc}} 
+geometry\+\_\+msgs\+::\+Quaternion {\bfseries grasp\+\_\+orientation} (geometry\+\_\+msgs\+::\+Point)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a88298290e78a2b4445d7026785d04760}\label{classgo__motion__planner_a88298290e78a2b4445d7026785d04760}} 
+void {\bfseries setup\+\_\+transform\+\_\+listeners} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a364274097d4ea459a6e18a17852e9704}\label{classgo__motion__planner_a364274097d4ea459a6e18a17852e9704}} 
+void {\bfseries load\+\_\+param\+\_\+values} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a49672ad780c9c66c554672b2ecf8bd78}\label{classgo__motion__planner_a49672ad780c9c66c554672b2ecf8bd78}} 
+void {\bfseries setup\+\_\+subscribers} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_ac994e145558bda267ac29ea6feb9981a}\label{classgo__motion__planner_ac994e145558bda267ac29ea6feb9981a}} 
+void {\bfseries setup\+\_\+publishers} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a9248ea5b2727f984761ea7bbaea3ba5c}\label{classgo__motion__planner_a9248ea5b2727f984761ea7bbaea3ba5c}} 
+bool \hyperlink{classgo__motion__planner_a9248ea5b2727f984761ea7bbaea3ba5c}{open\+\_\+gripper\+\_\+simulation} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Subscribe to the same topic as the arm\+\_\+node topic but instead of doing pwm control like the arm\+\_\+node, do a simple approximation by opening the gripper 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgo__motion__planner_aed6123e33622ebff3b420479e1fd6141}\label{classgo__motion__planner_aed6123e33622ebff3b420479e1fd6141}} 
+bool {\bfseries close\+\_\+gripper\+\_\+simulation} (void)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a7b79595d9f86b059309f73ca16969c34}\label{classgo__motion__planner_a7b79595d9f86b059309f73ca16969c34}} 
+void {\bfseries process\+\_\+gripper\+\_\+data} (const std\+\_\+msgs\+::\+Float64\+::\+Const\+Ptr \&msg)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a9a27e25a326f322f6c4c766029ed081d}\label{classgo__motion__planner_a9a27e25a326f322f6c4c766029ed081d}} 
+void {\bfseries setup\+\_\+services} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_acda1c3562a9863181f4dbd1deaff3ff3}\label{classgo__motion__planner_acda1c3562a9863181f4dbd1deaff3ff3}} 
+bool {\bfseries pickup\+\_\+piece} (int row, int column)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a29c727d02a06b13b39e907384c71eb1e}\label{classgo__motion__planner_a29c727d02a06b13b39e907384c71eb1e}} 
+bool {\bfseries remove\+\_\+piece} (int row, int column)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_ad532e8f592e7f82f2c1b216c39a2cf30}\label{classgo__motion__planner_ad532e8f592e7f82f2c1b216c39a2cf30}} 
+bool {\bfseries place\+\_\+in\+\_\+unused\+\_\+pile} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a2b49683bb6488c9cab3e22a40e4e854e}\label{classgo__motion__planner_a2b49683bb6488c9cab3e22a40e4e854e}} 
+bool {\bfseries place\+\_\+piece} (int row, int column)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a1d0d55d9c4b20319a3164d1656ebcf21}\label{classgo__motion__planner_a1d0d55d9c4b20319a3164d1656ebcf21}} 
+bool {\bfseries pickup\+\_\+unused\+\_\+piece} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_ac27b5567f1dd182fbf3d99b56e10155f}\label{classgo__motion__planner_ac27b5567f1dd182fbf3d99b56e10155f}} 
+bool {\bfseries move\+\_\+to\+\_\+home\+\_\+position} ()
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a4eaf2e9291a24b12dafc684cd779c99a}\label{classgo__motion__planner_a4eaf2e9291a24b12dafc684cd779c99a}} 
+bool {\bfseries play\+\_\+piece} (int row, int column)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a0c6c7c5eaccf9b3015cd1e85afdc12b5}\label{classgo__motion__planner_a0c6c7c5eaccf9b3015cd1e85afdc12b5}} 
+bool {\bfseries move\+\_\+to\+\_\+home\+\_\+position\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::home\+\_\+position\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::home\+\_\+position\+::\+Response \&res)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_ade2c6db47d4a71876bd7d7382858adb9}\label{classgo__motion__planner_ade2c6db47d4a71876bd7d7382858adb9}} 
+bool {\bfseries pickup\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::pickup\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::pickup\+\_\+piece\+::\+Response \&res)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a1b342edd58e79805e576cc241a2b39cd}\label{classgo__motion__planner_a1b342edd58e79805e576cc241a2b39cd}} 
+bool {\bfseries place\+\_\+piece\+\_\+in\+\_\+unused\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+\_\+in\+\_\+unused\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+\_\+in\+\_\+unused\+::\+Response \&res)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a99b71bff95631b79ff39b30c58730813}\label{classgo__motion__planner_a99b71bff95631b79ff39b30c58730813}} 
+bool {\bfseries remove\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::remove\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::remove\+\_\+piece\+::\+Response \&res)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a21ff70114c6e31d121352c8bf9c7a962}\label{classgo__motion__planner_a21ff70114c6e31d121352c8bf9c7a962}} 
+bool {\bfseries pickup\+\_\+unused\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::pickup\+\_\+unused\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::pickup\+\_\+unused\+\_\+piece\+::\+Response \&res)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_ab93c5f49f503441b9e3917a8bfb31e73}\label{classgo__motion__planner_ab93c5f49f503441b9e3917a8bfb31e73}} 
+bool {\bfseries place\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+::\+Response \&res)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a774c19f7198702545b74c71b98efa538}\label{classgo__motion__planner_a774c19f7198702545b74c71b98efa538}} 
+bool {\bfseries play\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::play\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::play\+\_\+piece\+::\+Response \&res)
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a89fdde820a08474e8b43d1ef5b69e8fd}\label{classgo__motion__planner_a89fdde820a08474e8b43d1ef5b69e8fd}} 
+bool {\bfseries pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::pickup\+\_\+set\+\_\+of\+\_\+pieces\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::pickup\+\_\+set\+\_\+of\+\_\+pieces\+::\+Response \&res)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a137b63ec71d998759681bd36ce77355a}\label{classgo__motion__planner_a137b63ec71d998759681bd36ce77355a}} 
+ros\+::\+Node\+Handle {\bfseries node\+\_\+handle}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a7c1cd68df2477d7a9944e3f935811466}\label{classgo__motion__planner_a7c1cd68df2477d7a9944e3f935811466}} 
+tf2\+\_\+ros\+::\+Buffer $\ast$ {\bfseries tf\+Buffer}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a110a6be424abaacc5d9b9a2639cd96ef}\label{classgo__motion__planner_a110a6be424abaacc5d9b9a2639cd96ef}} 
+tf2\+\_\+ros\+::\+Transform\+Listener $\ast$ {\bfseries tf\+Listener}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a6662efdfcafc6666a9bb55e510bdbc0d}\label{classgo__motion__planner_a6662efdfcafc6666a9bb55e510bdbc0d}} 
+Robot\+Arm $\ast$ {\bfseries a}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a20901c51849ef539e07dac1a5348e32b}\label{classgo__motion__planner_a20901c51849ef539e07dac1a5348e32b}} 
+ros\+::\+Publisher {\bfseries gripper\+\_\+position\+\_\+pub}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a9e6b2947da5aeb1e59d7370b88c811b2}\label{classgo__motion__planner_a9e6b2947da5aeb1e59d7370b88c811b2}} 
+ros\+::\+Publisher {\bfseries gripper\+\_\+pwm\+\_\+pub}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a33ec45d00ae237e7e117a1c1587be075}\label{classgo__motion__planner_a33ec45d00ae237e7e117a1c1587be075}} 
+ros\+::\+Service\+Server {\bfseries home\+\_\+position\+\_\+service}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a3d3fe68d135a64e31b1f6d6431a720bf}\label{classgo__motion__planner_a3d3fe68d135a64e31b1f6d6431a720bf}} 
+ros\+::\+Service\+Server {\bfseries pickup\+\_\+piece\+\_\+service}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a718ae47b74a57268d84a4abdafa4b4ae}\label{classgo__motion__planner_a718ae47b74a57268d84a4abdafa4b4ae}} 
+ros\+::\+Service\+Server {\bfseries place\+\_\+piece\+\_\+in\+\_\+unused\+\_\+service}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a501d1bdebd834499d44f0871eb383023}\label{classgo__motion__planner_a501d1bdebd834499d44f0871eb383023}} 
+ros\+::\+Service\+Server {\bfseries remove\+\_\+piece\+\_\+service}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_acebfcd65ac745bf93283e42ba9bc4f6e}\label{classgo__motion__planner_acebfcd65ac745bf93283e42ba9bc4f6e}} 
+ros\+::\+Service\+Server {\bfseries pickup\+\_\+unused\+\_\+piece\+\_\+service}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_afa40a53763c75833b68927e9c2d02f6c}\label{classgo__motion__planner_afa40a53763c75833b68927e9c2d02f6c}} 
+ros\+::\+Service\+Server {\bfseries place\+\_\+piece\+\_\+service}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_a82f558953e429bef973c534fef819757}\label{classgo__motion__planner_a82f558953e429bef973c534fef819757}} 
+ros\+::\+Service\+Server {\bfseries play\+\_\+piece\+\_\+service}
+\item 
+\mbox{\Hypertarget{classgo__motion__planner_ab8d76cd26fa320f3ac579b14eb661b8b}\label{classgo__motion__planner_ab8d76cd26fa320f3ac579b14eb661b8b}} 
+ros\+::\+Service\+Server {\bfseries pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides high level abstraction and motion planning services for the Go\+Bot. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+go\+\_\+motion\+\_\+planning/src/\hyperlink{go__motion__planner_8hpp}{go\+\_\+motion\+\_\+planner.\+hpp}\item 
+go\+\_\+motion\+\_\+planning/src/\hyperlink{pick__and__place_8cpp}{pick\+\_\+and\+\_\+place.\+cpp}\end{DoxyCompactItemize}

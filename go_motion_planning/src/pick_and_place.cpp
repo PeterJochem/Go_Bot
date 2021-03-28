@@ -1,7 +1,36 @@
-/*** @file Tests for the motion_planning package
- * @author Peter Jochem <peterjochem2020@u.northwestern.edu>
- * @section Tests for the motion_planning package */
-
+/** @file 
+ *  @brief Service node to use MoveIt to pick and place go pieces
+ *
+ *  Parameters: /home_position_x - Gripper frame's pose x value in the home position 
+ *       	/home_position_y - Gripper frame's pose y value in the home position
+ *       	/home_position_z - Gripper frame's pose z value in the home position
+ *       	/home_position_roll - Gripper frame's pose roll value (radians) in the home position
+ *       	/home_position_pitch - Gripper frame's pose pitch (radians) value in the home position
+ *       	/home_position_yaw - Gripper frame's pose yaw (radians) value in the home position
+ *
+ *       	/row_width - The width of the go board's square 
+ *       	/row_height - The height of the go board's square
+ *
+ *       	/z_board_plane - The z-axis value of the top of the board's plane
+ *       	/piece_height - Height of the go piece
+ *       	/z_stance_offset - The distance in the z-axis to be offset by in the stance pose
+ *       	/finger_length - The length of the gripper's fingers
+ *
+ *  Publishers: /rx200/gripper_controller/command - Position controller of the robot's gripper 
+ *		/rx200/gripper/command - PWM control of the gripper
+ *  	
+ *	
+ *  Subscribers: /rx200/gripper/command - PWM control feedback from the gripper 
+ *	
+ *  Services: /home_position - Move robot into a home pose 
+ *            /pickup_piece - Pickup a piece at the given (row, column) pair
+ *            /place_piece_in_unused - Place a piece in the used pile 
+ *            /remove_piece - Pickup and remove a piece at the given (row, column) from the board
+ *            /pickup_unused_piece - Pickup an unused piece from the empty pile
+ *            /place_piece - Place a piece at the given (row, column) on the board
+ *            /play_piece - Pickup an used piece and play it on the board at (row, column) 
+ *            /pickup_set_of_pieces - Pickup a set of pieces and remove them from the board   
+ */
 
 
 #include <moveit/move_group_interface/move_group_interface.h>
@@ -72,7 +101,6 @@ void go_motion_planner::load_param_values() {
 	node_handle.getParam("/z_stance_offset", z_stance_offset);
 	node_handle.getParam("/finger_length", finger_length);
 		
-
 	home_pose = create_pose(x, y, z, roll, pitch, yaw); 
 }
 
@@ -104,7 +132,6 @@ void go_motion_planner::setup_publishers() {
         //self.pub_gripper_command = rospy.Publisher(robot_name + "/gripper/command", Float64, queue_size=100)
 	// The arm_node from the interbotix_sdk package will subscribe to this topic and use it to do pwm control
 	gripper_pwm_pub = node_handle.advertise<std_msgs::Float64>("/rx200/gripper/command", 100);
-
 }
 
 void go_motion_planner::setup_transform_listeners() { 
@@ -465,8 +492,9 @@ bool go_motion_planner::open_gripper_simulation() {
 
         moveit::planning_interface::MoveGroupInterface::Plan my_plan;
 	
-	joint_group_positions[0] = 0.037; // Open
-        joint_group_positions[1] = -0.037;
+	// [-0.037, 0.037] is the interval of positions the gripper's two fingers can be in
+	joint_group_positions[0] = 0.037/1.75; // Open
+        joint_group_positions[1] = -0.037/1.75;
 
         gripper_move_group->setJointValueTarget(joint_group_positions);
         bool success = (gripper_move_group->plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
