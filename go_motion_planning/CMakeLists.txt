@@ -208,12 +208,8 @@ target_link_libraries(${PROJECT_NAME}_pick_and_place_node ${catkin_LIBRARIES})
 #############
 ## Testing ##
 #############
-
-## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_go_motion_planning.cpp)
-# if(TARGET ${PROJECT_NAME}-test)
-#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
-# endif()
-
-## Add folders to be run by python nosetests
-# catkin_add_nosetests(test)
+if(CATKIN_ENABLE_TESTING)
+	find_package(rostest REQUIRED)
+	add_rostest_gtest(test_go_motion_planning test/test_go_motion_planning.launch test/test_go_motion_planning.cpp)
+	target_link_libraries(test_go_motion_planning gtest_main ${catkin_LIBRARIES})
+endif()

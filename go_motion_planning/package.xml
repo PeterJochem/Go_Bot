@@ -44,6 +44,7 @@
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
   <exec_depend>interbotix_sdk</exec_depend>
+  <test_depend>rosunit</test_depend>
 
   <export>
   </export>

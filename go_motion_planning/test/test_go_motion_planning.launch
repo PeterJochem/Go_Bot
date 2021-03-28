@@ -1,0 +1,12 @@
+<launch>
+
+ 
+	<!-- Launch the needed nodes -->	
+	<!-- node pkg="go_motion_planning" name="node" type="node"/ -->
+
+	<!-- Launch our test node -->
+	<test test-name="test_go_motion_planning" pkg="go_motion_planning" time-limit="60.0" type="test_go_motion_planning"/>
+
+
+
+</launch>
