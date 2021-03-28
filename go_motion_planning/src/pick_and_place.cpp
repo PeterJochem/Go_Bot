@@ -1,3 +1,9 @@
+/*** @file Tests for the motion_planning package
+ * @author Peter Jochem <peterjochem2020@u.northwestern.edu>
+ * @section Tests for the motion_planning package */
+
+
+
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
 #include <moveit_msgs/DisplayRobotState.h>
@@ -17,12 +23,11 @@
 #include <math.h>
 
 // TO Do:
-// 1) Create a service to place a piece?
-// 2) Create a service to remove a set of pieces?
-// 3) Add the pieces to Gazebo
-// 4) Change the node names and the file names 
-// 5) Make things in the class private/public
-// 6) Setup ROS Test!!
+// 1) Create a service to remove a set of pieces?
+// 2) Add the pieces to Gazebo programmaticly
+// 3) Change the node names and the file names 
+// 4) Make things in the class private/public
+// 5) Write units tests!!
 
 
 go_motion_planner::go_motion_planner() {

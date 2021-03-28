@@ -13,6 +13,11 @@ go_motion_planning - Provides services for picking and placing go pieces using M
 go_robot_server - Web interface and server for to allow remote play with the robot <br />
 interbotix_ros_arms - Lower level ROS nodes for ReactorX series <br />
 
+# Doxygen Documentation
+The Doxygen documentation is available at file:///home/peterjochem/Desktop/Go_Bot/catkin_ws/src/docs/html/index.html
+
+# Unit Testing
+I used gtest to create unit tests. To run the unit test, run ```catkin_make run_tests``` or ```catkin_make run_tests <package_name>```
 
 # Docker Instructions
 I had some trouble getting all the packages at the correct versions to compile so I made a Docker container. Here are the instructions on how to connect to the Docker container and also, if need be, create a new container
