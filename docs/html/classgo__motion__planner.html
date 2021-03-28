@@ -74,54 +74,78 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a74e2e97851998d7f6b8c29f31e0adfb0"><td class="memItemLeft" align="right" valign="top"><a id="a74e2e97851998d7f6b8c29f31e0adfb0"></a>
-geometry_msgs::Pose&#160;</td><td class="memItemRight" valign="bottom"><b>create_pose</b> (float x, float y, float z, float roll, float pitch, float yaw)</td></tr>
+<tr class="memitem:a0e38e788fa3b60e4999f8c1af3b30fa3"><td class="memItemLeft" align="right" valign="top"><a id="a0e38e788fa3b60e4999f8c1af3b30fa3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a0e38e788fa3b60e4999f8c1af3b30fa3">go_motion_planner</a> ()</td></tr>
+<tr class="memdesc:a0e38e788fa3b60e4999f8c1af3b30fa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct <a class="el" href="classgo__motion__planner.html" title="Provides high level abstraction and motion planning services for the GoBot. ">go_motion_planner</a> object. <br /></td></tr>
+<tr class="separator:a0e38e788fa3b60e4999f8c1af3b30fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74e2e97851998d7f6b8c29f31e0adfb0"><td class="memItemLeft" align="right" valign="top">geometry_msgs::Pose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a74e2e97851998d7f6b8c29f31e0adfb0">create_pose</a> (float x, float y, float z, float roll, float pitch, float yaw)</td></tr>
+<tr class="memdesc:a74e2e97851998d7f6b8c29f31e0adfb0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
+<li>Create the pose object specefied by the arguments </li>
+</ul>
+ <a href="#a74e2e97851998d7f6b8c29f31e0adfb0">More...</a><br /></td></tr>
 <tr class="separator:a74e2e97851998d7f6b8c29f31e0adfb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70e5bea73ba3ec12f0d91d107c58dec1"><td class="memItemLeft" align="right" valign="top"><a id="a70e5bea73ba3ec12f0d91d107c58dec1"></a>
-geometry_msgs::Pose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a70e5bea73ba3ec12f0d91d107c58dec1">create_relative_pose</a> (float d_x, float d_y, float d_z, float d_roll, float d_pitch, float d_yaw)</td></tr>
-<tr class="memdesc:a70e5bea73ba3ec12f0d91d107c58dec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a pose goal relative to the robot's end effector's current pose. <br /></td></tr>
+<tr class="memitem:a70e5bea73ba3ec12f0d91d107c58dec1"><td class="memItemLeft" align="right" valign="top">geometry_msgs::Pose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a70e5bea73ba3ec12f0d91d107c58dec1">create_relative_pose</a> (float d_x, float d_y, float d_z, float d_roll, float d_pitch, float d_yaw)</td></tr>
+<tr class="memdesc:a70e5bea73ba3ec12f0d91d107c58dec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a pose goal relative to the robot's end effector's current pose.  <a href="#a70e5bea73ba3ec12f0d91d107c58dec1">More...</a><br /></td></tr>
 <tr class="separator:a70e5bea73ba3ec12f0d91d107c58dec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60dfb0301a459aad73f0e597ef773ef3"><td class="memItemLeft" align="right" valign="top"><a id="a60dfb0301a459aad73f0e597ef773ef3"></a>
-geometry_msgs::Quaternion&#160;</td><td class="memItemRight" valign="bottom"><b>quaternion_from_rpy</b> (double roll, double pitch, double yaw)</td></tr>
+<tr class="memitem:a60dfb0301a459aad73f0e597ef773ef3"><td class="memItemLeft" align="right" valign="top">geometry_msgs::Quaternion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a60dfb0301a459aad73f0e597ef773ef3">quaternion_from_rpy</a> (double roll, double pitch, double yaw)</td></tr>
+<tr class="memdesc:a60dfb0301a459aad73f0e597ef773ef3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
+<li>Create a quaternion from the given Euler angles </li>
+</ul>
+ <a href="#a60dfb0301a459aad73f0e597ef773ef3">More...</a><br /></td></tr>
 <tr class="separator:a60dfb0301a459aad73f0e597ef773ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4b74ceb1ce2cab6859d8f7f0f32caa5"><td class="memItemLeft" align="right" valign="top"><a id="ab4b74ceb1ce2cab6859d8f7f0f32caa5"></a>
-std::tuple&lt; float, float, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>rpy_from_quaternion</b> (geometry_msgs::Quaternion q)</td></tr>
+<tr class="memitem:ab4b74ceb1ce2cab6859d8f7f0f32caa5"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; float, float, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#ab4b74ceb1ce2cab6859d8f7f0f32caa5">rpy_from_quaternion</a> (geometry_msgs::Quaternion q)</td></tr>
+<tr class="memdesc:ab4b74ceb1ce2cab6859d8f7f0f32caa5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
+<li>Compute the Euler angles given the geom_msgs::quaternion object </li>
+</ul>
+ <a href="#ab4b74ceb1ce2cab6859d8f7f0f32caa5">More...</a><br /></td></tr>
 <tr class="separator:ab4b74ceb1ce2cab6859d8f7f0f32caa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14a615472cc4daae8049627c4aacf1e2"><td class="memItemLeft" align="right" valign="top"><a id="a14a615472cc4daae8049627c4aacf1e2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>add_orientation_constraints</b> (float roll, float pitch, float yaw)</td></tr>
+<tr class="memitem:a14a615472cc4daae8049627c4aacf1e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a14a615472cc4daae8049627c4aacf1e2">add_orientation_constraints</a> (float roll, float pitch, float yaw)</td></tr>
+<tr class="memdesc:a14a615472cc4daae8049627c4aacf1e2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
+<li>Add orientation constraints to the next motion planning request </li>
+</ul>
+ <a href="#a14a615472cc4daae8049627c4aacf1e2">More...</a><br /></td></tr>
 <tr class="separator:a14a615472cc4daae8049627c4aacf1e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2be951f1c56888d0e710290c884a6050"><td class="memItemLeft" align="right" valign="top"><a id="a2be951f1c56888d0e710290c884a6050"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>move_to_pose</b> (geometry_msgs::Pose pose)</td></tr>
+<tr class="memitem:a2be951f1c56888d0e710290c884a6050"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a2be951f1c56888d0e710290c884a6050">move_to_pose</a> (geometry_msgs::Pose pose)</td></tr>
+<tr class="memdesc:a2be951f1c56888d0e710290c884a6050"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
+<li>Move the robot's end effector frame to the given pose </li>
+</ul>
+ <a href="#a2be951f1c56888d0e710290c884a6050">More...</a><br /></td></tr>
 <tr class="separator:a2be951f1c56888d0e710290c884a6050"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c8a279562b60fd12202452f09d5b149"><td class="memItemLeft" align="right" valign="top"><a id="a0c8a279562b60fd12202452f09d5b149"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>cartesian_sequence</b> (geometry_msgs::Pose)</td></tr>
+<tr class="memitem:a0c8a279562b60fd12202452f09d5b149"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a0c8a279562b60fd12202452f09d5b149">cartesian_sequence</a> (geometry_msgs::Pose)</td></tr>
+<tr class="memdesc:a0c8a279562b60fd12202452f09d5b149"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the stance pose for a given (row,column) pair on the go board.  <a href="#a0c8a279562b60fd12202452f09d5b149">More...</a><br /></td></tr>
 <tr class="separator:a0c8a279562b60fd12202452f09d5b149"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2120e26233b9622d9af923f7649b73fe"><td class="memItemLeft" align="right" valign="top"><a id="a2120e26233b9622d9af923f7649b73fe"></a>
-geometry_msgs::Pose&#160;</td><td class="memItemRight" valign="bottom"><b>stance_pose</b> (int row, int column)</td></tr>
+<tr class="memitem:a2120e26233b9622d9af923f7649b73fe"><td class="memItemLeft" align="right" valign="top">geometry_msgs::Pose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a2120e26233b9622d9af923f7649b73fe">stance_pose</a> (int row, int column)</td></tr>
+<tr class="memdesc:a2120e26233b9622d9af923f7649b73fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the stance pose for a given (row,column) pair on the go board.  <a href="#a2120e26233b9622d9af923f7649b73fe">More...</a><br /></td></tr>
 <tr class="separator:a2120e26233b9622d9af923f7649b73fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26ec310b72222bc827f595e94ada0719"><td class="memItemLeft" align="right" valign="top"><a id="a26ec310b72222bc827f595e94ada0719"></a>
-geometry_msgs::Point&#160;</td><td class="memItemRight" valign="bottom"><b>board_location</b> (int row, int column)</td></tr>
+<tr class="memitem:a26ec310b72222bc827f595e94ada0719"><td class="memItemLeft" align="right" valign="top">geometry_msgs::Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a26ec310b72222bc827f595e94ada0719">board_location</a> (int row, int column)</td></tr>
+<tr class="memdesc:a26ec310b72222bc827f595e94ada0719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the (x, y) value for a given (row, column) pair on the go board.  <a href="#a26ec310b72222bc827f595e94ada0719">More...</a><br /></td></tr>
 <tr class="separator:a26ec310b72222bc827f595e94ada0719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ca51ab871bab4e80b208587b1c8ee45"><td class="memItemLeft" align="right" valign="top"><a id="a7ca51ab871bab4e80b208587b1c8ee45"></a>
-geometry_msgs::Point&#160;</td><td class="memItemRight" valign="bottom"><b>next_empty_unused_piece_location</b> ()</td></tr>
+geometry_msgs::Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a7ca51ab871bab4e80b208587b1c8ee45">next_empty_unused_piece_location</a> ()</td></tr>
+<tr class="memdesc:a7ca51ab871bab4e80b208587b1c8ee45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query datastructures to find the place to put the next unused piece. <br /></td></tr>
 <tr class="separator:a7ca51ab871bab4e80b208587b1c8ee45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac70899ea0cb646a112c51f9a056fa4b1"><td class="memItemLeft" align="right" valign="top"><a id="ac70899ea0cb646a112c51f9a056fa4b1"></a>
-geometry_msgs::Point&#160;</td><td class="memItemRight" valign="bottom"><b>next_unused_piece_location</b> ()</td></tr>
+geometry_msgs::Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#ac70899ea0cb646a112c51f9a056fa4b1">next_unused_piece_location</a> ()</td></tr>
+<tr class="memdesc:ac70899ea0cb646a112c51f9a056fa4b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query datastructures to find the place where the next unused piece is currently. <br /></td></tr>
 <tr class="separator:ac70899ea0cb646a112c51f9a056fa4b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8f5de4110bd29391e00b26eda2a5bcc"><td class="memItemLeft" align="right" valign="top"><a id="aa8f5de4110bd29391e00b26eda2a5bcc"></a>
-geometry_msgs::Quaternion&#160;</td><td class="memItemRight" valign="bottom"><b>grasp_orientation</b> (geometry_msgs::Point)</td></tr>
+<tr class="memitem:aa8f5de4110bd29391e00b26eda2a5bcc"><td class="memItemLeft" align="right" valign="top">geometry_msgs::Quaternion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#aa8f5de4110bd29391e00b26eda2a5bcc">grasp_orientation</a> (geometry_msgs::Point)</td></tr>
+<tr class="memdesc:aa8f5de4110bd29391e00b26eda2a5bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the grasp pose for a given (row, column) pair on the go board.  <a href="#aa8f5de4110bd29391e00b26eda2a5bcc">More...</a><br /></td></tr>
 <tr class="separator:aa8f5de4110bd29391e00b26eda2a5bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88298290e78a2b4445d7026785d04760"><td class="memItemLeft" align="right" valign="top"><a id="a88298290e78a2b4445d7026785d04760"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setup_transform_listeners</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a88298290e78a2b4445d7026785d04760">setup_transform_listeners</a> ()</td></tr>
+<tr class="memdesc:a88298290e78a2b4445d7026785d04760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup a ROS transform listener for the class. <br /></td></tr>
 <tr class="separator:a88298290e78a2b4445d7026785d04760"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a364274097d4ea459a6e18a17852e9704"><td class="memItemLeft" align="right" valign="top"><a id="a364274097d4ea459a6e18a17852e9704"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>load_param_values</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a364274097d4ea459a6e18a17852e9704">load_param_values</a> ()</td></tr>
+<tr class="memdesc:a364274097d4ea459a6e18a17852e9704"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load parameters from the ROS parameter server. <br /></td></tr>
 <tr class="separator:a364274097d4ea459a6e18a17852e9704"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49672ad780c9c66c554672b2ecf8bd78"><td class="memItemLeft" align="right" valign="top"><a id="a49672ad780c9c66c554672b2ecf8bd78"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setup_subscribers</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a49672ad780c9c66c554672b2ecf8bd78">setup_subscribers</a> ()</td></tr>
+<tr class="memdesc:a49672ad780c9c66c554672b2ecf8bd78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup ROs subscribers. <br /></td></tr>
 <tr class="separator:a49672ad780c9c66c554672b2ecf8bd78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac994e145558bda267ac29ea6feb9981a"><td class="memItemLeft" align="right" valign="top"><a id="ac994e145558bda267ac29ea6feb9981a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setup_publishers</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#ac994e145558bda267ac29ea6feb9981a">setup_publishers</a> ()</td></tr>
+<tr class="memdesc:ac994e145558bda267ac29ea6feb9981a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the ROS subscriptions. <br /></td></tr>
 <tr class="separator:ac994e145558bda267ac29ea6feb9981a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9248ea5b2727f984761ea7bbaea3ba5c"><td class="memItemLeft" align="right" valign="top"><a id="a9248ea5b2727f984761ea7bbaea3ba5c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a9248ea5b2727f984761ea7bbaea3ba5c">open_gripper_simulation</a> ()</td></tr>
@@ -131,58 +155,73 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <br /></td></tr>
 <tr class="separator:a9248ea5b2727f984761ea7bbaea3ba5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed6123e33622ebff3b420479e1fd6141"><td class="memItemLeft" align="right" valign="top"><a id="aed6123e33622ebff3b420479e1fd6141"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>close_gripper_simulation</b> (void)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#aed6123e33622ebff3b420479e1fd6141">close_gripper_simulation</a> (void)</td></tr>
+<tr class="memdesc:aed6123e33622ebff3b420479e1fd6141"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
+<li>Close the gripper in Gazebo with the position controller </li>
+</ul>
+<br /></td></tr>
 <tr class="separator:aed6123e33622ebff3b420479e1fd6141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b79595d9f86b059309f73ca16969c34"><td class="memItemLeft" align="right" valign="top"><a id="a7b79595d9f86b059309f73ca16969c34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>process_gripper_data</b> (const std_msgs::Float64::ConstPtr &amp;msg)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a7b79595d9f86b059309f73ca16969c34">process_gripper_data</a> (const std_msgs::Float64::ConstPtr &amp;msg)</td></tr>
+<tr class="memdesc:a7b79595d9f86b059309f73ca16969c34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not-implemented yet. Requires hardware. Will process the pwm data from the gripper. <br /></td></tr>
 <tr class="separator:a7b79595d9f86b059309f73ca16969c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a27e25a326f322f6c4c766029ed081d"><td class="memItemLeft" align="right" valign="top"><a id="a9a27e25a326f322f6c4c766029ed081d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setup_services</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a9a27e25a326f322f6c4c766029ed081d">setup_services</a> ()</td></tr>
+<tr class="memdesc:a9a27e25a326f322f6c4c766029ed081d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advertise all the services provided by the ROS node. <br /></td></tr>
 <tr class="separator:a9a27e25a326f322f6c4c766029ed081d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acda1c3562a9863181f4dbd1deaff3ff3"><td class="memItemLeft" align="right" valign="top"><a id="acda1c3562a9863181f4dbd1deaff3ff3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>pickup_piece</b> (int row, int column)</td></tr>
+<tr class="memitem:acda1c3562a9863181f4dbd1deaff3ff3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#acda1c3562a9863181f4dbd1deaff3ff3">pickup_piece</a> (int row, int column)</td></tr>
+<tr class="memdesc:acda1c3562a9863181f4dbd1deaff3ff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pick up the piece at the given (row, column) on the board. Assumes the robot is not holding a piece when it is called.  <a href="#acda1c3562a9863181f4dbd1deaff3ff3">More...</a><br /></td></tr>
 <tr class="separator:acda1c3562a9863181f4dbd1deaff3ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29c727d02a06b13b39e907384c71eb1e"><td class="memItemLeft" align="right" valign="top"><a id="a29c727d02a06b13b39e907384c71eb1e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>remove_piece</b> (int row, int column)</td></tr>
+<tr class="memitem:a29c727d02a06b13b39e907384c71eb1e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a29c727d02a06b13b39e907384c71eb1e">remove_piece</a> (int row, int column)</td></tr>
+<tr class="memdesc:a29c727d02a06b13b39e907384c71eb1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the piece specefied in the request message.  <a href="#a29c727d02a06b13b39e907384c71eb1e">More...</a><br /></td></tr>
 <tr class="separator:a29c727d02a06b13b39e907384c71eb1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad532e8f592e7f82f2c1b216c39a2cf30"><td class="memItemLeft" align="right" valign="top"><a id="ad532e8f592e7f82f2c1b216c39a2cf30"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>place_in_unused_pile</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#ad532e8f592e7f82f2c1b216c39a2cf30">place_in_unused_pile</a> ()</td></tr>
+<tr class="memdesc:ad532e8f592e7f82f2c1b216c39a2cf30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place the piece the robot is holding into the unused pile. <br /></td></tr>
 <tr class="separator:ad532e8f592e7f82f2c1b216c39a2cf30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b49683bb6488c9cab3e22a40e4e854e"><td class="memItemLeft" align="right" valign="top"><a id="a2b49683bb6488c9cab3e22a40e4e854e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>place_piece</b> (int row, int column)</td></tr>
+<tr class="memitem:a2b49683bb6488c9cab3e22a40e4e854e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a2b49683bb6488c9cab3e22a40e4e854e">place_piece</a> (int row, int column)</td></tr>
+<tr class="memdesc:a2b49683bb6488c9cab3e22a40e4e854e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place the piece specefied in the request message.  <a href="#a2b49683bb6488c9cab3e22a40e4e854e">More...</a><br /></td></tr>
 <tr class="separator:a2b49683bb6488c9cab3e22a40e4e854e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d0d55d9c4b20319a3164d1656ebcf21"><td class="memItemLeft" align="right" valign="top"><a id="a1d0d55d9c4b20319a3164d1656ebcf21"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>pickup_unused_piece</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a1d0d55d9c4b20319a3164d1656ebcf21">pickup_unused_piece</a> ()</td></tr>
+<tr class="memdesc:a1d0d55d9c4b20319a3164d1656ebcf21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pickup an unused piece. <br /></td></tr>
 <tr class="separator:a1d0d55d9c4b20319a3164d1656ebcf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac27b5567f1dd182fbf3d99b56e10155f"><td class="memItemLeft" align="right" valign="top"><a id="ac27b5567f1dd182fbf3d99b56e10155f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>move_to_home_position</b> ()</td></tr>
 <tr class="separator:ac27b5567f1dd182fbf3d99b56e10155f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eaf2e9291a24b12dafc684cd779c99a"><td class="memItemLeft" align="right" valign="top"><a id="a4eaf2e9291a24b12dafc684cd779c99a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>play_piece</b> (int row, int column)</td></tr>
+<tr class="memitem:a4eaf2e9291a24b12dafc684cd779c99a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a4eaf2e9291a24b12dafc684cd779c99a">play_piece</a> (int row, int column)</td></tr>
+<tr class="memdesc:a4eaf2e9291a24b12dafc684cd779c99a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an unused piece at play at the given board location.  <a href="#a4eaf2e9291a24b12dafc684cd779c99a">More...</a><br /></td></tr>
 <tr class="separator:a4eaf2e9291a24b12dafc684cd779c99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c6c7c5eaccf9b3015cd1e85afdc12b5"><td class="memItemLeft" align="right" valign="top"><a id="a0c6c7c5eaccf9b3015cd1e85afdc12b5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>move_to_home_position_service_binding</b> (go_motion_planning::home_position::Request &amp;req, go_motion_planning::home_position::Response &amp;res)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a0c6c7c5eaccf9b3015cd1e85afdc12b5">move_to_home_position_service_binding</a> (go_motion_planning::home_position::Request &amp;req, go_motion_planning::home_position::Response &amp;res)</td></tr>
+<tr class="memdesc:a0c6c7c5eaccf9b3015cd1e85afdc12b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS service binding which simply calls move_to_pose with the home_pose as the argument. <br /></td></tr>
 <tr class="separator:a0c6c7c5eaccf9b3015cd1e85afdc12b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade2c6db47d4a71876bd7d7382858adb9"><td class="memItemLeft" align="right" valign="top"><a id="ade2c6db47d4a71876bd7d7382858adb9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>pickup_piece_service_binding</b> (go_motion_planning::pickup_piece::Request &amp;req, go_motion_planning::pickup_piece::Response &amp;res)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#ade2c6db47d4a71876bd7d7382858adb9">pickup_piece_service_binding</a> (go_motion_planning::pickup_piece::Request &amp;req, go_motion_planning::pickup_piece::Response &amp;res)</td></tr>
+<tr class="memdesc:ade2c6db47d4a71876bd7d7382858adb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS service binding which simply calls pickup_piece with passed res.row, res.column. <br /></td></tr>
 <tr class="separator:ade2c6db47d4a71876bd7d7382858adb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b342edd58e79805e576cc241a2b39cd"><td class="memItemLeft" align="right" valign="top"><a id="a1b342edd58e79805e576cc241a2b39cd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>place_piece_in_unused_service_binding</b> (go_motion_planning::place_piece_in_unused::Request &amp;req, go_motion_planning::place_piece_in_unused::Response &amp;res)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a1b342edd58e79805e576cc241a2b39cd">place_piece_in_unused_service_binding</a> (go_motion_planning::place_piece_in_unused::Request &amp;req, go_motion_planning::place_piece_in_unused::Response &amp;res)</td></tr>
+<tr class="memdesc:a1b342edd58e79805e576cc241a2b39cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS service binding which simply calls place_in_unused_pile. <br /></td></tr>
 <tr class="separator:a1b342edd58e79805e576cc241a2b39cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99b71bff95631b79ff39b30c58730813"><td class="memItemLeft" align="right" valign="top"><a id="a99b71bff95631b79ff39b30c58730813"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>remove_piece_service_binding</b> (go_motion_planning::remove_piece::Request &amp;req, go_motion_planning::remove_piece::Response &amp;res)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a99b71bff95631b79ff39b30c58730813">remove_piece_service_binding</a> (go_motion_planning::remove_piece::Request &amp;req, go_motion_planning::remove_piece::Response &amp;res)</td></tr>
+<tr class="memdesc:a99b71bff95631b79ff39b30c58730813"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS service binding which simply calls remove_piece with the passed req.row and req.column. <br /></td></tr>
 <tr class="separator:a99b71bff95631b79ff39b30c58730813"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21ff70114c6e31d121352c8bf9c7a962"><td class="memItemLeft" align="right" valign="top"><a id="a21ff70114c6e31d121352c8bf9c7a962"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>pickup_unused_piece_service_binding</b> (go_motion_planning::pickup_unused_piece::Request &amp;req, go_motion_planning::pickup_unused_piece::Response &amp;res)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a21ff70114c6e31d121352c8bf9c7a962">pickup_unused_piece_service_binding</a> (go_motion_planning::pickup_unused_piece::Request &amp;req, go_motion_planning::pickup_unused_piece::Response &amp;res)</td></tr>
+<tr class="memdesc:a21ff70114c6e31d121352c8bf9c7a962"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS service binding which simply calls pickup_unused piece. <br /></td></tr>
 <tr class="separator:a21ff70114c6e31d121352c8bf9c7a962"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab93c5f49f503441b9e3917a8bfb31e73"><td class="memItemLeft" align="right" valign="top"><a id="ab93c5f49f503441b9e3917a8bfb31e73"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>place_piece_service_binding</b> (go_motion_planning::place_piece::Request &amp;req, go_motion_planning::place_piece::Response &amp;res)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#ab93c5f49f503441b9e3917a8bfb31e73">place_piece_service_binding</a> (go_motion_planning::place_piece::Request &amp;req, go_motion_planning::place_piece::Response &amp;res)</td></tr>
+<tr class="memdesc:ab93c5f49f503441b9e3917a8bfb31e73"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS service binding which simply calls place_piece with the passed req.row and req.column. <br /></td></tr>
 <tr class="separator:ab93c5f49f503441b9e3917a8bfb31e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a774c19f7198702545b74c71b98efa538"><td class="memItemLeft" align="right" valign="top"><a id="a774c19f7198702545b74c71b98efa538"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>play_piece_service_binding</b> (go_motion_planning::play_piece::Request &amp;req, go_motion_planning::play_piece::Response &amp;res)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a774c19f7198702545b74c71b98efa538">play_piece_service_binding</a> (go_motion_planning::play_piece::Request &amp;req, go_motion_planning::play_piece::Response &amp;res)</td></tr>
+<tr class="memdesc:a774c19f7198702545b74c71b98efa538"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS service binding which simply calls play_piece with the passed req.row and req.column. <br /></td></tr>
 <tr class="separator:a774c19f7198702545b74c71b98efa538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89fdde820a08474e8b43d1ef5b69e8fd"><td class="memItemLeft" align="right" valign="top"><a id="a89fdde820a08474e8b43d1ef5b69e8fd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>pickup_set_of_pieces_service_binding</b> (go_motion_planning::pickup_set_of_pieces::Request &amp;req, go_motion_planning::pickup_set_of_pieces::Response &amp;res)</td></tr>
+<tr class="memitem:a89fdde820a08474e8b43d1ef5b69e8fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgo__motion__planner.html#a89fdde820a08474e8b43d1ef5b69e8fd">pickup_set_of_pieces_service_binding</a> (go_motion_planning::pickup_set_of_pieces::Request &amp;req, go_motion_planning::pickup_set_of_pieces::Response &amp;res)</td></tr>
+<tr class="memdesc:a89fdde820a08474e8b43d1ef5b69e8fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS service binding. Pick up the set of pieces in the request message.  <a href="#a89fdde820a08474e8b43d1ef5b69e8fd">More...</a><br /></td></tr>
 <tr class="separator:a89fdde820a08474e8b43d1ef5b69e8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -232,7 +271,593 @@ ros::ServiceServer&#160;</td><td class="memItemRight" valign="bottom"><b>pickup_
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides high level abstraction and motion planning services for the GoBot. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a14a615472cc4daae8049627c4aacf1e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14a615472cc4daae8049627c4aacf1e2">&#9670;&nbsp;</a></span>add_orientation_constraints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void go_motion_planner::add_orientation_constraints </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>roll_tolerance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>pitch_tolerance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>yaw_tolerance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><ul>
+<li>Add orientation constraints to the next motion planning request </li>
+</ul>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roll_tolerance</td><td>- Interval from the current roll value that plan shoud allow </td></tr>
+    <tr><td class="paramname">-</td><td>pitch_tolerance - Interval from the current pitch value that plan shoud allow </td></tr>
+    <tr><td class="paramname">-</td><td>yaw_tolerance - Interval from the current yaw value that plan shoud allow </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a26ec310b72222bc827f595e94ada0719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26ec310b72222bc827f595e94ada0719">&#9670;&nbsp;</a></span>board_location()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::Point go_motion_planner::board_location </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>column</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the (x, y) value for a given (row, column) pair on the go board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>- The row value on the go_board </td></tr>
+    <tr><td class="paramname">column</td><td>- The column value on the go board </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0c8a279562b60fd12202452f09d5b149"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c8a279562b60fd12202452f09d5b149">&#9670;&nbsp;</a></span>cartesian_sequence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool go_motion_planner::cartesian_sequence </td>
+          <td>(</td>
+          <td class="paramtype">geometry_msgs::Pose&#160;</td>
+          <td class="paramname"><em>pose</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the stance pose for a given (row,column) pair on the go board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>- The row vlaue on the go_board </td></tr>
+    <tr><td class="paramname">column</td><td>- The column value on the go board </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a74e2e97851998d7f6b8c29f31e0adfb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74e2e97851998d7f6b8c29f31e0adfb0">&#9670;&nbsp;</a></span>create_pose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::Pose go_motion_planner::create_pose </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>roll</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>pitch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>yaw</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><ul>
+<li>Create the pose object specefied by the arguments </li>
+</ul>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x,y,z</td><td>- The (x, y, z) values of the desired pose </td></tr>
+    <tr><td class="paramname">roll,pitch,yaw</td><td>- The desired roll, pitch, and yaw values (rads) of the given pose </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a70e5bea73ba3ec12f0d91d107c58dec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70e5bea73ba3ec12f0d91d107c58dec1">&#9670;&nbsp;</a></span>create_relative_pose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::Pose go_motion_planner::create_relative_pose </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>d_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>d_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>d_z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>d_roll</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>d_pitch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>d_yaw</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a pose goal relative to the robot's end effector's current pose. </p>
+<ul>
+<li>Create the pose object relative to the robot's end effector frame's</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d_x,_d_y,d_z</td><td>- The (d_x, d_y, d_z) values from the current pose </td></tr>
+    <tr><td class="paramname">d_roll,d_pitch,d_yaw</td><td>- The desired d_roll, d_pitch, and d_yaw values (rads) from the current pose </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa8f5de4110bd29391e00b26eda2a5bcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8f5de4110bd29391e00b26eda2a5bcc">&#9670;&nbsp;</a></span>grasp_orientation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::Quaternion go_motion_planner::grasp_orientation </td>
+          <td>(</td>
+          <td class="paramtype">geometry_msgs::Point&#160;</td>
+          <td class="paramname"><em>stance_point</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the grasp pose for a given (row, column) pair on the go board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stance_point</td><td>- The point in the world frame of the desired board location </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2be951f1c56888d0e710290c884a6050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2be951f1c56888d0e710290c884a6050">&#9670;&nbsp;</a></span>move_to_pose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool go_motion_planner::move_to_pose </td>
+          <td>(</td>
+          <td class="paramtype">geometry_msgs::Pose&#160;</td>
+          <td class="paramname"><em>pose</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><ul>
+<li>Move the robot's end effector frame to the given pose </li>
+</ul>
+</p>
+<p>pose - The desired pose of the end effector frame </p>
+
+</div>
+</div>
+<a id="acda1c3562a9863181f4dbd1deaff3ff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acda1c3562a9863181f4dbd1deaff3ff3">&#9670;&nbsp;</a></span>pickup_piece()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool go_motion_planner::pickup_piece </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>column</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pick up the piece at the given (row, column) on the board. Assumes the robot is not holding a piece when it is called. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>- The row of the go board </td></tr>
+    <tr><td class="paramname">column</td><td>- The column of the go board </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a89fdde820a08474e8b43d1ef5b69e8fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89fdde820a08474e8b43d1ef5b69e8fd">&#9670;&nbsp;</a></span>pickup_set_of_pieces_service_binding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool go_motion_planner::pickup_set_of_pieces_service_binding </td>
+          <td>(</td>
+          <td class="paramtype">go_motion_planning::pickup_set_of_pieces::Request &amp;&#160;</td>
+          <td class="paramname"><em>req</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">go_motion_planning::pickup_set_of_pieces::Response &amp;&#160;</td>
+          <td class="paramname"><em>res</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ROS service binding. Pick up the set of pieces in the request message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">-</td><td>req - ROS type of (row, column) pairs of pieces to pickup </td></tr>
+    <tr><td class="paramname">res</td><td>- ROS type which is just a boolean indicating success or failure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2b49683bb6488c9cab3e22a40e4e854e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b49683bb6488c9cab3e22a40e4e854e">&#9670;&nbsp;</a></span>place_piece()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool go_motion_planner::place_piece </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>column</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Place the piece specefied in the request message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">-</td><td>req - ROS type of (row, column) pair of piece to pickup </td></tr>
+    <tr><td class="paramname">res</td><td>- ROS type which is just a boolean indicating success or failure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4eaf2e9291a24b12dafc684cd779c99a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eaf2e9291a24b12dafc684cd779c99a">&#9670;&nbsp;</a></span>play_piece()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool go_motion_planner::play_piece </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>column</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get an unused piece at play at the given board location. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">-</td><td>req - ROS type of (row, column) pair of piece to pickup </td></tr>
+    <tr><td class="paramname">res</td><td>- ROS type which is just a boolean indicating success or failure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a60dfb0301a459aad73f0e597ef773ef3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60dfb0301a459aad73f0e597ef773ef3">&#9670;&nbsp;</a></span>quaternion_from_rpy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::Quaternion go_motion_planner::quaternion_from_rpy </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>roll</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>pitch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>yaw</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><ul>
+<li>Create a quaternion from the given Euler angles </li>
+</ul>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roll,pitch,yaw</td><td>- The roll, pitch, and yaw values (rads) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a29c727d02a06b13b39e907384c71eb1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29c727d02a06b13b39e907384c71eb1e">&#9670;&nbsp;</a></span>remove_piece()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool go_motion_planner::remove_piece </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>column</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the piece specefied in the request message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">-</td><td>req - ROS type of (row, column) pair of piece to remove from the board </td></tr>
+    <tr><td class="paramname">res</td><td>- ROS type which is just a boolean indicating success or failure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab4b74ceb1ce2cab6859d8f7f0f32caa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4b74ceb1ce2cab6859d8f7f0f32caa5">&#9670;&nbsp;</a></span>rpy_from_quaternion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt; float, float, float &gt; go_motion_planner::rpy_from_quaternion </td>
+          <td>(</td>
+          <td class="paramtype">geometry_msgs::Quaternion&#160;</td>
+          <td class="paramname"><em>geom_msgs_quat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><ul>
+<li>Compute the Euler angles given the geom_msgs::quaternion object </li>
+</ul>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">geom_msgs_quat</td><td>- The quaternion </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2120e26233b9622d9af923f7649b73fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2120e26233b9622d9af923f7649b73fe">&#9670;&nbsp;</a></span>stance_pose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::Pose go_motion_planner::stance_pose </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>column</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the stance pose for a given (row,column) pair on the go board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>- The row value on the go_board </td></tr>
+    <tr><td class="paramname">column</td><td>- The column value on the go board </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>go_motion_planning/src/<a class="el" href="go__motion__planner_8hpp_source.html">go_motion_planner.hpp</a></li>
 <li>go_motion_planning/src/<a class="el" href="pick__and__place_8cpp.html">pick_and_place.cpp</a></li>
 </ul>

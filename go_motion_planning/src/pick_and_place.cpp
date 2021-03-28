@@ -59,6 +59,7 @@
 // 5) Write units tests!!
 
 
+/** @brief Construct go_motion_planner object */
 go_motion_planner::go_motion_planner() {
 	
 	node_handle = ros::NodeHandle();
@@ -72,6 +73,7 @@ go_motion_planner::go_motion_planner() {
 	
 }
 
+/** @brief Wait until required parameters are on the server and then return */
 void go_motion_planner::wait_for_params() {
 
 	std::cout << "Waiting for parameters to be available on the param server" << std::endl;
@@ -81,6 +83,7 @@ void go_motion_planner::wait_for_params() {
 	std::cout << "Parameters are available on the param server" << std::endl;
 }
 
+/** @brief Load parameters from the ROS parameter server */ 
 void go_motion_planner::load_param_values() { 
 	
 	double x, y, z, roll, pitch, yaw;
@@ -104,7 +107,9 @@ void go_motion_planner::load_param_values() {
 	home_pose = create_pose(x, y, z, roll, pitch, yaw); 
 }
 
+/** @brief Advertise all the services provided by the ROS node */
 void go_motion_planner::setup_services() {
+	
 	home_position_service = node_handle.advertiseService("/home_position", &go_motion_planner::move_to_home_position_service_binding, this);
 	pickup_piece_service = node_handle.advertiseService("/pickup_piece", &go_motion_planner::pickup_piece_service_binding, this);
 	place_piece_in_unused_service = node_handle.advertiseService("/place_piece_in_unused", &go_motion_planner::place_piece_in_unused_service_binding, this);
@@ -115,15 +120,14 @@ void go_motion_planner::setup_services() {
 	pickup_set_of_pieces_service = node_handle.advertiseService("/pickup_set_of_pieces", &go_motion_planner::pickup_set_of_pieces_service_binding, this);
 }
 
+/** @brief Setup ROs subscribers */
 void go_motion_planner::setup_subscribers() {
 
 	node_handle.subscribe("/rx200/gripper/command", 1000, &go_motion_planner::process_gripper_data, this);
 }
 
-
-
+/** @brief Setup the ROS subscriptions */
 void go_motion_planner::setup_publishers() {
-	
 	
 	// This controls the gripper's position in Gazebo only?
 	gripper_position_pub = node_handle.advertise<trajectory_msgs::JointTrajectory>("/rx200/gripper_controller/command", 1);	
@@ -134,19 +138,21 @@ void go_motion_planner::setup_publishers() {
 	gripper_pwm_pub = node_handle.advertise<std_msgs::Float64>("/rx200/gripper/command", 100);
 }
 
+/** @brief Setup a ROS transform listener for the class */
 void go_motion_planner::setup_transform_listeners() { 
 
 	tfBuffer = new tf2_ros::Buffer();
         tfListener = new tf2_ros::TransformListener(*tfBuffer);	
 }
 
+/** @brief Not-implemented yet. Requires hardware. Will process the pwm data from the gripper */
 void go_motion_planner::process_gripper_data(const std_msgs::Float64::ConstPtr& msg) {
 	// Convert what will be a pwm command for the real robot to the gazebo simulation
 	// closing or opening the gripper
 	// use the gripper_position_pub to make the gripper open/close		
 }
 
-
+/** @brief Setup datastructures and objects in MoveIt */
 void go_motion_planner::initialize_moveit() {
 	
 	PLANNING_GROUP = "interbotix_arm";
@@ -166,53 +172,63 @@ void go_motion_planner::initialize_moveit() {
 	gripper_move_group->setGoalTolerance(0.00001);		
 }
 
-
+/** @brief ROS service binding which simply calls move_to_pose with the home_pose as the argument
+ */
 bool go_motion_planner::move_to_home_position_service_binding(go_motion_planning::home_position::Request &req, go_motion_planning::home_position::Response &res) {
 	
 	res.success = move_to_pose(home_pose);
 	return res.success;
 }
 
+/** @brief ROS service binding which simply calls pickup_piece with passed res.row, res.column */
 bool go_motion_planner::pickup_piece_service_binding(go_motion_planning::pickup_piece::Request &req, go_motion_planning::pickup_piece::Response &res) {
        
 	res.success = pickup_piece(req.row, req.column);
 	return res.success;
 }
 
+/** @brief ROS service binding which simply calls place_in_unused_pile */
 bool go_motion_planner::place_piece_in_unused_service_binding(go_motion_planning::place_piece_in_unused::Request &req, go_motion_planning::place_piece_in_unused::Response &res) {
 	
 	res.success = place_in_unused_pile();
         return res.success;
 }
 
+/** @brief ROS service binding which simply calls remove_piece with the passed req.row and req.column */
 bool go_motion_planner::remove_piece_service_binding(go_motion_planning::remove_piece::Request &req, go_motion_planning::remove_piece::Response &res) {
 
         res.success = remove_piece(req.row, req.column);
         return res.success;
 }
 
+/** @brief ROS service binding which simply calls pickup_unused piece*/
 bool go_motion_planner::pickup_unused_piece_service_binding(go_motion_planning::pickup_unused_piece::Request &req, go_motion_planning::pickup_unused_piece::Response &res) {
 	
 	res.success = pickup_unused_piece();
 	return res.success;
 }
 
+/** @brief ROS service binding which simply calls play_piece with the passed req.row and req.column */
 bool go_motion_planner::play_piece_service_binding(go_motion_planning::play_piece::Request &req, go_motion_planning::play_piece::Response &res) {
 	
 	res.success = play_piece(req.row, req.column);
         return res.success;
 }
 
+/** @brief ROS service binding which simply calls place_piece with the passed req.row and req.column */
 bool go_motion_planner::place_piece_service_binding(go_motion_planning::place_piece::Request &req, go_motion_planning::place_piece::Response &res) {
 
         res.success = place_piece(req.row, req.column);
         return res.success;
 }
 
+/** @brief Pick up the piece at the given (row, column) on the board. Assumes the robot is not holding a
+ *  piece when it is called
+ *  @param row - The row of the go board
+ *  @param column - The column of the go board */
 bool go_motion_planner::pickup_piece(int row, int column) {	
 
-
-	open_gripper_simulation(); // For testing
+	open_gripper_simulation(); 
 	
 	// put this in a try block?
 	bool sucess = move_to_pose(stance_pose(row, column));
@@ -232,6 +248,9 @@ bool go_motion_planner::pickup_piece(int row, int column) {
 	return sucess;
 }
 
+/** @brief ROS service binding. Pick up the set of pieces in the request message.
+ *  @param - req - ROS type of (row, column) pairs of pieces to pickup  
+ *  @param res - ROS type which is just a boolean indicating success or failure */
 bool go_motion_planner::pickup_set_of_pieces_service_binding(go_motion_planning::pickup_set_of_pieces::Request &req, go_motion_planning::pickup_set_of_pieces::Response &res) { 
 
 	bool success = true;
@@ -253,6 +272,9 @@ bool go_motion_planner::pickup_set_of_pieces_service_binding(go_motion_planning:
 	return success;
 }
 
+/** @brief Place the piece specefied in the request message.
+ *  @param - req - ROS type of (row, column) pair of piece to pickup  
+ *  @param res - ROS type which is just a boolean indicating success or failure */
 bool go_motion_planner::place_piece(int row, int column) {
 
         // put this in a try block?
@@ -273,7 +295,9 @@ bool go_motion_planner::place_piece(int row, int column) {
         return sucess;
 }
 
-
+/** @brief Remove the piece specefied in the request message.
+ *  @param - req - ROS type of (row, column) pair of piece to remove from the board 
+ *  @param res - ROS type which is just a boolean indicating success or failure */
 bool go_motion_planner::remove_piece(int row, int column) {
 	
 	bool success = pickup_piece(row, column);	
@@ -284,6 +308,9 @@ bool go_motion_planner::remove_piece(int row, int column) {
 	return true;
 }
 
+/** @brief Get an unused piece at play at the given board location
+ *  @param - req - ROS type of (row, column) pair of piece to pickup
+ *  @param res - ROS type which is just a boolean indicating success or failure */
 bool go_motion_planner::play_piece(int row, int column) {
 
         bool success = pickup_unused_piece();
@@ -295,6 +322,7 @@ bool go_motion_planner::play_piece(int row, int column) {
 }
 
 
+/** @brief Place the piece the robot is holding into the unused pile */
 bool go_motion_planner::place_in_unused_pile() {
 
 	// Change this so that we check the datastuctures to see what the array/line of unused pieces is like
@@ -304,12 +332,10 @@ bool go_motion_planner::place_in_unused_pile() {
 	geometry_msgs::Pose p;
 	p.orientation = q;
 	p.position = drop_point; 
-	p.position.z = 0.15; //  z_board_plane + piece_height + z_stance_offset;
-	
+		
 	bool success = move_to_pose(p);
 	if (success) { 
-		p.position.z = 0.15; // Tune this value
-		success = cartesian_sequence(p);
+		success = cartesian_sequence(create_relative_pose(0.0, 0.0, -z_stance_offset, 0.0, 0.0, 0.0));
 	}
 	
 	if (success) {
@@ -317,17 +343,15 @@ bool go_motion_planner::place_in_unused_pile() {
 	}
 	
 	if (success) { 
-		p.position.z = 0.1; //z_stance_height; // Tune this value
-		success = cartesian_sequence(p);	
+		success = cartesian_sequence(create_relative_pose(0.0, 0.0, z_stance_offset, 0.0, 0.0, 0.0));
 	}
-	
 	
 	// Increment the data structure which records how many unused pieces there are
 	// is the dropping of the piece was successful
 	return success;	
 }
 
-
+/** @brief Pickup an unused piece */
 bool go_motion_planner::pickup_unused_piece() { 
 	
 	// Change this so that we check the datastuctures to see what the array/line of unused pieces is like
@@ -337,7 +361,6 @@ bool go_motion_planner::pickup_unused_piece() {
         geometry_msgs::Pose p;
         p.orientation = q;
         p.position = pickup_point;
-        p.position.z = 0.1; // Tune this value //z_board_plane + piece_height + z_stance_offset;
         
 	bool success = move_to_pose(p);
 	if (success) {
@@ -345,19 +368,16 @@ bool go_motion_planner::pickup_unused_piece() {
 	}
 
 	if (success) {
-                p.position.z = 0.15; // Tune this value
-                success = cartesian_sequence(p);
-        }
+        	success = cartesian_sequence(create_relative_pose(0.0, 0.0, -z_stance_offset, 0.0, 0.0, 0.0));
+	}
 
         if (success) {
                 success = close_gripper_simulation();
         }
 
         if (success) {
-                p.position.z = 0.1; //Tune this value //z_stance_height; // Tune this value
-                success = cartesian_sequence(p);
-        }
-
+        	success = cartesian_sequence(create_relative_pose(0.0, 0.0, z_stance_offset, 0.0, 0.0, 0.0));
+	}
 
         // Increment the data structure which records how many unused pieces there are
         // is the dropping of the piece was successful
@@ -365,40 +385,41 @@ bool go_motion_planner::pickup_unused_piece() {
 }
 
 
-// Compute where to place the piece we are removing from the board 
+/** @brief Query datastructures to find the place to put the next unused piece */
 geometry_msgs::Point go_motion_planner::next_empty_unused_piece_location() { 
 	
 	// This should be computed by looking at the datastructures to see where the unused pieces are
 	// Query data structure to see how many pieces already exist    
         // num_unused_pieces
 	geometry_msgs::Point next_free_location;
-	next_free_location.x = -0.2;
-	next_free_location.y = 0.2;
-	next_free_location.z = 0.00;
+	next_free_location.x = 0.0;
+	next_free_location.y = 0.0;
+	next_free_location.z = finger_length + z_board_plane + piece_height/2 + z_stance_offset;
 
 	return convert_board_frame_to_world(next_free_location);
 }
 
-// Compute where to place the piece we are placing on the board
+/** @brief Query datastructures to find the place where the next unused piece is currently */
 geometry_msgs::Point go_motion_planner::next_unused_piece_location() {
 
         // This should be computed by looking at the datastructures to see where the unused pieces are
         // Query data structure to see how many pieces already exist
         // num_unused_pieces
         geometry_msgs::Point next_free_location;
-        next_free_location.x = -0.2;
-        next_free_location.y = 0.2;
-        next_free_location.z = 0.00;
+        next_free_location.x = 0.0;
+        next_free_location.y = 0.0;
+        next_free_location.z = finger_length + z_board_plane + piece_height/2 + z_stance_offset;
 
         return convert_board_frame_to_world(next_free_location);
 }
 
+/** @brief Convert a point from the board frame to the world frame 
+ *  @param point_go_board_frame - The point in the go frame */
 geometry_msgs::Point go_motion_planner::convert_board_frame_to_world(geometry_msgs::Point point_go_board_frame) { 
 
 	geometry_msgs::PointStamped point_stamped_world;
         geometry_msgs::PointStamped point_stamped_go_board_frame;
 	
-
 	//go_board_point.header.seq = This is filled automatically
         point_stamped_go_board_frame.header.stamp = ros::Time::now();
 	point_stamped_go_board_frame.header.frame_id = "go_board";
@@ -415,6 +436,9 @@ geometry_msgs::Point go_motion_planner::convert_board_frame_to_world(geometry_ms
         return point_stamped_world.point;
 }
 
+/** @brief Compute the stance pose for a given (row,column) pair on the go board 
+ *  @param row - The row value on the go_board
+ *  @param column - The column value on the go board */
 geometry_msgs::Pose go_motion_planner::stance_pose(int row, int column) { 
 	
 	geometry_msgs::Pose desired_pose;
@@ -429,6 +453,9 @@ geometry_msgs::Pose go_motion_planner::stance_pose(int row, int column) {
 	return desired_pose; 
 }
 
+/** @brief Compute the (x, y) value for a given (row, column) pair on the go board
+ *  @param row - The row value on the go_board
+ *  @param column - The column value on the go board */
 geometry_msgs::Point go_motion_planner::board_location(int row, int column) {
 
         geometry_msgs::Point go_board_frame_point;
@@ -441,7 +468,8 @@ geometry_msgs::Point go_motion_planner::board_location(int row, int column) {
 	return convert_board_frame_to_world(go_board_frame_point);
 }
 
-// The stance_point is in the world frame
+/** @brief Compute the grasp pose for a given (row, column) pair on the go board 
+ *  @param stance_point - The point in the world frame of the desired board location */
 geometry_msgs::Quaternion go_motion_planner::grasp_orientation(geometry_msgs::Point stance_point) {	
 	
 	// Compute the number of radians we need to rotate about the z-axis	
@@ -450,8 +478,9 @@ geometry_msgs::Quaternion go_motion_planner::grasp_orientation(geometry_msgs::Po
 }
 
 
-/** @brief
- */
+/** @brief Compute the stance pose for a given (row,column) pair on the go board
+ *  @param row - The row vlaue on the go_board
+ *  @param column - The column value on the go board */
 bool go_motion_planner::cartesian_sequence(geometry_msgs::Pose pose) { 
 	
 	std::vector<geometry_msgs::Pose> waypoints;
@@ -472,15 +501,12 @@ bool go_motion_planner::cartesian_sequence(geometry_msgs::Pose pose) {
 /* self.pub_gripper_command = rospy.Publisher(robot_name + "/gripper/command", Float64, queue_size=100)
  * Do PWM
  * bool open_gripper(void) {
- *
- * }
- */
+ * } */
 
 
 /** @brief - Subscribe to the same topic as the arm_node topic
  * but instead of doing pwm control like the arm_node, do a simple 
- * approximation by opening the gripper  
- */
+ * approximation by opening the gripper */
 bool go_motion_planner::open_gripper_simulation() {	
 	
 	const robot_state::JointModelGroup* joint_model_group =
@@ -505,6 +531,7 @@ bool go_motion_planner::open_gripper_simulation() {
         return true;	
 }
 
+/** @brief - Close the gripper in Gazebo with the position controller */
 bool go_motion_planner::close_gripper_simulation(void) {
         
 	const robot_state::JointModelGroup* joint_model_group =
@@ -528,6 +555,8 @@ bool go_motion_planner::close_gripper_simulation(void) {
 	return true;
 }
 
+/** @brief - Move the robot's end effector frame to the given pose
+ *  @brief pose - The desired pose of the end effector frame */
 bool go_motion_planner::move_to_pose(geometry_msgs::Pose pose) { 
 	
 	const robot_state::JointModelGroup* joint_model_group = move_group->getCurrentState()->getJointModelGroup(PLANNING_GROUP);
@@ -541,6 +570,9 @@ bool go_motion_planner::move_to_pose(geometry_msgs::Pose pose) {
 	return success;
 }
 
+/** @brief - Create the pose object specefied by the arguments
+ *  @param x, y, z - The (x, y, z) values of the desired pose
+ *  @param roll, pitch, yaw - The desired roll, pitch, and yaw values (rads) of the given pose */
 geometry_msgs::Pose go_motion_planner::create_pose(float x, float y, float z, float roll, float pitch, float yaw) { 
 	
 	geometry_msgs::Pose pose;
@@ -551,6 +583,9 @@ geometry_msgs::Pose go_motion_planner::create_pose(float x, float y, float z, fl
 	return pose;
 }
 
+/** @brief - Create the pose object relative to the robot's end effector frame's
+ *  @param d_x, _d_y, d_z - The (d_x, d_y, d_z) values from the current pose
+ *  @param d_roll, d_pitch, d_yaw - The desired d_roll, d_pitch, and d_yaw values (rads) from the current pose*/
 geometry_msgs::Pose go_motion_planner::create_relative_pose(float d_x, float d_y, float d_z, float d_roll, float d_pitch, float d_yaw) {
 		
 	geometry_msgs::Pose current_pose = move_group->getCurrentPose().pose;	
@@ -568,12 +603,17 @@ geometry_msgs::Pose go_motion_planner::create_relative_pose(float d_x, float d_y
 	return relative_pose;
 }	
 
+
+/** @brief - Create a quaternion from the given Euler angles
+ *  @param roll, pitch, yaw - The roll, pitch, and yaw values (rads) */
 geometry_msgs::Quaternion go_motion_planner::quaternion_from_rpy(double roll, double pitch, double yaw) { 
 	tf2::Quaternion quaternion;
 	quaternion.setRPY(roll, pitch, yaw);
 	return tf2::toMsg(quaternion);
 }
 
+/** @brief - Compute the Euler angles given the geom_msgs::quaternion object
+ *  @param geom_msgs_quat - The quaternion */
 std::tuple<float, float, float> go_motion_planner::rpy_from_quaternion(geometry_msgs::Quaternion geom_msgs_quat) {
 
 	double roll, pitch, yaw;
@@ -583,6 +623,11 @@ std::tuple<float, float, float> go_motion_planner::rpy_from_quaternion(geometry_
 	return std::make_tuple(roll, pitch, yaw);
 }
 
+
+/** @brief - Add orientation constraints to the next motion planning request
+ *  @param roll_tolerance - Interval from the current roll value that plan shoud allow 
+ *  @param - pitch_tolerance - Interval from the current pitch value that plan shoud allow 
+ *  @param - yaw_tolerance - Interval from the current yaw value that plan shoud allow  */
 void go_motion_planner::add_orientation_constraints(float roll_tolerance, float pitch_tolerance, float yaw_tolerance) {
 	
 	moveit_msgs::OrientationConstraint ocm;

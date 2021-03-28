@@ -12,54 +12,62 @@ Provides high level abstraction and motion planning services for the Go\+Bot.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classgo__motion__planner_a74e2e97851998d7f6b8c29f31e0adfb0}\label{classgo__motion__planner_a74e2e97851998d7f6b8c29f31e0adfb0}} 
-geometry\+\_\+msgs\+::\+Pose {\bfseries create\+\_\+pose} (float x, float y, float z, float roll, float pitch, float yaw)
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_a70e5bea73ba3ec12f0d91d107c58dec1}\label{classgo__motion__planner_a70e5bea73ba3ec12f0d91d107c58dec1}} 
+\mbox{\Hypertarget{classgo__motion__planner_a0e38e788fa3b60e4999f8c1af3b30fa3}\label{classgo__motion__planner_a0e38e788fa3b60e4999f8c1af3b30fa3}} 
+\hyperlink{classgo__motion__planner_a0e38e788fa3b60e4999f8c1af3b30fa3}{go\+\_\+motion\+\_\+planner} ()
+\begin{DoxyCompactList}\small\item\em Construct \hyperlink{classgo__motion__planner}{go\+\_\+motion\+\_\+planner} object. \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Pose \hyperlink{classgo__motion__planner_a74e2e97851998d7f6b8c29f31e0adfb0}{create\+\_\+pose} (float x, float y, float z, float roll, float pitch, float yaw)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Create the pose object specefied by the arguments 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
 geometry\+\_\+msgs\+::\+Pose \hyperlink{classgo__motion__planner_a70e5bea73ba3ec12f0d91d107c58dec1}{create\+\_\+relative\+\_\+pose} (float d\+\_\+x, float d\+\_\+y, float d\+\_\+z, float d\+\_\+roll, float d\+\_\+pitch, float d\+\_\+yaw)
 \begin{DoxyCompactList}\small\item\em Create a pose goal relative to the robot\textquotesingle{}s end effector\textquotesingle{}s current pose. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgo__motion__planner_a60dfb0301a459aad73f0e597ef773ef3}\label{classgo__motion__planner_a60dfb0301a459aad73f0e597ef773ef3}} 
-geometry\+\_\+msgs\+::\+Quaternion {\bfseries quaternion\+\_\+from\+\_\+rpy} (double roll, double pitch, double yaw)
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_ab4b74ceb1ce2cab6859d8f7f0f32caa5}\label{classgo__motion__planner_ab4b74ceb1ce2cab6859d8f7f0f32caa5}} 
-std\+::tuple$<$ float, float, float $>$ {\bfseries rpy\+\_\+from\+\_\+quaternion} (geometry\+\_\+msgs\+::\+Quaternion q)
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_a14a615472cc4daae8049627c4aacf1e2}\label{classgo__motion__planner_a14a615472cc4daae8049627c4aacf1e2}} 
-void {\bfseries add\+\_\+orientation\+\_\+constraints} (float roll, float pitch, float yaw)
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_a2be951f1c56888d0e710290c884a6050}\label{classgo__motion__planner_a2be951f1c56888d0e710290c884a6050}} 
-bool {\bfseries move\+\_\+to\+\_\+pose} (geometry\+\_\+msgs\+::\+Pose pose)
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_a0c8a279562b60fd12202452f09d5b149}\label{classgo__motion__planner_a0c8a279562b60fd12202452f09d5b149}} 
-bool {\bfseries cartesian\+\_\+sequence} (geometry\+\_\+msgs\+::\+Pose)
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_a2120e26233b9622d9af923f7649b73fe}\label{classgo__motion__planner_a2120e26233b9622d9af923f7649b73fe}} 
-geometry\+\_\+msgs\+::\+Pose {\bfseries stance\+\_\+pose} (int row, int column)
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_a26ec310b72222bc827f595e94ada0719}\label{classgo__motion__planner_a26ec310b72222bc827f595e94ada0719}} 
-geometry\+\_\+msgs\+::\+Point {\bfseries board\+\_\+location} (int row, int column)
-\item 
+geometry\+\_\+msgs\+::\+Quaternion \hyperlink{classgo__motion__planner_a60dfb0301a459aad73f0e597ef773ef3}{quaternion\+\_\+from\+\_\+rpy} (double roll, double pitch, double yaw)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Create a quaternion from the given Euler angles 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+std\+::tuple$<$ float, float, float $>$ \hyperlink{classgo__motion__planner_ab4b74ceb1ce2cab6859d8f7f0f32caa5}{rpy\+\_\+from\+\_\+quaternion} (geometry\+\_\+msgs\+::\+Quaternion q)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Compute the Euler angles given the geom\+\_\+msgs\+::quaternion object 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+void \hyperlink{classgo__motion__planner_a14a615472cc4daae8049627c4aacf1e2}{add\+\_\+orientation\+\_\+constraints} (float roll, float pitch, float yaw)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Add orientation constraints to the next motion planning request 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \hyperlink{classgo__motion__planner_a2be951f1c56888d0e710290c884a6050}{move\+\_\+to\+\_\+pose} (geometry\+\_\+msgs\+::\+Pose pose)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Move the robot\textquotesingle{}s end effector frame to the given pose 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \hyperlink{classgo__motion__planner_a0c8a279562b60fd12202452f09d5b149}{cartesian\+\_\+sequence} (geometry\+\_\+msgs\+::\+Pose)
+\begin{DoxyCompactList}\small\item\em Compute the stance pose for a given (row,column) pair on the go board. \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Pose \hyperlink{classgo__motion__planner_a2120e26233b9622d9af923f7649b73fe}{stance\+\_\+pose} (int row, int column)
+\begin{DoxyCompactList}\small\item\em Compute the stance pose for a given (row,column) pair on the go board. \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Point \hyperlink{classgo__motion__planner_a26ec310b72222bc827f595e94ada0719}{board\+\_\+location} (int row, int column)
+\begin{DoxyCompactList}\small\item\em Compute the (x, y) value for a given (row, column) pair on the go board. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a7ca51ab871bab4e80b208587b1c8ee45}\label{classgo__motion__planner_a7ca51ab871bab4e80b208587b1c8ee45}} 
-geometry\+\_\+msgs\+::\+Point {\bfseries next\+\_\+empty\+\_\+unused\+\_\+piece\+\_\+location} ()
-\item 
+geometry\+\_\+msgs\+::\+Point \hyperlink{classgo__motion__planner_a7ca51ab871bab4e80b208587b1c8ee45}{next\+\_\+empty\+\_\+unused\+\_\+piece\+\_\+location} ()
+\begin{DoxyCompactList}\small\item\em Query datastructures to find the place to put the next unused piece. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_ac70899ea0cb646a112c51f9a056fa4b1}\label{classgo__motion__planner_ac70899ea0cb646a112c51f9a056fa4b1}} 
-geometry\+\_\+msgs\+::\+Point {\bfseries next\+\_\+unused\+\_\+piece\+\_\+location} ()
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_aa8f5de4110bd29391e00b26eda2a5bcc}\label{classgo__motion__planner_aa8f5de4110bd29391e00b26eda2a5bcc}} 
-geometry\+\_\+msgs\+::\+Quaternion {\bfseries grasp\+\_\+orientation} (geometry\+\_\+msgs\+::\+Point)
-\item 
+geometry\+\_\+msgs\+::\+Point \hyperlink{classgo__motion__planner_ac70899ea0cb646a112c51f9a056fa4b1}{next\+\_\+unused\+\_\+piece\+\_\+location} ()
+\begin{DoxyCompactList}\small\item\em Query datastructures to find the place where the next unused piece is currently. \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Quaternion \hyperlink{classgo__motion__planner_aa8f5de4110bd29391e00b26eda2a5bcc}{grasp\+\_\+orientation} (geometry\+\_\+msgs\+::\+Point)
+\begin{DoxyCompactList}\small\item\em Compute the grasp pose for a given (row, column) pair on the go board. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a88298290e78a2b4445d7026785d04760}\label{classgo__motion__planner_a88298290e78a2b4445d7026785d04760}} 
-void {\bfseries setup\+\_\+transform\+\_\+listeners} ()
-\item 
+void \hyperlink{classgo__motion__planner_a88298290e78a2b4445d7026785d04760}{setup\+\_\+transform\+\_\+listeners} ()
+\begin{DoxyCompactList}\small\item\em Setup a R\+OS transform listener for the class. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a364274097d4ea459a6e18a17852e9704}\label{classgo__motion__planner_a364274097d4ea459a6e18a17852e9704}} 
-void {\bfseries load\+\_\+param\+\_\+values} ()
-\item 
+void \hyperlink{classgo__motion__planner_a364274097d4ea459a6e18a17852e9704}{load\+\_\+param\+\_\+values} ()
+\begin{DoxyCompactList}\small\item\em Load parameters from the R\+OS parameter server. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a49672ad780c9c66c554672b2ecf8bd78}\label{classgo__motion__planner_a49672ad780c9c66c554672b2ecf8bd78}} 
-void {\bfseries setup\+\_\+subscribers} ()
-\item 
+void \hyperlink{classgo__motion__planner_a49672ad780c9c66c554672b2ecf8bd78}{setup\+\_\+subscribers} ()
+\begin{DoxyCompactList}\small\item\em Setup R\+Os subscribers. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_ac994e145558bda267ac29ea6feb9981a}\label{classgo__motion__planner_ac994e145558bda267ac29ea6feb9981a}} 
-void {\bfseries setup\+\_\+publishers} ()
-\item 
+void \hyperlink{classgo__motion__planner_ac994e145558bda267ac29ea6feb9981a}{setup\+\_\+publishers} ()
+\begin{DoxyCompactList}\small\item\em Setup the R\+OS subscriptions. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a9248ea5b2727f984761ea7bbaea3ba5c}\label{classgo__motion__planner_a9248ea5b2727f984761ea7bbaea3ba5c}} 
 bool \hyperlink{classgo__motion__planner_a9248ea5b2727f984761ea7bbaea3ba5c}{open\+\_\+gripper\+\_\+simulation} ()
 \begin{DoxyCompactList}\small\item\em 
@@ -67,59 +75,57 @@ bool \hyperlink{classgo__motion__planner_a9248ea5b2727f984761ea7bbaea3ba5c}{open
 \item Subscribe to the same topic as the arm\+\_\+node topic but instead of doing pwm control like the arm\+\_\+node, do a simple approximation by opening the gripper 
 \end{DoxyItemize}\end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_aed6123e33622ebff3b420479e1fd6141}\label{classgo__motion__planner_aed6123e33622ebff3b420479e1fd6141}} 
-bool {\bfseries close\+\_\+gripper\+\_\+simulation} (void)
-\item 
+bool \hyperlink{classgo__motion__planner_aed6123e33622ebff3b420479e1fd6141}{close\+\_\+gripper\+\_\+simulation} (void)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Close the gripper in Gazebo with the position controller 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a7b79595d9f86b059309f73ca16969c34}\label{classgo__motion__planner_a7b79595d9f86b059309f73ca16969c34}} 
-void {\bfseries process\+\_\+gripper\+\_\+data} (const std\+\_\+msgs\+::\+Float64\+::\+Const\+Ptr \&msg)
-\item 
+void \hyperlink{classgo__motion__planner_a7b79595d9f86b059309f73ca16969c34}{process\+\_\+gripper\+\_\+data} (const std\+\_\+msgs\+::\+Float64\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Not-\/implemented yet. Requires hardware. Will process the pwm data from the gripper. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a9a27e25a326f322f6c4c766029ed081d}\label{classgo__motion__planner_a9a27e25a326f322f6c4c766029ed081d}} 
-void {\bfseries setup\+\_\+services} ()
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_acda1c3562a9863181f4dbd1deaff3ff3}\label{classgo__motion__planner_acda1c3562a9863181f4dbd1deaff3ff3}} 
-bool {\bfseries pickup\+\_\+piece} (int row, int column)
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_a29c727d02a06b13b39e907384c71eb1e}\label{classgo__motion__planner_a29c727d02a06b13b39e907384c71eb1e}} 
-bool {\bfseries remove\+\_\+piece} (int row, int column)
-\item 
+void \hyperlink{classgo__motion__planner_a9a27e25a326f322f6c4c766029ed081d}{setup\+\_\+services} ()
+\begin{DoxyCompactList}\small\item\em Advertise all the services provided by the R\+OS node. \end{DoxyCompactList}\item 
+bool \hyperlink{classgo__motion__planner_acda1c3562a9863181f4dbd1deaff3ff3}{pickup\+\_\+piece} (int row, int column)
+\begin{DoxyCompactList}\small\item\em Pick up the piece at the given (row, column) on the board. Assumes the robot is not holding a piece when it is called. \end{DoxyCompactList}\item 
+bool \hyperlink{classgo__motion__planner_a29c727d02a06b13b39e907384c71eb1e}{remove\+\_\+piece} (int row, int column)
+\begin{DoxyCompactList}\small\item\em Remove the piece specefied in the request message. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_ad532e8f592e7f82f2c1b216c39a2cf30}\label{classgo__motion__planner_ad532e8f592e7f82f2c1b216c39a2cf30}} 
-bool {\bfseries place\+\_\+in\+\_\+unused\+\_\+pile} ()
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_a2b49683bb6488c9cab3e22a40e4e854e}\label{classgo__motion__planner_a2b49683bb6488c9cab3e22a40e4e854e}} 
-bool {\bfseries place\+\_\+piece} (int row, int column)
-\item 
+bool \hyperlink{classgo__motion__planner_ad532e8f592e7f82f2c1b216c39a2cf30}{place\+\_\+in\+\_\+unused\+\_\+pile} ()
+\begin{DoxyCompactList}\small\item\em Place the piece the robot is holding into the unused pile. \end{DoxyCompactList}\item 
+bool \hyperlink{classgo__motion__planner_a2b49683bb6488c9cab3e22a40e4e854e}{place\+\_\+piece} (int row, int column)
+\begin{DoxyCompactList}\small\item\em Place the piece specefied in the request message. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a1d0d55d9c4b20319a3164d1656ebcf21}\label{classgo__motion__planner_a1d0d55d9c4b20319a3164d1656ebcf21}} 
-bool {\bfseries pickup\+\_\+unused\+\_\+piece} ()
-\item 
+bool \hyperlink{classgo__motion__planner_a1d0d55d9c4b20319a3164d1656ebcf21}{pickup\+\_\+unused\+\_\+piece} ()
+\begin{DoxyCompactList}\small\item\em Pickup an unused piece. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_ac27b5567f1dd182fbf3d99b56e10155f}\label{classgo__motion__planner_ac27b5567f1dd182fbf3d99b56e10155f}} 
 bool {\bfseries move\+\_\+to\+\_\+home\+\_\+position} ()
 \item 
-\mbox{\Hypertarget{classgo__motion__planner_a4eaf2e9291a24b12dafc684cd779c99a}\label{classgo__motion__planner_a4eaf2e9291a24b12dafc684cd779c99a}} 
-bool {\bfseries play\+\_\+piece} (int row, int column)
-\item 
+bool \hyperlink{classgo__motion__planner_a4eaf2e9291a24b12dafc684cd779c99a}{play\+\_\+piece} (int row, int column)
+\begin{DoxyCompactList}\small\item\em Get an unused piece at play at the given board location. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a0c6c7c5eaccf9b3015cd1e85afdc12b5}\label{classgo__motion__planner_a0c6c7c5eaccf9b3015cd1e85afdc12b5}} 
-bool {\bfseries move\+\_\+to\+\_\+home\+\_\+position\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::home\+\_\+position\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::home\+\_\+position\+::\+Response \&res)
-\item 
+bool \hyperlink{classgo__motion__planner_a0c6c7c5eaccf9b3015cd1e85afdc12b5}{move\+\_\+to\+\_\+home\+\_\+position\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::home\+\_\+position\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::home\+\_\+position\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em R\+OS service binding which simply calls move\+\_\+to\+\_\+pose with the home\+\_\+pose as the argument. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_ade2c6db47d4a71876bd7d7382858adb9}\label{classgo__motion__planner_ade2c6db47d4a71876bd7d7382858adb9}} 
-bool {\bfseries pickup\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::pickup\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::pickup\+\_\+piece\+::\+Response \&res)
-\item 
+bool \hyperlink{classgo__motion__planner_ade2c6db47d4a71876bd7d7382858adb9}{pickup\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::pickup\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::pickup\+\_\+piece\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em R\+OS service binding which simply calls pickup\+\_\+piece with passed res.\+row, res.\+column. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a1b342edd58e79805e576cc241a2b39cd}\label{classgo__motion__planner_a1b342edd58e79805e576cc241a2b39cd}} 
-bool {\bfseries place\+\_\+piece\+\_\+in\+\_\+unused\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+\_\+in\+\_\+unused\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+\_\+in\+\_\+unused\+::\+Response \&res)
-\item 
+bool \hyperlink{classgo__motion__planner_a1b342edd58e79805e576cc241a2b39cd}{place\+\_\+piece\+\_\+in\+\_\+unused\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+\_\+in\+\_\+unused\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+\_\+in\+\_\+unused\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em R\+OS service binding which simply calls place\+\_\+in\+\_\+unused\+\_\+pile. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a99b71bff95631b79ff39b30c58730813}\label{classgo__motion__planner_a99b71bff95631b79ff39b30c58730813}} 
-bool {\bfseries remove\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::remove\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::remove\+\_\+piece\+::\+Response \&res)
-\item 
+bool \hyperlink{classgo__motion__planner_a99b71bff95631b79ff39b30c58730813}{remove\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::remove\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::remove\+\_\+piece\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em R\+OS service binding which simply calls remove\+\_\+piece with the passed req.\+row and req.\+column. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a21ff70114c6e31d121352c8bf9c7a962}\label{classgo__motion__planner_a21ff70114c6e31d121352c8bf9c7a962}} 
-bool {\bfseries pickup\+\_\+unused\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::pickup\+\_\+unused\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::pickup\+\_\+unused\+\_\+piece\+::\+Response \&res)
-\item 
+bool \hyperlink{classgo__motion__planner_a21ff70114c6e31d121352c8bf9c7a962}{pickup\+\_\+unused\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::pickup\+\_\+unused\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::pickup\+\_\+unused\+\_\+piece\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em R\+OS service binding which simply calls pickup\+\_\+unused piece. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_ab93c5f49f503441b9e3917a8bfb31e73}\label{classgo__motion__planner_ab93c5f49f503441b9e3917a8bfb31e73}} 
-bool {\bfseries place\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+::\+Response \&res)
-\item 
+bool \hyperlink{classgo__motion__planner_ab93c5f49f503441b9e3917a8bfb31e73}{place\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::place\+\_\+piece\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em R\+OS service binding which simply calls place\+\_\+piece with the passed req.\+row and req.\+column. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgo__motion__planner_a774c19f7198702545b74c71b98efa538}\label{classgo__motion__planner_a774c19f7198702545b74c71b98efa538}} 
-bool {\bfseries play\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::play\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::play\+\_\+piece\+::\+Response \&res)
-\item 
-\mbox{\Hypertarget{classgo__motion__planner_a89fdde820a08474e8b43d1ef5b69e8fd}\label{classgo__motion__planner_a89fdde820a08474e8b43d1ef5b69e8fd}} 
-bool {\bfseries pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::pickup\+\_\+set\+\_\+of\+\_\+pieces\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::pickup\+\_\+set\+\_\+of\+\_\+pieces\+::\+Response \&res)
-\end{DoxyCompactItemize}
+bool \hyperlink{classgo__motion__planner_a774c19f7198702545b74c71b98efa538}{play\+\_\+piece\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::play\+\_\+piece\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::play\+\_\+piece\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em R\+OS service binding which simply calls play\+\_\+piece with the passed req.\+row and req.\+column. \end{DoxyCompactList}\item 
+bool \hyperlink{classgo__motion__planner_a89fdde820a08474e8b43d1ef5b69e8fd}{pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service\+\_\+binding} (go\+\_\+motion\+\_\+planning\+::pickup\+\_\+set\+\_\+of\+\_\+pieces\+::\+Request \&req, go\+\_\+motion\+\_\+planning\+::pickup\+\_\+set\+\_\+of\+\_\+pieces\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em R\+OS service binding. Pick up the set of pieces in the request message. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -169,6 +175,273 @@ ros\+::\+Service\+Server {\bfseries pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+ser
 
 \subsection{Detailed Description}
 Provides high level abstraction and motion planning services for the Go\+Bot. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgo__motion__planner_a14a615472cc4daae8049627c4aacf1e2}\label{classgo__motion__planner_a14a615472cc4daae8049627c4aacf1e2}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!add\+\_\+orientation\+\_\+constraints@{add\+\_\+orientation\+\_\+constraints}}
+\index{add\+\_\+orientation\+\_\+constraints@{add\+\_\+orientation\+\_\+constraints}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{add\+\_\+orientation\+\_\+constraints()}{add\_orientation\_constraints()}}
+{\footnotesize\ttfamily void go\+\_\+motion\+\_\+planner\+::add\+\_\+orientation\+\_\+constraints (\begin{DoxyParamCaption}\item[{float}]{roll\+\_\+tolerance,  }\item[{float}]{pitch\+\_\+tolerance,  }\item[{float}]{yaw\+\_\+tolerance }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Add orientation constraints to the next motion planning request 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em roll\+\_\+tolerance} & -\/ Interval from the current roll value that plan shoud allow \\
+\hline
+{\em -\/} & pitch\+\_\+tolerance -\/ Interval from the current pitch value that plan shoud allow \\
+\hline
+{\em -\/} & yaw\+\_\+tolerance -\/ Interval from the current yaw value that plan shoud allow \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a26ec310b72222bc827f595e94ada0719}\label{classgo__motion__planner_a26ec310b72222bc827f595e94ada0719}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!board\+\_\+location@{board\+\_\+location}}
+\index{board\+\_\+location@{board\+\_\+location}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{board\+\_\+location()}{board\_location()}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Point go\+\_\+motion\+\_\+planner\+::board\+\_\+location (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{column }\end{DoxyParamCaption})}
+
+
+
+Compute the (x, y) value for a given (row, column) pair on the go board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & -\/ The row value on the go\+\_\+board \\
+\hline
+{\em column} & -\/ The column value on the go board \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a0c8a279562b60fd12202452f09d5b149}\label{classgo__motion__planner_a0c8a279562b60fd12202452f09d5b149}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!cartesian\+\_\+sequence@{cartesian\+\_\+sequence}}
+\index{cartesian\+\_\+sequence@{cartesian\+\_\+sequence}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{cartesian\+\_\+sequence()}{cartesian\_sequence()}}
+{\footnotesize\ttfamily bool go\+\_\+motion\+\_\+planner\+::cartesian\+\_\+sequence (\begin{DoxyParamCaption}\item[{geometry\+\_\+msgs\+::\+Pose}]{pose }\end{DoxyParamCaption})}
+
+
+
+Compute the stance pose for a given (row,column) pair on the go board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & -\/ The row vlaue on the go\+\_\+board \\
+\hline
+{\em column} & -\/ The column value on the go board \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a74e2e97851998d7f6b8c29f31e0adfb0}\label{classgo__motion__planner_a74e2e97851998d7f6b8c29f31e0adfb0}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!create\+\_\+pose@{create\+\_\+pose}}
+\index{create\+\_\+pose@{create\+\_\+pose}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{create\+\_\+pose()}{create\_pose()}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose go\+\_\+motion\+\_\+planner\+::create\+\_\+pose (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{roll,  }\item[{float}]{pitch,  }\item[{float}]{yaw }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Create the pose object specefied by the arguments 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x,y,z} & -\/ The (x, y, z) values of the desired pose \\
+\hline
+{\em roll,pitch,yaw} & -\/ The desired roll, pitch, and yaw values (rads) of the given pose \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a70e5bea73ba3ec12f0d91d107c58dec1}\label{classgo__motion__planner_a70e5bea73ba3ec12f0d91d107c58dec1}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!create\+\_\+relative\+\_\+pose@{create\+\_\+relative\+\_\+pose}}
+\index{create\+\_\+relative\+\_\+pose@{create\+\_\+relative\+\_\+pose}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{create\+\_\+relative\+\_\+pose()}{create\_relative\_pose()}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose go\+\_\+motion\+\_\+planner\+::create\+\_\+relative\+\_\+pose (\begin{DoxyParamCaption}\item[{float}]{d\+\_\+x,  }\item[{float}]{d\+\_\+y,  }\item[{float}]{d\+\_\+z,  }\item[{float}]{d\+\_\+roll,  }\item[{float}]{d\+\_\+pitch,  }\item[{float}]{d\+\_\+yaw }\end{DoxyParamCaption})}
+
+
+
+Create a pose goal relative to the robot\textquotesingle{}s end effector\textquotesingle{}s current pose. 
+
+
+\begin{DoxyItemize}
+\item Create the pose object relative to the robot\textquotesingle{}s end effector frame\textquotesingle{}s
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+x,\+\_\+d\+\_\+y,d\+\_\+z} & -\/ The (d\+\_\+x, d\+\_\+y, d\+\_\+z) values from the current pose \\
+\hline
+{\em d\+\_\+roll,d\+\_\+pitch,d\+\_\+yaw} & -\/ The desired d\+\_\+roll, d\+\_\+pitch, and d\+\_\+yaw values (rads) from the current pose \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_aa8f5de4110bd29391e00b26eda2a5bcc}\label{classgo__motion__planner_aa8f5de4110bd29391e00b26eda2a5bcc}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!grasp\+\_\+orientation@{grasp\+\_\+orientation}}
+\index{grasp\+\_\+orientation@{grasp\+\_\+orientation}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{grasp\+\_\+orientation()}{grasp\_orientation()}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Quaternion go\+\_\+motion\+\_\+planner\+::grasp\+\_\+orientation (\begin{DoxyParamCaption}\item[{geometry\+\_\+msgs\+::\+Point}]{stance\+\_\+point }\end{DoxyParamCaption})}
+
+
+
+Compute the grasp pose for a given (row, column) pair on the go board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stance\+\_\+point} & -\/ The point in the world frame of the desired board location \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a2be951f1c56888d0e710290c884a6050}\label{classgo__motion__planner_a2be951f1c56888d0e710290c884a6050}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!move\+\_\+to\+\_\+pose@{move\+\_\+to\+\_\+pose}}
+\index{move\+\_\+to\+\_\+pose@{move\+\_\+to\+\_\+pose}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{move\+\_\+to\+\_\+pose()}{move\_to\_pose()}}
+{\footnotesize\ttfamily bool go\+\_\+motion\+\_\+planner\+::move\+\_\+to\+\_\+pose (\begin{DoxyParamCaption}\item[{geometry\+\_\+msgs\+::\+Pose}]{pose }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Move the robot\textquotesingle{}s end effector frame to the given pose 
+\end{DoxyItemize}
+
+pose -\/ The desired pose of the end effector frame \mbox{\Hypertarget{classgo__motion__planner_acda1c3562a9863181f4dbd1deaff3ff3}\label{classgo__motion__planner_acda1c3562a9863181f4dbd1deaff3ff3}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!pickup\+\_\+piece@{pickup\+\_\+piece}}
+\index{pickup\+\_\+piece@{pickup\+\_\+piece}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{pickup\+\_\+piece()}{pickup\_piece()}}
+{\footnotesize\ttfamily bool go\+\_\+motion\+\_\+planner\+::pickup\+\_\+piece (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{column }\end{DoxyParamCaption})}
+
+
+
+Pick up the piece at the given (row, column) on the board. Assumes the robot is not holding a piece when it is called. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & -\/ The row of the go board \\
+\hline
+{\em column} & -\/ The column of the go board \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a89fdde820a08474e8b43d1ef5b69e8fd}\label{classgo__motion__planner_a89fdde820a08474e8b43d1ef5b69e8fd}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service\+\_\+binding@{pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service\+\_\+binding}}
+\index{pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service\+\_\+binding@{pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service\+\_\+binding}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service\+\_\+binding()}{pickup\_set\_of\_pieces\_service\_binding()}}
+{\footnotesize\ttfamily bool go\+\_\+motion\+\_\+planner\+::pickup\+\_\+set\+\_\+of\+\_\+pieces\+\_\+service\+\_\+binding (\begin{DoxyParamCaption}\item[{go\+\_\+motion\+\_\+planning\+::pickup\+\_\+set\+\_\+of\+\_\+pieces\+::\+Request \&}]{req,  }\item[{go\+\_\+motion\+\_\+planning\+::pickup\+\_\+set\+\_\+of\+\_\+pieces\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+
+
+R\+OS service binding. Pick up the set of pieces in the request message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em -\/} & req -\/ R\+OS type of (row, column) pairs of pieces to pickup \\
+\hline
+{\em res} & -\/ R\+OS type which is just a boolean indicating success or failure \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a2b49683bb6488c9cab3e22a40e4e854e}\label{classgo__motion__planner_a2b49683bb6488c9cab3e22a40e4e854e}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!place\+\_\+piece@{place\+\_\+piece}}
+\index{place\+\_\+piece@{place\+\_\+piece}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{place\+\_\+piece()}{place\_piece()}}
+{\footnotesize\ttfamily bool go\+\_\+motion\+\_\+planner\+::place\+\_\+piece (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{column }\end{DoxyParamCaption})}
+
+
+
+Place the piece specefied in the request message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em -\/} & req -\/ R\+OS type of (row, column) pair of piece to pickup \\
+\hline
+{\em res} & -\/ R\+OS type which is just a boolean indicating success or failure \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a4eaf2e9291a24b12dafc684cd779c99a}\label{classgo__motion__planner_a4eaf2e9291a24b12dafc684cd779c99a}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!play\+\_\+piece@{play\+\_\+piece}}
+\index{play\+\_\+piece@{play\+\_\+piece}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{play\+\_\+piece()}{play\_piece()}}
+{\footnotesize\ttfamily bool go\+\_\+motion\+\_\+planner\+::play\+\_\+piece (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{column }\end{DoxyParamCaption})}
+
+
+
+Get an unused piece at play at the given board location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em -\/} & req -\/ R\+OS type of (row, column) pair of piece to pickup \\
+\hline
+{\em res} & -\/ R\+OS type which is just a boolean indicating success or failure \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a60dfb0301a459aad73f0e597ef773ef3}\label{classgo__motion__planner_a60dfb0301a459aad73f0e597ef773ef3}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!quaternion\+\_\+from\+\_\+rpy@{quaternion\+\_\+from\+\_\+rpy}}
+\index{quaternion\+\_\+from\+\_\+rpy@{quaternion\+\_\+from\+\_\+rpy}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{quaternion\+\_\+from\+\_\+rpy()}{quaternion\_from\_rpy()}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Quaternion go\+\_\+motion\+\_\+planner\+::quaternion\+\_\+from\+\_\+rpy (\begin{DoxyParamCaption}\item[{double}]{roll,  }\item[{double}]{pitch,  }\item[{double}]{yaw }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Create a quaternion from the given Euler angles 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em roll,pitch,yaw} & -\/ The roll, pitch, and yaw values (rads) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a29c727d02a06b13b39e907384c71eb1e}\label{classgo__motion__planner_a29c727d02a06b13b39e907384c71eb1e}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!remove\+\_\+piece@{remove\+\_\+piece}}
+\index{remove\+\_\+piece@{remove\+\_\+piece}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{remove\+\_\+piece()}{remove\_piece()}}
+{\footnotesize\ttfamily bool go\+\_\+motion\+\_\+planner\+::remove\+\_\+piece (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{column }\end{DoxyParamCaption})}
+
+
+
+Remove the piece specefied in the request message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em -\/} & req -\/ R\+OS type of (row, column) pair of piece to remove from the board \\
+\hline
+{\em res} & -\/ R\+OS type which is just a boolean indicating success or failure \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_ab4b74ceb1ce2cab6859d8f7f0f32caa5}\label{classgo__motion__planner_ab4b74ceb1ce2cab6859d8f7f0f32caa5}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!rpy\+\_\+from\+\_\+quaternion@{rpy\+\_\+from\+\_\+quaternion}}
+\index{rpy\+\_\+from\+\_\+quaternion@{rpy\+\_\+from\+\_\+quaternion}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{rpy\+\_\+from\+\_\+quaternion()}{rpy\_from\_quaternion()}}
+{\footnotesize\ttfamily std\+::tuple$<$ float, float, float $>$ go\+\_\+motion\+\_\+planner\+::rpy\+\_\+from\+\_\+quaternion (\begin{DoxyParamCaption}\item[{geometry\+\_\+msgs\+::\+Quaternion}]{geom\+\_\+msgs\+\_\+quat }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Compute the Euler angles given the geom\+\_\+msgs\+::quaternion object 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em geom\+\_\+msgs\+\_\+quat} & -\/ The quaternion \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgo__motion__planner_a2120e26233b9622d9af923f7649b73fe}\label{classgo__motion__planner_a2120e26233b9622d9af923f7649b73fe}} 
+\index{go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}!stance\+\_\+pose@{stance\+\_\+pose}}
+\index{stance\+\_\+pose@{stance\+\_\+pose}!go\+\_\+motion\+\_\+planner@{go\+\_\+motion\+\_\+planner}}
+\subsubsection{\texorpdfstring{stance\+\_\+pose()}{stance\_pose()}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Pose go\+\_\+motion\+\_\+planner\+::stance\+\_\+pose (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{column }\end{DoxyParamCaption})}
+
+
+
+Compute the stance pose for a given (row,column) pair on the go board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & -\/ The row value on the go\+\_\+board \\
+\hline
+{\em column} & -\/ The column value on the go board \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

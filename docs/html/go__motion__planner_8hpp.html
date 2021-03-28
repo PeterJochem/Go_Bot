@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Library for two-dimensional rigid body transformations.  
+<p><a class="el" href="classgo__motion__planner.html" title="Provides high level abstraction and motion planning services for the GoBot. ">go_motion_planner</a> header declares a set of ROS services for picking and placing go_pieces  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;moveit/move_group_interface/move_group_interface.h&gt;</code><br />
 <code>#include &lt;moveit/planning_scene_interface/planning_scene_interface.h&gt;</code><br />
@@ -116,7 +116,13 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Library for two-dimensional rigid body transformations. </p>
+<div class="textblock"><p><a class="el" href="classgo__motion__planner.html" title="Provides high level abstraction and motion planning services for the GoBot. ">go_motion_planner</a> header declares a set of ROS services for picking and placing go_pieces </p>
+<p>Parameters: /home_position_x - Gripper frame's pose x value in the home position /home_position_y - Gripper frame's pose y value in the home position /home_position_z - Gripper frame's pose z value in the home position /home_position_roll - Gripper frame's pose roll value (radians) in the home position /home_position_pitch - Gripper frame's pose pitch (radians) value in the home position /home_position_yaw - Gripper frame's pose yaw (radians) value in the home position</p>
+<p>/row_width - The width of the go board's square /row_height - The height of the go board's square</p>
+<p>/z_board_plane - The z-axis value of the top of the board's plane /piece_height - Height of the go piece /z_stance_offset - The distance in the z-axis to be offset by in the stance pose /finger_length - The length of the gripper's fingers</p>
+<p>Publishes: /rx200/gripper_controller/command - Position controller of the robot's gripper /rx200/gripper/command - PWM control of the gripper</p>
+<p>Subscribes: /rx200/gripper/command - PWM control feedback from the gripper</p>
+<p>Services: /home_position - Move robot into a home pose /pickup_piece - Pickup a piece at the given (row, column) pair /place_piece_in_unused - Place a piece in the used pile /remove_piece - Pickup and remove a piece at the given (row, column) from the board /pickup_unused_piece - Pickup an unused piece from the empty pile /place_piece - Place a piece at the given (row, column) on the board /play_piece - Pickup an used piece and play it on the board at (row, column) /pickup_set_of_pieces - Pickup a set of pieces and remove them from the board </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

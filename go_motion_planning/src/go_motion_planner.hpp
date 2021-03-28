@@ -1,5 +1,38 @@
-/// @file
-/// @brief Library for two-dimensional rigid body transformations
+/** @file
+ *  @brief go_motion_planner header declares a set of ROS services for picking and placing go_pieces
+ *
+ * Parameters: /home_position_x - Gripper frame's pose x value in the home position 
+ *             /home_position_y - Gripper frame's pose y value in the home position
+ *             /home_position_z - Gripper frame's pose z value in the home position
+ *             /home_position_roll - Gripper frame's pose roll value (radians) in the home position
+ *             /home_position_pitch - Gripper frame's pose pitch (radians) value in the home position
+ *             /home_position_yaw - Gripper frame's pose yaw (radians) value in the home position
+ * 		
+ *	       /row_width - The width of the go board's square 
+ *             /row_height - The height of the go board's square
+ *
+ *             /z_board_plane - The z-axis value of the top of the board's plane
+ *             /piece_height - Height of the go piece
+ *             /z_stance_offset - The distance in the z-axis to be offset by in the stance pose
+ *             /finger_length - The length of the gripper's fingers
+ *		
+ *
+ *
+ * Publishes: /rx200/gripper_controller/command - Position controller of the robot's gripper 
+ *            /rx200/gripper/command - PWM control of the gripper
+ * 
+ * Subscribes: /rx200/gripper/command - PWM control feedback from the gripper 
+ *
+ * Services: /home_position - Move robot into a home pose 
+ *             /pickup_piece - Pickup a piece at the given (row, column) pair
+ *             /place_piece_in_unused - Place a piece in the used pile 
+ *             /remove_piece - Pickup and remove a piece at the given (row, column) from the board
+ *             /pickup_unused_piece - Pickup an unused piece from the empty pile
+ *             /place_piece - Place a piece at the given (row, column) on the board
+ *             /play_piece - Pickup an used piece and play it on the board at (row, column) 
+ *             /pickup_set_of_pieces - Pickup a set of pieces and remove them from the board   
+ *   
+ */
 
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>

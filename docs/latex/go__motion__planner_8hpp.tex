@@ -2,7 +2,7 @@
 \label{go__motion__planner_8hpp}\index{go\+\_\+motion\+\_\+planning/src/go\+\_\+motion\+\_\+planner.\+hpp@{go\+\_\+motion\+\_\+planning/src/go\+\_\+motion\+\_\+planner.\+hpp}}
 
 
-Library for two-\/dimensional rigid body transformations.  
+\hyperlink{classgo__motion__planner}{go\+\_\+motion\+\_\+planner} header declares a set of R\+OS services for picking and placing go\+\_\+pieces  
 
 
 {\ttfamily \#include $<$moveit/move\+\_\+group\+\_\+interface/move\+\_\+group\+\_\+interface.\+h$>$}\newline
@@ -49,5 +49,16 @@ class \hyperlink{classgo__motion__planner}{go\+\_\+motion\+\_\+planner}
 
 
 \subsection{Detailed Description}
-Library for two-\/dimensional rigid body transformations. 
+\hyperlink{classgo__motion__planner}{go\+\_\+motion\+\_\+planner} header declares a set of R\+OS services for picking and placing go\+\_\+pieces 
 
+Parameters\+: /home\+\_\+position\+\_\+x -\/ Gripper frame\textquotesingle{}s pose x value in the home position /home\+\_\+position\+\_\+y -\/ Gripper frame\textquotesingle{}s pose y value in the home position /home\+\_\+position\+\_\+z -\/ Gripper frame\textquotesingle{}s pose z value in the home position /home\+\_\+position\+\_\+roll -\/ Gripper frame\textquotesingle{}s pose roll value (radians) in the home position /home\+\_\+position\+\_\+pitch -\/ Gripper frame\textquotesingle{}s pose pitch (radians) value in the home position /home\+\_\+position\+\_\+yaw -\/ Gripper frame\textquotesingle{}s pose yaw (radians) value in the home position
+
+/row\+\_\+width -\/ The width of the go board\textquotesingle{}s square /row\+\_\+height -\/ The height of the go board\textquotesingle{}s square
+
+/z\+\_\+board\+\_\+plane -\/ The z-\/axis value of the top of the board\textquotesingle{}s plane /piece\+\_\+height -\/ Height of the go piece /z\+\_\+stance\+\_\+offset -\/ The distance in the z-\/axis to be offset by in the stance pose /finger\+\_\+length -\/ The length of the gripper\textquotesingle{}s fingers
+
+Publishes\+: /rx200/gripper\+\_\+controller/command -\/ Position controller of the robot\textquotesingle{}s gripper /rx200/gripper/command -\/ P\+WM control of the gripper
+
+Subscribes\+: /rx200/gripper/command -\/ P\+WM control feedback from the gripper
+
+Services\+: /home\+\_\+position -\/ Move robot into a home pose /pickup\+\_\+piece -\/ Pickup a piece at the given (row, column) pair /place\+\_\+piece\+\_\+in\+\_\+unused -\/ Place a piece in the used pile /remove\+\_\+piece -\/ Pickup and remove a piece at the given (row, column) from the board /pickup\+\_\+unused\+\_\+piece -\/ Pickup an unused piece from the empty pile /place\+\_\+piece -\/ Place a piece at the given (row, column) on the board /play\+\_\+piece -\/ Pickup an used piece and play it on the board at (row, column) /pickup\+\_\+set\+\_\+of\+\_\+pieces -\/ Pickup a set of pieces and remove them from the board 

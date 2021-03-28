@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['open_5fgripper_5fsimulation',['open_gripper_simulation',['../classgo__motion__planner.html#a9248ea5b2727f984761ea7bbaea3ba5c',1,'go_motion_planner']]]
+  ['board_5flocation',['board_location',['../classgo__motion__planner.html#a26ec310b72222bc827f595e94ada0719',1,'go_motion_planner']]]
 ];

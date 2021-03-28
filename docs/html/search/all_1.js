@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['go_5fmotion_5fplanner',['go_motion_planner',['../classgo__motion__planner.html',1,'']]],
-  ['go_5fmotion_5fplanner_2ehpp',['go_motion_planner.hpp',['../go__motion__planner_8hpp.html',1,'']]]
+  ['board_5flocation',['board_location',['../classgo__motion__planner.html#a26ec310b72222bc827f595e94ada0719',1,'go_motion_planner']]]
 ];
