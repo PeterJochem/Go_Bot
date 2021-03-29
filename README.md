@@ -1,12 +1,18 @@
 # Go Playing Robot 
 I used a ReactorX200 arm to play go. This project has a few components. I first programmed the robot using MoveIt to pick and place go pieces in Gazebo. I then implemented a deep reinforcement learning agent to play go. Finally, I created a simple web interface to allow people to play go against the robot remotely. 
 
-# Running in Robot in Gazebo 
+# Running the Robot in Gazebo 
 To run the robot in Gazebo with MoveIt, run <br />
 ```roslaunch interbotix_moveit interbotix_moveit.launch robot_name:=rx200 use_gazebo:=true``` <br />
 To start the node which manages the physical robot run. This will allow us to do pwm control of the gripper <br />
 ```roslaunch interbotix_sdk arm_run.launch robot_name:=rx200 gripper_operating_mode="pwm"``` <br />
 For more information on what the arm_run.launch file does, read the interbotix_sdk/README.md file
+
+# Results So Far
+I have implemented the major ROS services for doing the picking and placing of the go pieces. Below is a gif of the GoBot picking and placing pieces in Gazebo <br />
+!["Pick and Place Demo"](media/pick_place_demo.gif)
+
+
 
 # ROS Packages in This Repo
 go_motion_planning - Provides services for picking and placing go pieces using MoveIt <br />

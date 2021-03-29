@@ -53,7 +53,6 @@
 
 // TO Do:
 // 1) Create a service to remove a set of pieces?
-// 2) Add the pieces to Gazebo programmaticly
 // 3) Change the node names and the file names 
 // 4) Make things in the class private/public
 // 5) Write units tests!!

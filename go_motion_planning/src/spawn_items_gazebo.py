@@ -23,6 +23,8 @@ from geometry_msgs.msg import PointStamped, Pose, Quaternion
 from go_motion_planning.srv import spawn_piece, remove_pieces_from_gazebo
 import random
 
+
+""" @brief Provides services for spawning and removing objects in Gazebo"""
 class spawn_items:
 
     def __init__(self):
@@ -44,7 +46,8 @@ class spawn_items:
         self.spawned_pieces = []
         self.spawn_piece_service = rospy.Service("spawn_piece", spawn_piece, self.add_piece)
         self.remove_piece_service = rospy.Service("remove_pieces_from_gazebo", remove_pieces_from_gazebo, self.remove_pieces)
-        
+       
+    """ @brief ROS Service - Adds a piece to Gazebo at the (req.row, req.colum) location"""
     def add_piece(self, req):
 
         x, y = self.convert_from_grid_cords_to_world(req.row, req.column)
@@ -63,13 +66,15 @@ class spawn_items:
 
         return True
 
+    """ @brief ROS Service - Remove all the pieces from Gazebo"""
     def remove_pieces(self, req):
 
         for name in self.spawned_pieces:
             self.delete_model(name)
          
         return True
-
+    
+    """ @brief Convert a board (row, column) value to a point in the world frame"""
     def convert_from_grid_cords_to_world(self, grid_x, grid_y):
         
         self.listener.waitForTransform("/go_board", "/world", rospy.Time(0), rospy.Duration(0.1))
@@ -85,7 +90,7 @@ class spawn_items:
         point_world = self.listener.transformPoint("world", point_board)
         return point_world.point.x, point_world.point.y
 
-    
+    """ @brief Create a new name for the next piece"""
     def next_piece_name(self, black=True):
         
         value = random.randint(0, 10000)
@@ -96,7 +101,7 @@ class spawn_items:
     
         return name
 
-
+    """ @brief Load the parameters from the ROS parameter server"""
     def get_params(self):
     
         self.row_width = rospy.get_param("/row_width")
@@ -105,15 +110,9 @@ class spawn_items:
         self.z_board_plane = rospy.get_param("/z_board_plane")
 
 
-
-
 if __name__ == '__main__':
     
-    rospy.init_node("set_initial_board")
-    
+    rospy.init_node("set_initial_board")    
     mySpawner = spawn_items()
-    
-
     rospy.spin()
-
-
+    

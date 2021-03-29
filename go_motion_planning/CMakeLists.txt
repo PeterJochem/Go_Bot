@@ -88,6 +88,7 @@ target_link_libraries(${PROJECT_NAME}_pick_and_place_node ${catkin_LIBRARIES})
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
    src/spawn_items_gazebo.py
+   src/demo_pick_and_place.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
