@@ -66,6 +66,7 @@ class GoBoard():
         self.previous_states = self.previous_states + new_hash
 
     
+    # FIX ME - re-write this method
     def remove_captured_groups(self):
         #self.groups = [group for group in self.groups if group.get_num_liberties() >= 1]    
         
@@ -73,8 +74,22 @@ class GoBoard():
         while (i < len(self.groups)):
             if (self.groups[i].get_num_liberties() <= 0):
                 print("removing a group because it was captured")
-                self.remove_group(self.groups[i])
+                captured_group = self.groups[i] 
+                self.remove_group(captured_group)
+        
+                # Must update the existing groups to now have more liberties
+                for j in range(len(self.groups)):
+                    existing_group = self.groups[j]
+                    if (existing_group.isBlack != captured_group.isBlack):
+
+                        for stone in existing_group.stones:
+                            for neighbor in stone.neighbors():
+                                if (neighbor in captured_group.stones):
+                                    existing_group.liberties.add(neighbor)
+
             i = i + 1
+
+
 
     def add_stone_to_group(self, new_board_location, isBlack, existing_group):
         
