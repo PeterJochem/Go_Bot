@@ -23,7 +23,7 @@ interbotix_ros_arms - Lower level ROS nodes for ReactorX series <br />
 The Doxygen documentation is available at file:///home/peterjochem/Desktop/Go_Bot/catkin_ws/src/docs/html/index.html
 
 # Unit Testing
-I used gtest to create unit tests. To run the unit test, run ```catkin_make run_tests``` or ```catkin_make run_tests <package_name>```
+I used ___ to create unit tests. To run the unit test, run ```catkin_make test```
 
 # Docker Instructions
 I had some trouble getting all the packages at the correct versions to compile so I made a Docker container. Here are the instructions on how to connect to the Docker container and also, if need be, create a new container
