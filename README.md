@@ -12,6 +12,11 @@ For more information on what the arm_run.launch file does, read the interbotix_s
 I have implemented the major ROS services for doing the picking and placing of the go pieces. Below is a gif of the GoBot picking and placing pieces in Gazebo <br />
 !["Pick and Place Demo"](media/pick_place_demo.gif)
 
+# To Play a Game
+```roslaunch interbotix_moveit interbotix_moveit.launch robot_name:=rx200 use_gazebo:=true``` <br />
+```roslaunch go_motion_planning launch.launch``` <br />
+```rosrun go_motion_planning spawn_items_gazebo.py``` <br />
+```rosrun go_engine play_game.py``` <br />
 
 
 # ROS Packages in This Repo

@@ -13,6 +13,8 @@ class GoBoard():
         self.groups = [] # List of GoStrings
         self.zobrist_hashes = ZobristHash(num_rows, num_columns)
         self.previous_states = {}
+        self.num_black_captured_pieces = 0
+        self.num_white_captured_pieces = 0
                   
 
     """Describe Me"""
@@ -21,7 +23,7 @@ class GoBoard():
         if (self.isMoveLegal(board_location, isBlack) == False):
             print("Place stone called with a move which is not legal") # Throw an error instead
             print(str(board_location.row) + "     " + str(board_location.column)) 
-            return False
+            return None
 
         neighboring_friendly_groups = self.neighboring_friendly_groups(board_location, isBlack)
         if (len(neighboring_friendly_groups) > 1):
@@ -40,8 +42,8 @@ class GoBoard():
             group = neighboring_enemy_groups[i]
             group.remove_liberty(board_location)
              
-        self.remove_captured_groups()  
-        return True
+        return self.remove_captured_groups()  
+        #return True
     
     
     def create_one_group(self, existing_friendly_groups, linking_board_location, isBlack):
@@ -69,14 +71,17 @@ class GoBoard():
     # FIX ME - re-write this method
     def remove_captured_groups(self):
         #self.groups = [group for group in self.groups if group.get_num_liberties() >= 1]    
-        
+ 
+        captured_groups = []
+
         i = 0
         while (i < len(self.groups)):
             if (self.groups[i].get_num_liberties() <= 0):
                 print("removing a group because it was captured")
                 captured_group = self.groups[i] 
                 self.remove_group(captured_group)
-        
+                captured_groups.extend(captured_group.stones)
+
                 # Must update the existing groups to now have more liberties
                 for j in range(len(self.groups)):
                     existing_group = self.groups[j]
@@ -88,8 +93,9 @@ class GoBoard():
                                     existing_group.liberties.add(neighbor)
 
             i = i + 1
-
-
+        
+        return captured_groups
+        
 
     def add_stone_to_group(self, new_board_location, isBlack, existing_group):
         
@@ -203,6 +209,12 @@ class GoBoard():
         self.groups.remove(go_string)
         for stone in go_string.stones:
             self.zobrist_hashes.undo_move(stone, go_string.isBlack)
+        
+        if (go_string.isBlack):
+            self.num_black_captured_pieces += go_string.get_num_stones()
+        else:
+            self.num_white_captured_pieces += go_string.get_num_stones()
+
 
     def add_group(self, go_string):
         self.groups.append(go_string)

@@ -136,7 +136,7 @@ class Test_Go_Board(unittest.TestCase):
         myBoard = GoBoard(9, 9)
          
         did_place = myBoard.place_stone(BoardLocation(8,8), True)
-        self.assertEqual(did_place, True)
+        self.assertEqual(did_place is None, False)
         self.assertEqual(myBoard.isEmpty(BoardLocation(8,8)), False)
     
     def test_illegal_place_stone(self):
@@ -144,17 +144,17 @@ class Test_Go_Board(unittest.TestCase):
         myBoard = GoBoard(9, 9)
 
         did_place = myBoard.place_stone(BoardLocation(10,8), True)
-        self.assertEqual(did_place, False)
+        self.assertEqual(did_place is None, True)
         did_place = myBoard.place_stone(BoardLocation(9,8), True)
-        self.assertEqual(did_place, False)
+        self.assertEqual(did_place is None, True)
         did_place = myBoard.place_stone(BoardLocation(-1,8), True)
-        self.assertEqual(did_place, False)
+        self.assertEqual(did_place is None, True)
         
         # Try to place a stone twice 
         did_place = myBoard.place_stone(BoardLocation(8,8), True)
-        self.assertEqual(did_place, True)
+        self.assertEqual(did_place is not None, True)
         did_place = myBoard.place_stone(BoardLocation(8,8), True)
-        self.assertEqual(did_place, False)
+        self.assertEqual(did_place is None, True)
 
     
     def test_get_liberties(self):
