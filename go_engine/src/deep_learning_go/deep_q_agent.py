@@ -1,6 +1,16 @@
 from agent import Agent
 from go_types import BoardLocation
 import random
+import signal, os
+from replayBuffer import *
+import gym
+import tensorflow as tf
+from tensorflow.keras import layers
+import numpy as np
+import matplotlib.pyplot as plt
+from tensorflow.keras import regularizers
+from tensorflow import keras
+from deep_q import Agent
 
 class DeepQLearningAgent(Agent):
 
@@ -13,10 +23,15 @@ class DeepQLearningAgent(Agent):
         self.board_height = num_columns
 
     def get_move(self, game_board):
-
         return self._create_random_move(game_board)
 
 
+
+
+    def train_agent(self, num_games):
+        pass
+
+    
     def _create_random_move(self, game_board):
         all_legal_board_locations = []
 

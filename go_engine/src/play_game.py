@@ -35,6 +35,12 @@ class go_commander:
         self.place_piece = rospy.ServiceProxy("/place_piece", place_piece)
         self.pickup_set_of_pieces = rospy.ServiceProxy("/pickup_set_of_pieces", pickup_set_of_pieces)
         
+        rospy.Subscriber("/online_player/next_move", MoveRequest, self.game_state.black_player.process_move_data)
+         
+        # publish game_state
+        # Have the game state message have a .toMessage Function
+        # publish the game state in this file though
+            
     def play_game(self):
         
         while (not self.game_state.isOver()):

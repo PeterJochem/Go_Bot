@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
 from go_board import GoBoard
 from random_agent import RandomAgent
 from go_types import BoardLocation
 import numpy as np
+from deep_q_agent import DeepQLearningAgent
 
 class GameState():
 
@@ -10,7 +12,9 @@ class GameState():
         self.blacksTurn = True
         self.go_board = GoBoard(num_rows, num_columns)
         self.white_player = RandomAgent(False)
-        self.black_player = RandomAgent(True)
+        self.black_player = OnlineAgent(True)
+        #self.black_player = DeepQLearningAgent(True, num_rows, num_columns)
+        #self.black_player = RandomAgent(True)
         
         self.did_white_just_pass = False
         self.did_black_just_pass = False
