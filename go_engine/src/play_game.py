@@ -19,6 +19,7 @@ from geometry_msgs.msg import *
 from go_motion_planning.srv import spawn_piece, remove_pieces_from_gazebo, pickup_piece, place_piece 
 from go_motion_planning.srv import pickup_set_of_pieces
 from deep_learning_go.game_state import GameState
+from go_browser.msg import move, gamestate
 import time
 
 """ @brief Class for coordinating a game """
@@ -35,12 +36,13 @@ class go_commander:
         self.place_piece = rospy.ServiceProxy("/place_piece", place_piece)
         self.pickup_set_of_pieces = rospy.ServiceProxy("/pickup_set_of_pieces", pickup_set_of_pieces)
         
-        rospy.Subscriber("/online_player/next_move", MoveRequest, self.game_state.black_player.process_move_data)
+        self.get_online_move = rospy.Subscriber("/online_player/next_move", move, self.game_state.black_player.process_move_data)
+        self.game_state_publisher = rospy.Publisher('/current_game_state', gamestate, queue_size=1)
          
-        # publish game_state
-        # Have the game state message have a .toMessage Function
-        # publish the game state in this file though
-            
+        rate = rospy.Rate(10)
+        rate.sleep()
+
+     
     def play_game(self):
         
         while (not self.game_state.isOver()):
@@ -50,6 +52,9 @@ class go_commander:
                 # The agent passed
                 self.game_state.execute_move(board_location)
                 continue
+                
+            rate = rospy.Rate(10)
+            rate.sleep()
 
             # Add the new piece to the real board
             self.update_real_board(board_location, self.game_state.blacksTurn)
@@ -57,9 +62,16 @@ class go_commander:
             # Update data structures tracking the game
             captured_pieces = self.game_state.execute_move(board_location)
             self.game_state.display_board()
-             
             self.remove_captured_groups(captured_pieces)
-                
+            
+
+            # You could also call a method here to let objects lower in tree spin once
+            self.game_state_publisher.publish(self.game_state.toMsg())   
+            
+            # rospy.spinOnce()
+            rate = rospy.Rate(10)
+            rate.sleep()
+
 
     def update_real_board(self, board_location, isBlack):
         

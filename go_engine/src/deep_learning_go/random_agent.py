@@ -10,7 +10,7 @@ class RandomAgent(Agent):
         self.isBlack = isBlack
 
     def get_move(self, game_board):
-
+        
         return self._create_random_move(game_board)
 
 

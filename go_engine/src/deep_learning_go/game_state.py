@@ -3,7 +3,9 @@ from go_board import GoBoard
 from random_agent import RandomAgent
 from go_types import BoardLocation
 import numpy as np
-from deep_q_agent import DeepQLearningAgent
+#from deep_q_agent import DeepQLearningAgent
+from online_agent import OnlineAgent
+from go_browser.msg import gamestate
 
 class GameState():
 
@@ -22,6 +24,20 @@ class GameState():
         self.num_moves = 0
 
     
+    def toMsg(self):
+        
+        gstate_msg = gamestate
+        gstate_msg.isBlackPlayersTurn = self.blacksTurn
+        gstate_msg.isOnlinePlayersTurn = self.blacksTurn
+        gstate_msg.num_rows = self.go_board.num_rows
+        gstate_msg.num_columns = self.go_board.num_columns
+        
+        # 0 = empty, 1 = white, 2 = black
+        gstate_msg.board = [1, 0, 0, 2, 1, 0] 
+    
+        return gstate_msg
+
+
     def isOver(self):
         """
         if (self.num_moves < 10):

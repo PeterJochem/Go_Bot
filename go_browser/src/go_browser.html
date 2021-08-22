@@ -4,6 +4,15 @@
 <meta charset="utf-8" />
 <script src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
 <script src="http://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
+<script src="http://static.robotwebtools.org/threejs/current/three.min.js"></script>
+<script src="http://static.robotwebtools.org/threejs/current/ColladaLoader.min.js"></script>
+<script src="http://static.robotwebtools.org/ColladaAnimationCompress/current/ColladaLoader2.min.js"></script>
+<script src="http://static.robotwebtools.org/threejs/current/STLLoader.min.js"></script>
+<script src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+<script src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+<script src="http://static.robotwebtools.org/ros3djs/current/ros3d.min.js"></script>
+
+
 
 <script>
   var ros = new ROSLIB.Ros({
@@ -22,39 +31,64 @@
     console.log('Connection to websocket server closed.');
   });
 
-  
-  var listener = new ROSLIB.Topic({
-  ros : ros,
-  name : '/listener',
-  messageType : 'std_msgs/String'
+	
+ /*
+  var pub_move = new ROSLIB.Topic({
+         ros : ros,
+         name : '/online_player/next_move',
+         messageType : 'go_browser/move'
   });
+  */
+ 
+  get_users_move = function(request, response) {
+    console.log('Service was called in the browser');
+     
+    response.row = 2;
+    response.column = 5;
 
-  listener.subscribe(function(message) {
-   console.log('Received message on ' + listener.name + ': ' + message.data);
-   //listener.unsubscribe();
-  });
+    return true;
+  };
 
-  
-  var Client = new ROSLIB.Service({
+
+
+  var getMoveServer = new ROSLIB.Service({
     ros : ros,
-    name : '/',
-    serviceType : 'rospy_tutorials/AddTwoInts'
+    name : '/get_online_players_move',
+    serviceType : 'go_browser/move'
   });
 
+  getMoveServer.advertise(get_users_move);
 
-  var request = new ROSLIB.ServiceRequest({
-    a : 1,
-    b : 2
-  });
+	
+   // Create the main viewer.
+    var viewer = new ROS3D.Viewer({
+      divID : 'urdf',
+      width : 800,
+      height : 600,
+      antialias : true
+    });
 
-  addTwoIntsClient.callService(request, function(result) {
-    console.log('Result for service call on '
-      + addTwoIntsClient.name
-      + ': '
-      + result.sum);
-  });
+    // Add a grid.
+    viewer.addObject(new ROS3D.Grid());
 
-  
+    // Setup a client to listen to TFs.
+    var tfClient = new ROSLIB.TFClient({
+      ros : ros,
+      angularThres : 0.01,
+      transThres : 0.01,
+      rate : 10.0
+    });
+
+    // Setup the URDF client.
+    var urdfClient = new ROS3D.UrdfClient({
+      ros : ros,
+      tfClient : tfClient,
+      path : '/src/interbotix_ros_arms/interbotix_descriptions/urdf',
+      rootObject : viewer.scene,
+      loader : ROS3D.COLLADA_LOADER
+    });
+
+
  
 </script>
 </head>
