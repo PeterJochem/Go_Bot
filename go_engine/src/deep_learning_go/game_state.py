@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from go_board import GoBoard
+from go_board import GoBoard, PydanticGoBoard
 from random_agent import RandomAgent
 from go_types import BoardLocation
 import numpy as np
@@ -9,21 +9,19 @@ from go_browser.msg import gamestate
 
 class GameState():
 
-    def __init__(self, num_rows, num_columns):
+    def __init__(self, num_rows, num_columns, whitePlayerType=RandomAgent, blackPlayerType=OnlineAgent):
 
         self.blacksTurn = True
         self.go_board = GoBoard(num_rows, num_columns)
-        self.white_player = RandomAgent(False)
-        self.black_player = OnlineAgent(True)
+        self.white_player = whitePlayerType(False)
+        self.black_player = blackPlayerType(True)
         #self.black_player = DeepQLearningAgent(True, num_rows, num_columns)
         #self.black_player = RandomAgent(True)
         
         self.did_white_just_pass = False
         self.did_black_just_pass = False
-        
         self.num_moves = 0
 
-    
     def toMsg(self):
         
         gstate_msg = gamestate
@@ -34,9 +32,7 @@ class GameState():
         
         # 0 = empty, 1 = white, 2 = black
         gstate_msg.board = [1, 0, 0, 2, 1, 0] 
-    
         return gstate_msg
-
 
     def isOver(self):
         """
@@ -121,32 +117,30 @@ class GameState():
                     continue
                 else:
                     return False
-            
         return True
 
-
     def display_board(self):
-        
         board_array_representation = self.create_array_representation()
         print("-----------------")
         print(board_array_representation)
         
-
     def create_array_representation(self):
-        
         board_array_representation = np.zeros((self.go_board.num_rows, self.go_board.num_columns))
-
         for row in range(self.go_board.num_rows):
             for column in range(self.go_board.num_columns):
-                
                 if (self.go_board.does_piece_exist_at_location(BoardLocation(row, column), False)):  
                     board_array_representation[row][column] = '1'
                 elif (self.go_board.does_piece_exist_at_location(BoardLocation(row, column), True)):
                     board_array_representation[row][column] = '2'
-        
         return board_array_representation
-               
-
+    
+    def create_list_representation(self):
+        
+        board_as_array = self.create_array_representation()
+        board_as_lists = []
+        for row in board_as_array:
+            board_as_lists.append(list(row))
+        return board_as_lists 
 
     def display_winner(self):
         pass
@@ -157,7 +151,3 @@ class GameState():
         else:
             print("The white player won the game")
         """
-            
-myGame_State = GameState(4,4)
-myGame_State.play_game()
-
