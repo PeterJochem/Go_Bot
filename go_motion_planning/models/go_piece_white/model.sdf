@@ -1,0 +1,89 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+   
+  <model name='go_piece_white'>
+    <link name='link'>
+      <inertial>
+        <pose frame=''>0 0 0.0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.0250308</ixx>
+          <ixy>1.1</ixy>
+          <ixz>1.1</ixz>
+          <iyy>1.0250308</iyy>
+          <iyz>1.1</iyz>
+          <izz>1.04802</izz>
+        </inertia>
+      </inertial>
+      <self_collide>0</self_collide>
+      <enable_wind>0</enable_wind>
+      <kinematic>0</kinematic>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      
+      <visual name='visual'>
+	<geometry>
+	  <cylinder>
+            <radius>0.0098</radius>
+            <length>0.01</length>
+	  </cylinder>
+	<!-- box>
+		 <size>0.03 0.03 0.025</size>
+	</box -->
+	</geometry> 
+
+	 <material> <!-- Wheel material -->
+		 <ambient>0.8 0.8 0.8 0.9</ambient>
+	 	 <diffuse>0.8 0.8 0.8 0.9</diffuse>
+		 <specular>0.8 0.8 0.8 0.9</specular>
+          	 <emissive>0.8 0.8 0.8 0.9</emissive>
+	 
+	 </material> <!-- End wheel material -->	
+
+	</visual>
+
+	
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>0.1</max_contacts>
+        <pose frame=''>0 0 0.0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.0098</radius>
+            <length>0.01</length>
+	  </cylinder>
+	<!-- box>
+                 <size>0.03 0.03 0.025</size>
+        </box-->
+
+
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+		    
+	<!-- mu>50000000</mu>
+              <mu2>50000000</mu2>
+              <fdir1>0 0 0</fdir1>
+	      <minDepth>0.0001</minDepth>
+	      <maxVel>0</maxVel>
+	      <kp>100</kp>
+	      <kd>100</kd -->
+
+	      <kp>1000000.0</kp>
+  	      <kd>1.0</kd>
+  	      <mu1>500</mu1>
+  	      <mu2>500</mu2>
+              <maxVel>0.0</maxVel>
+  	      <minDepth>0.1</minDepth>
+
+
+            </ode>
+          </friction>
+	</surface>
+	  </collision>
+  </link>
+
+    <static>0</static>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>

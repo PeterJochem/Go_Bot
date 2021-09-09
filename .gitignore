@@ -1,2 +1,5 @@
 interbotix_ros_arms
 pyc.*
+*.pyc
+robot_recorder
+go_browser

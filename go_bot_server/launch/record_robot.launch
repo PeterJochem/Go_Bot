@@ -1,0 +1,12 @@
+<launch>
+ 
+ <arg name="path" default="go_bot_recordings"/> <!-- if relavtive saved in ~/.ros/ -->
+ <arg name="sub_path" default="/result/static"/>
+ <arg name="filename" default="recording.json"/>
+
+  <include file="$(find recordit)/launch/record.launch">
+    <arg name="manual" value="true" />
+    <arg name="path" value="$(arg path)/$(arg filename)"/>
+  </include>	
+  
+</launch>
