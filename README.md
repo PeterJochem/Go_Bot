@@ -15,7 +15,7 @@ I have implemented the major ROS services for doing the picking and placing of t
 # To Play a Game
 ```roslaunch interbotix_moveit interbotix_moveit.launch robot_name:=rx200 use_gazebo:=true``` <br />
 ```roslaunch go_motion_planning launch.launch``` <br />
-```rosrun go_motion_planning spawn_items_gazebo.py``` <br />
+```rosrun go_motion_planning manipulate_gazebo.py``` <br />
 ```rosrun go_bot_server main.py``` <br />
 
 
