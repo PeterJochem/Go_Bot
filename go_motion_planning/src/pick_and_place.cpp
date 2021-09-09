@@ -392,8 +392,9 @@ geometry_msgs::Point go_motion_planner::next_empty_unused_piece_location() {
         // num_unused_pieces
 	geometry_msgs::Point next_free_location;
 	next_free_location.x = 0.0;
-	next_free_location.y = 0.0;
+	next_free_location.y = -0.10;
 	next_free_location.z = finger_length + z_board_plane + piece_height/2 + z_stance_offset;
+	next_free_location.z = next_free_location.z + 0.075;	
 
 	return convert_board_frame_to_world(next_free_location);
 }
