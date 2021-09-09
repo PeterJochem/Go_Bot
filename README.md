@@ -1,4 +1,5 @@
 # Go Playing Robot 
+!["Go Bot"](media/go_bot5.gif)
 I used a ReactorX200 arm to play go. This project has a few components. I first programmed the robot using MoveIt to pick and place go pieces in Gazebo. I then implemented a deep reinforcement learning agent to play go. Finally, I created a simple web interface to allow people to play go against the robot remotely. 
 
 # Running the Robot in Gazebo 
