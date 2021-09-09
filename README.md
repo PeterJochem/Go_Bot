@@ -27,7 +27,8 @@ go_bot_server - Web interface and server for to allow remote play with the robot
 interbotix_ros_arms - Lower level ROS nodes for ReactorX series <br />
 
 # Fast API
-I used the Fast API to create endpoints for people to play against the robot online. To start the server run ```cd src/go_bot_server/src/server && uvicorn main:app --reload``` <br />
+I used the Fast API to create endpoints for people to play against the robot online. To start the server run <br />
+```cd src/go_bot_server/src/server && uvicorn main:app --reload``` <br />
 Go [here](http://localhost:8000/docs#/) to see what each endpoint does.
 
 # Doxygen Documentation
