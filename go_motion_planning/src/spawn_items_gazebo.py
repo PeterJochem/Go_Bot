@@ -23,7 +23,6 @@ from geometry_msgs.msg import PointStamped, Pose, Quaternion
 from go_motion_planning.srv import spawn_piece, remove_pieces_from_gazebo
 import random
 
-
 """ @brief Provides services for spawning and removing objects in Gazebo"""
 class spawn_items:
 
@@ -49,7 +48,6 @@ class spawn_items:
        
     """ @brief ROS Service - Adds a piece to Gazebo at the (req.row, req.colum) location"""
     def add_piece(self, req):
-
         x, y = self.convert_from_grid_cords_to_world(req.row, req.column)
         z = 0.1 # Use param server value
 
@@ -63,20 +61,16 @@ class spawn_items:
         initial_pose = Pose(Point(x, y, z), Quaternion(*(tf_conversions.transformations.quaternion_from_euler(0.0, 0.0, 0.0))))
         self.spawn_model(name, sdf, "/", initial_pose, "world")
         self.spawned_pieces.append(name)
-
         return True
 
     """ @brief ROS Service - Remove all the pieces from Gazebo"""
     def remove_pieces(self, req):
-
         for name in self.spawned_pieces:
             self.delete_model(name)
-         
         return True
     
     """ @brief Convert a board (row, column) value to a point in the world frame"""
     def convert_from_grid_cords_to_world(self, grid_x, grid_y):
-        
         self.listener.waitForTransform("/go_board", "/world", rospy.Time(0), rospy.Duration(0.1))
         
         point_board = PointStamped()
@@ -98,7 +92,6 @@ class spawn_items:
             name = "black_piece_" + str(value)
         else:
             name = "white_piece_" + str(value)
-    
         return name
 
     """ @brief Load the parameters from the ROS parameter server"""
@@ -109,10 +102,7 @@ class spawn_items:
         self.piece_height = rospy.get_param("/piece_height")
         self.z_board_plane = rospy.get_param("/z_board_plane")
 
-
 if __name__ == '__main__':
-    
     rospy.init_node("set_initial_board")    
     mySpawner = spawn_items()
     rospy.spin()
-    
