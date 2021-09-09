@@ -83,3 +83,11 @@ Change the url in the config.yaml file to ```https://api.ignitionrobotics.org```
 ## Restarting the Container on Reboot
 1) ```sudo docker start robot_env```
 
+## Recording the Robot's Movements For the Browser/GIFs
+```git clone https://github.com/PeterJochem/robot_recorder``` <br />
+Remember to catkin_make <br />
+```roslaunch go_bot_server record_robot.launch```` <br />
+Now we have a node running which offers services to start and stop recording the robot. <br />
+```/robot_recorder/start``` <br />
+```/robot_recorder/save``` <br />
+The launch file go_bot_server/launch/record_robot.launch determines where the json file of joint states is written.
