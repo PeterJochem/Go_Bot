@@ -21,8 +21,9 @@ I have implemented the major ROS services for doing the picking and placing of t
 
 
 # ROS Packages in This Repo
+go_engine - Provide a library for playing Go and agents to play against
 go_motion_planning - Provides services for picking and placing go pieces using MoveIt <br />
-go_robot_server - Web interface and server for to allow remote play with the robot <br />
+go_bot_server - Web interface and server for to allow remote play with the robot <br />
 interbotix_ros_arms - Lower level ROS nodes for ReactorX series <br />
 
 # Doxygen Documentation
