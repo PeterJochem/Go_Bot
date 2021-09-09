@@ -3,10 +3,9 @@
   <name>go_engine</name>
   <version>0.0.1</version>
   <description>Go Engine and Machine Learning Agent</description>
-
   <maintainer email="peterjochem2020@u.northwestern.edu">Peter Jochem</maintainer>
   <license>MIT</license>
-  <url type="website">https://peterjochem.github.io</url>
+  <url type="website">https://peterjochem.github.io/portfolio</url>
   <author email="peterjochem2020@u.northwestern.edu">Peter Jochem</author>
 
   <buildtool_depend>catkin</buildtool_depend>

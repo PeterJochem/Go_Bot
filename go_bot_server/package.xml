@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>go_bot_server</name>
-  <version>0.0.0</version>
-  <description>The go_bot_server package</description>
-  <maintainer email="peterjochem@todo.todo">peterjochem</maintainer>
-  <license>TODO</license>
-  <!-- <url type="website">http://wiki.ros.org/go_bot_server</url> -->
-  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+  <version>0.0.1</version>
+  <description>Web services to interact  with robot</description>
+  <maintainer email="peterjochem2020@u.northwestern.edu">PeterJochem</maintainer>
+  <license>MIT</license>
+  <url type="website">https://peterjochem.github.io/Portfolio/#/</url>
+  <author email="peterjochem2020@u.northwestern.edu">Peter Jochem</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
