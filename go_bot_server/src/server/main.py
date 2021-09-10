@@ -143,7 +143,7 @@ def get_game_state_JSON():
         print("Service call failed: %s"%e)
         return {"success": False}
 
-@app.get("/start_game")
+@app.post("/start_game")
 def start_game(num_rows: int, num_columns: int, whitePlayerType: str, blackPlayerType: str):
     """Try to initialize a game. Returns True/False if a game is/is not possible"""
     try:

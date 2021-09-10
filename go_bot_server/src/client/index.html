@@ -6,17 +6,23 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
 	
+	<link rel="stylesheet" href="go_bot.css">
 	<script type="text/javascript" src="./go_bot.js"></script>
 	
 
 	<title>Go Bot!</title>
   </head>
   <body>
-    <h1>Hello Robotics World</h1>
-    <img src="../../../media/go_bot5.gif" class="img-fluid" alt="Responsive image">
-	
-   <button type="submit" onclick="get_game_state()">Search</button>
-	
+    
+	  <div class="container">
+		  <h1>Hello Robotics World </h1>
+		  <img src="../../../media/go_bot5.gif" class="img-fluid" alt="Go Bot Gif" width="30%" height="30%">
+	  </div>
+
+   <button type="submit" onclick="get_game_state()">Get the game's state</button>
+   <button type="submit" onclick="start_game()">Start a game</button> 	
+ 
+
   </body>
 </html>
 
