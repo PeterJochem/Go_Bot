@@ -1,7 +1,10 @@
 .container {
-  display: flex;
+ 	display: flex;
 }
 
 img {
-  margin: 6px;
+ 	margin: 6px;
+}
+
+#Header-Text {
 }
