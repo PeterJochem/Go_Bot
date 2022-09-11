@@ -14,7 +14,6 @@ class Player(enum.Enum):
 
 """Describe me"""
 class BoardLocation():
-
     def __init__(self, row, column):
         
         self.row = row
@@ -22,11 +21,8 @@ class BoardLocation():
 
     
     def neighbors(self):
-
         return [BoardLocation(self.row - 1, self.column), BoardLocation(self.row + 1, self.column), BoardLocation(self.row, self.column - 1), BoardLocation(self.row, self.column + 1)]
 
-
-    
     def __eq__(self, other):
         if (self.row == other.row and self.column == other.column):
             return True

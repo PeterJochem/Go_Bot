@@ -1,12 +1,14 @@
 
 
-"""Describe Me"""
 class Agent():
+    """ Base Class for all type of Go playing agents """
 
     def __init__(self):
-
-        pass
-
+        """Constructor"""
+        ...
 
     def choose_move(self, game_state):
-        pass
+        """Choose move given the state of the game """
+        ...
+
+

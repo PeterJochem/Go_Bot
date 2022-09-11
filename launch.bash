@@ -25,4 +25,11 @@ tmux send-keys -t "go_bot:manipulate_gazebo" "rosrun go_motion_planning manipula
 
 tmux new-window -t $session:4 -n 'game_server'
 tmux send-keys -t "go_bot:game_server" "source ${catkin_source_path}" C-m
+tmux send-keys -t "go_bot:game_server" "cd ${catkin_ws_path}src/go_bot_server/src/server" C-m
 tmux send-keys -t "go_bot:game_server" "uvicorn main:app --reload" C-m
+
+#tmux new-window -t $session:5 -n 'ros-web-bridge'
+#tmux send-keys -t "roslaunch rosbridge_server rosbridge_websocket.launch" C-m
+
+tmux new-window -t $session:6 -n 'react-frontend'
+tmux send-keys -t "nvm use v16.1.0" C-m
