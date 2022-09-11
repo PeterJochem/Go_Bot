@@ -13,7 +13,7 @@ For more information on what the arm_run.launch file does, read the interbotix_s
 I have implemented the major ROS services for doing the picking and placing of the go pieces. Below is a gif of the GoBot picking and placing pieces in Gazebo <br />
 !["Pick and Place Demo"](media/pick_place_demo.gif)
 
-Here is a video of the robot playing a human via the React frontend.
+Here is a link to a video of the robot playing a human via the React frontend.
 [![Playing the Robot From the Browser](https://img.youtube.com/vi/I9lornPutjY/0.jpg)](https://www.youtube.com/watch?v=I9lornPutjY)
 
 # To Play a Game
