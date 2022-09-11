@@ -13,6 +13,9 @@ For more information on what the arm_run.launch file does, read the interbotix_s
 I have implemented the major ROS services for doing the picking and placing of the go pieces. Below is a gif of the GoBot picking and placing pieces in Gazebo <br />
 !["Pick and Place Demo"](media/pick_place_demo.gif)
 
+Here is a video of the robot playing a human via the React frontend.
+[![Playing the Robot From the Browser](https://img.youtube.com/vi/I9lornPutjY/0.jpg)](https://www.youtube.com/watch?v=I9lornPutjY)
+
 # To Play a Game
 ```roslaunch interbotix_moveit interbotix_moveit.launch robot_name:=rx200 use_gazebo:=true``` <br />
 ```roslaunch go_motion_planning launch.launch``` <br />
@@ -35,7 +38,7 @@ Go [here](http://localhost:8000/docs#/) to see what each endpoint does.
 The Doxygen documentation is available at file:///home/peterjochem/Desktop/Go_Bot/catkin_ws/src/docs/html/index.html
 
 # Unit Testing
-I used ___ to create unit tests. To run the unit test, run ```catkin_make test```
+I used pytest and gtest to create unit tests. To run the unit test, run ```catkin_make test```
 
 # Docker Instructions
 I had some trouble getting all the packages at the correct versions to compile so I made a Docker container. Here are the instructions on how to connect to the Docker container and also, if need be, create a new container
