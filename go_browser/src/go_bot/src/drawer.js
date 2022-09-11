@@ -15,13 +15,20 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import InfoIcon from '@material-ui/icons/Info';
 import PlayArrow from '@material-ui/icons/PlayArrow';
-import VideocamIcon from '@material-ui/icons/Videocam';
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const drawerWidth = 240;
+
+let snackBarMessage = "";
+let snackBarSeverity = "success";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -71,8 +78,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerRight() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [snackOpen, setSnackOpen] = React.useState(false);
   let project_details_link = "https://github.com/PeterJochem/Go_Bot";
-
+ 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -80,12 +88,39 @@ export default function PersistentDrawerRight() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+   
+  const handleSnackClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnackOpen(false);
+  };
+  
+  async function request_new_game() {
+	
+	let response = await fetch("http://localhost:8000/game_state");
+	let json = await response.json();
+	let success = json.hasOwnProperty('success') && json['success'];
+
+ 	if (success) {
+		snackBarSeverity="success"
+		snackBarMessage="Starting New Game";	
+	}
+	else {
+		snackBarSeverity = "error";
+		snackBarMessage = "Unable to start a new game";
+	}
+
+	setTimeout(()=> {setSnackOpen(true);}, 1000);
+  }
+ 
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex'}}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar sx={{ backgroundColor:"MediumBlue" }}>
           <Typography variant="h2" noWrap sx={{ flexGrow: 1 }} component="div">
             Go Bot
           </Typography>
@@ -123,27 +158,13 @@ export default function PersistentDrawerRight() {
         </DrawerHeader>
         <Divider />
         <List>
-	<ListItem button key={'Request New Game'}>
+	<ListItem button key={'Request New Game'} onClick={request_new_game}>
               <ListItemIcon>
 	      <PlayArrow />
 	      </ListItemIcon>
               <ListItemText primary={'Request New Game'} />
             </ListItem>
 	
-	<ListItem button key={'View Robot Live'}>
-              <ListItemIcon>
-              <VideocamIcon />
-              </ListItemIcon>
-              <ListItemText primary={'View Robot Live'} />
-            </ListItem>	
-
-	 <ListItem button key={"Leaderboard"}>
-              <ListItemIcon>
-              <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Leaderboard"} />
-            </ListItem>
-
 	  <a href={project_details_link}>
 	  <ListItem button key={"Project Details"}>
 	      <ListItemIcon>
@@ -156,6 +177,25 @@ export default function PersistentDrawerRight() {
         </List>
         <Divider />
       </Drawer>
+  
+     <div>
+        <Stack spacing={2} sx={{ width: "100%" }}>
+          <Snackbar
+            open={snackOpen}
+            autoHideDuration={5000}
+            onClose={handleSnackClose}
+          >
+            <Alert
+              onClose={handleSnackClose}
+              severity={snackBarSeverity}
+              sx={{ width: "100%" }}
+            >
+              {snackBarMessage}
+            </Alert>
+          </Snackbar>
+        </Stack>
+      </div>
+
     </Box>
   );
 }

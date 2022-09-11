@@ -1,8 +1,5 @@
-import logo from './go_bot5.gif';
 import './App.css';
 import React from 'react';
-import Button from '@mui/material/Button';
-import Paper from '@material-ui/core/Paper';
 import BoardRow from "./board_row.js";
 
 export default class Game extends React.Component {
