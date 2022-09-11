@@ -99,7 +99,10 @@ export default function PersistentDrawerRight() {
   
   async function request_new_game() {
 	
-	let response = await fetch("http://localhost:8000/game_state");
+	let num_rows = 4;
+	let num_cols = 4;
+	let url = `http://localhost:8000/start_game?num_rows=${num_rows}&num_columns=${num_cols}&whitePlayerType=random&blackPlayerType=OnlineAgent`;
+	let response = await fetch(url, {method: "POST"});
 	let json = await response.json();
 	let success = json.hasOwnProperty('success') && json['success'];
 

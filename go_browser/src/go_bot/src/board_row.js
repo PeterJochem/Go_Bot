@@ -2,8 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
-const p1Color =  "#101010";
-const p2Color = "white"; 
+const p2Color =  "#101010";
+const p1Color = "white"; 
 const emptyColor = "#E6BF83";
 
 const useStyles = makeStyles((theme) => ({

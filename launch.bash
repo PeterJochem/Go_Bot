@@ -29,6 +29,8 @@ tmux send-keys -t "go_bot:game_server" "cd ${catkin_ws_path}src/go_bot_server/sr
 tmux send-keys -t "go_bot:game_server" "uvicorn main:app --reload" C-m
 
 tmux new-window -t $session:6 -n 'react-frontend'
-tmux send-keys -t "cd go_browser/src/go_bot" C-m
-tmux send-keys -t "nvm use v16.1.0" C-m
-tmux send-keys -t "npm start" C-m
+tmux send-keys -t "go_bot:react-frontend" cd go_browser/src/go_bot" C-m
+tmux send-keys -t "go_bot:react-frontend" "nvm use v16.1.0" C-m
+tmux send-keys -t "go_bot:react-frontend" "npm start" C-m
+
+echo "To attatch, run tmux a -t go_bot"
