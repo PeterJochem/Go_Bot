@@ -20,8 +20,8 @@ class OnlineAgent(Agent):
         self.move_listening_service = rospy.Service(topic_name, move, self.process_move_data)
     
     def process_move_data(self, req):
-        
-        print("Test, the online player requested a move to the position " + str(req.row) + str(" and ") + str(req.column))
+       
+        print(f"\nSetting the online players move to {req}\n")
         try:
             self.reqMove = BoardLocation(req.row, req.column)
             return True
@@ -30,22 +30,13 @@ class OnlineAgent(Agent):
 
     def get_move(self, game_board):
         
-        print("The online player has not input a move yet. Waiting for their move")
-        is_move_valid = False
-        while (not is_move_valid):
+        print(f"\nget move for the online agent was called. {self.reqMove}\n")
+        while self.reqMove is None:
             time.sleep(1.0)
-            
-            if (self.reqMove is not None):
-                board_location = copy.deepcopy(self.reqMove)
-                if (not game_board.isMoveLegal(board_location, self.isBlack)):
-                    #raise Exception("Online player requested an illegal move")
-                    self.reqMove = None
-                else:
-                    self.reqMove = board_location
-                    is_move_valid = True
-
+        
+        return_move = self.reqMove
         self.reqMove = None # Reset for the player's next move 
-        return board_location
+        return return_move
 
     def _create_random_move(self, game_board):
         all_legal_board_locations = []
