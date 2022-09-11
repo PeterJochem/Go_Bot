@@ -38,7 +38,11 @@ export default function BoardRow(props) {
   const classes = useStyles();
   
   return <div className={classes.board_background} >
-      {props.row.map((value, column_num) => {return <Paper key={column_num} style={{backgroundColor: get_color(props.row, column_num), }} onClick={() => console.log(`${props.row_num}, ${column_num}`)} elevation={10} className={classes.board_location} /> 
+      {props.row.map((value, column_num) => {return <Paper key={column_num} 
+	      style={{backgroundColor: get_color(props.row, column_num), }} 
+	      
+	      onClick={() => props.enter_move(props.row_num, column_num)} 
+	      elevation={10} className={classes.board_location} /> 
         })
       }
       </div>
